@@ -16,12 +16,12 @@ export class LoginService {
   }
 }
 
-class LoginRequest {
+export class LoginRequest {
   email: string;
   password: string;
 }
 
-class LoginResponse {
+export class LoginResponse {
   token: string;
   message: string;
   admin: boolean;
