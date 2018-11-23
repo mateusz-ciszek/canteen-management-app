@@ -6,13 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private LOGIN_ENDPOINT = 'http://212.191.92.88:51010/user/login';
+  private readonly endpoint = '/user/login';
 
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<LoginResponse> {
     const request: LoginRequest = { email, password };
-    return this.http.post<LoginResponse>(this.LOGIN_ENDPOINT, request);
+    return this.http.post<LoginResponse>(this.endpoint, request);
   }
 }
 
