@@ -7,7 +7,16 @@ import { LoginComponent } from './login/login.component';
 import { MainModule } from './main/main.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpInterceptorImpl } from './HttpInterceptorImpl';
+import { AppendBaseUrlInterceptor } from './interceptors/append-base-url.interceptor';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.guard';
+import { AuthErrorInterceptor } from './interceptors/auth-error.interceptor';
+
+const jwtModuleOptions: JwtModuleOptions = {
+  config: {
+    tokenGetter: () => localStorage.getItem('token'),
+  }
+};
 
 @NgModule({
   declarations: [
@@ -20,9 +29,21 @@ import { HttpInterceptorImpl } from './HttpInterceptorImpl';
     MainModule,
     FormsModule,
     HttpClientModule,
+    JwtModule.forRoot(jwtModuleOptions),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorImpl, multi: true },
+    // NOTE: HttpInterceptors are all disabled on a LoginComponent
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppendBaseUrlInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthErrorInterceptor,
+      multi: true,
+    },
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,17 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col align-self-center">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-               placeholder="Enter email" [(ngModel)]="email">
+<div class="login-root">
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-center">
+        <div class="form-group">
+          <label for="emailInput">Email address</label>
+          <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                 placeholder="Enter email" [(ngModel)]="email">
+          <span class="error" *ngIf="emailError">{{ emailError }}</span>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+                 [(ngModel)]="password">
+          <span class="error" *ngIf="passwordError">{{ passwordError }}</span>
+        </div>
+        <div class="form-group">
+          <span class="error" *ngIf="otherError">{{ otherError }}</span>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onLoginClick()">Login</button>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-               [(ngModel)]="password">
-      </div>
-      <button type="submit" class="btn btn-primary" (click)="onLoginClick()">Login</button>
     </div>
   </div>
+
 </div>
