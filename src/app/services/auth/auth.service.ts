@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginResponse } from '../login/login.service';
+import { Router } from '@angular/router';
+import { noop } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private jwtHelper: JwtHelperService) { }
+  constructor(
+      private jwtHelper: JwtHelperService,
+      private router: Router,
+  ) { }
 
-  static logout() {
+  public logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenContent');
-    location.reload(true);
+    this.router.navigate(['/login']).then(noop);
   }
 
   public authenticate(loginResponse: LoginResponse): boolean {
