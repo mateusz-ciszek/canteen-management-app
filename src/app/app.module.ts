@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { MainModule } from './main/main.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppendBaseUrlInterceptor } from './interceptors/append-base-url.interceptor';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth.guard';
 import { AuthErrorInterceptor } from './interceptors/auth-error.interceptor';
+import { AppRoutingModule } from './app-routing.module';
+import { MenuListComponent } from './main/menu/list/menu-list.component';
+import { HeaderBarComponent } from './common/header-bar/header-bar.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -21,12 +22,13 @@ const jwtModuleOptions: JwtModuleOptions = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    HeaderBarComponent,
+    LoginComponent,
+    MenuListComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    MainModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot(jwtModuleOptions),
@@ -45,6 +47,6 @@ const jwtModuleOptions: JwtModuleOptions = {
     },
     AuthGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

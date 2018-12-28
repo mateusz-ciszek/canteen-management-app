@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../services/login/login.service';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { noop, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 
@@ -24,7 +24,7 @@ export class LoginComponent {
       private router: Router,
   ) {
     if (authService.isAuthenticated()) {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/main']).then(noop);
     }
   }
 
@@ -37,7 +37,7 @@ export class LoginComponent {
         })
       ).subscribe(result => {
         if (result) {
-          this.router.navigate(['/main']);
+          this.router.navigate(['/main']).then(noop);
         } else {
           this.otherError = 'Only administrators can login here';
         }

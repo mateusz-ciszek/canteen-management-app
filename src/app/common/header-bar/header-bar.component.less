@@ -1,0 +1,32 @@
+@import '../../../theme';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+
+  .img {
+    height: 32px;
+  }
+}
+
+nav {
+  @element-margin: 8px;
+
+  background: @color-main;
+  display: flex;
+  justify-content: flex-start;
+  a {
+    margin: @element-margin 0 @element-margin @element-margin;
+    padding: 4px 12px;
+    color: white;
+    border-radius: 16px;
+    font-weight: bold;
+
+    &:hover {
+      background: white;
+      color: @color-main;
+    }
+  }
+}

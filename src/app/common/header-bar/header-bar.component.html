@@ -1,0 +1,11 @@
+<div *ngIf="isLoggedIn">
+  <div class="header">
+    <img src="../../../assets/logo.png" class="img" alt="Restaurant management logo">
+    <div>
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="onLogoutButtonClick()">Logout</button>
+    </div>
+  </div>
+  <nav>
+    <a routerLink="main/menu">Menu</a>
+  </nav>
+</div>
