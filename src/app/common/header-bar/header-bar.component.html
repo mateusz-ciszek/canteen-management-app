@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="isLoggedIn">
   <div class="header">
     <img src="../../../assets/logo.png" class="img" alt="Restaurant management logo">
     <div>
@@ -6,7 +6,6 @@
     </div>
   </div>
   <nav>
-    <a>Dashboard</a>
-    <a>Dashborad B</a>
+    <a routerLink="main/menu">Menu</a>
   </nav>
 </div>

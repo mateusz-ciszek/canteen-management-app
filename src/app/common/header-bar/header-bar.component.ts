@@ -7,7 +7,15 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./header-bar.component.less']
 })
 export class HeaderBarComponent {
-  constructor(private authService: AuthService) { }
+  isLoggedIn: boolean;
+
+  constructor(private authService: AuthService) {
+    this.isLoggedIn = authService.isAuthenticated();
+    authService.authentication.subscribe(next => {
+      console.log(`Change in header component: isLoggedIn = ${next}`);
+      this.isLoggedIn = next;
+    });
+  }
 
   onLogoutButtonClick() {
     this.authService.logout();
