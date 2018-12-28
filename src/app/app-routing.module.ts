@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MenuListComponent } from './main/menu/list/menu-list.component';
+import { CanActivateMainGuard } from './services/guard/can-activate-main.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    // FIXME add canActivate guard`
     path: 'main',
     children: [
       { path: '', redirectTo: 'menu', pathMatch: 'full' },
@@ -22,6 +22,7 @@ const routes: Routes = [
       },
       { path: '**', redirectTo: 'menu', pathMatch: 'full' },
     ],
+    canActivate: [CanActivateMainGuard],
   },
   { path: '**', redirectTo: 'main', pathMatch: 'full' },
 ];
