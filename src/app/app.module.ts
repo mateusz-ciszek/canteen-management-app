@@ -12,6 +12,9 @@ import { AuthErrorInterceptor } from './interceptors/auth-error.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuListComponent } from './main/menu/list/menu-list.component';
 import { HeaderBarComponent } from './common/header-bar/header-bar.component';
+import { MenuDetailsComponent } from './main/menu/details/menu-details.component';
+import { ShortenerPipe } from './common/pipe/shortener.pipe';
+import { CurrencyFormatterPipe } from './common/pipe/currency-formatter.pipe';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -22,9 +25,12 @@ const jwtModuleOptions: JwtModuleOptions = {
 @NgModule({
   declarations: [
     AppComponent,
+    CurrencyFormatterPipe,
     HeaderBarComponent,
     LoginComponent,
+    MenuDetailsComponent,
     MenuListComponent,
+    ShortenerPipe,
   ],
   imports: [
     AppRoutingModule,

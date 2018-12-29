@@ -1,19 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Menu } from '../models';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { noop, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public getMenuList(): Observable<Menu[]> | Promise<Menu[]> | Menu[] {
     const url: string = '/menu';
     // TODO fix returned value from server
     return this.http.get<Menu[]>(url).pipe(map(result => result['menus']));
+  }
+
+  public getMenuDetails(menuId: string): Observable<Menu> | Promise<Menu> | Menu {
+    const url: string = `/menu/${menuId}`;
+    // TODO fix returned value from server
+    return this.http.get<Menu>(url).pipe(
+      map(result => result['menu']),
+      catchError(err => {
+        this.router.navigateByUrl('/main/menu/list').catch(noop);
+        return err;
+      })
+    );
   }
 }

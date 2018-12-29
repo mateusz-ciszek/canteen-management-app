@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <h3>{{ menu.name }}</h3>
+  <span>Foods number: {{ menu.foods.length }}</span>
+</div>
+
+<div class="actions float-right">
+  <button type="button" class="btn btn-primary float-right" disabled="true">Add meal</button>
+</div>
+
+<!-- TODO: Search bar -->
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col"> <span class="float-right">Additions</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let food of menu.foods; let index = index" class="clickable">
+      <th scope="row">{{ index }}</th>
+      <th>{{ food.name | shortener:40 }}</th>
+      <th>{{ food.description | shortener:80 }}</th>
+      <th>{{ food.price | currency }}</th>
+      <th><span class="float-right">{{ food.additions.length }}</span></th>
+    </tr>
+  </tbody>
+</table>
