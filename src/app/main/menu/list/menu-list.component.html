@@ -3,7 +3,7 @@
     <h3>Menus</h3>
   </div>
   <div class="col-sm-6">
-    <button type="button" class="btn btn-primary float-right">Add menu</button>
+    <button type="button" class="btn btn-primary float-right" disabled="true">Add menu</button>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let menu of menus; let index = index">
+    <tr *ngFor="let menu of menus; let index = index" (click)="openDetails(menu._id)" class="clickable">
       <th scope="row">{{ index+1 }}</th>
       <th>{{ menu.name }}</th>
       <th>{{ menu.foods.length }}</th>

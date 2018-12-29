@@ -12,6 +12,7 @@ import { AuthErrorInterceptor } from './interceptors/auth-error.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuListComponent } from './main/menu/list/menu-list.component';
 import { HeaderBarComponent } from './common/header-bar/header-bar.component';
+import { MenuDetailsComponent } from './main/menu/details/menu-details.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -24,6 +25,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     AppComponent,
     HeaderBarComponent,
     LoginComponent,
+    MenuDetailsComponent,
     MenuListComponent,
   ],
   imports: [
