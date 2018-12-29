@@ -13,7 +13,6 @@ export class MenuDetailsComponent {
 
   constructor(private route: ActivatedRoute) {
     this.menu = this.route.snapshot.data['menu'];
-    console.log(this.menu);
   }
 
 }
