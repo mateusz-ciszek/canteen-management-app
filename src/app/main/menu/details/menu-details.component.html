@@ -20,7 +20,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let food of menu.foods; let index = index" class="clickable">
+    <tr *ngFor="let food of menu.foods; let index = index"
+        class="clickable"
+        routerLink="/main/menu/{{ menu._id }}/food/details/{{ food._id }}">
       <th scope="row">{{ index }}</th>
       <th>{{ food.name | shortener:40 }}</th>
       <th>{{ food.description | shortener:80 }}</th>

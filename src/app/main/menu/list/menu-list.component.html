@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let menu of menus; let index = index" (click)="openDetails(menu._id)" class="clickable">
+    <tr *ngFor="let menu of menus; let index = index" routerLink="/main/menu/details/{{ menu._id }}" class="clickable">
       <th scope="row">{{ index+1 }}</th>
       <th>{{ menu.name }}</th>
       <th>{{ menu.foods.length }}</th>
