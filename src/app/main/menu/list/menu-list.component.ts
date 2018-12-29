@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Menu } from './menu-list-resolver';
 import { ActivatedRoute } from '@angular/router';
+import { Menu } from '../../../models';
 
 @Component({
   selector: 'app-menu-list',
