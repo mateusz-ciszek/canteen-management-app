@@ -8,6 +8,7 @@ import { MenuListResolver } from './main/menu/list/menu-list-resolver';
 import { MenuDetailsComponent } from './main/menu/details/menu-details.component';
 import { MenuDetailsResolver } from './main/menu/details/menu-details-resolver';
 import { FoodDetailsComponent } from './main/menu/food/detail/food-details.component';
+import { FoodDetailsResolver } from './main/menu/food/detail/food-details-resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -22,7 +23,7 @@ const routes: Routes = [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: MenuListComponent, resolve: { menus: MenuListResolver } },
           { path: 'details/:menuId', component: MenuDetailsComponent, resolve: { menu: MenuDetailsResolver } },
-          { path: ':menuId/food/details/:foodId', component: FoodDetailsComponent },
+          { path: ':menuId/food/details/:foodId', component: FoodDetailsComponent, resolve: { food: FoodDetailsResolver } },
           { path: '**', redirectTo: 'list', pathMatch: 'full' },
         ],
       },
