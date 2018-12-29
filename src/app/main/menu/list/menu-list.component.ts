@@ -14,7 +14,6 @@ export class MenuListComponent {
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.menus = this.route.snapshot.data['menus'];
-    console.log(this.menus);
   }
 
   openDetails(id: string): void {

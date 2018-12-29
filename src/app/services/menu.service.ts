@@ -16,4 +16,10 @@ export class MenuService {
     // TODO fix returned value from server
     return this.http.get<Menu[]>(url).pipe(map(result => result['menus']));
   }
+
+  public getMenuDetails(menuId: string): Observable<Menu> | Promise<Menu> | Menu {
+    const url: string = `/menu/${menuId}`;
+    // TODO fix returned value from server
+    return this.http.get<Menu>(url).pipe(map(result => result['menu']));
+  }
 }
