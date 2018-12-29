@@ -1,3 +1,27 @@
-<p>
-  list works!
-</p>
+<div class="row">
+  <div class="col-sm-6 align-self-center">
+    <h3>Menus</h3>
+  </div>
+  <div class="col-sm-6">
+    <button type="button" class="btn btn-primary float-right">Add menu</button>
+  </div>
+</div>
+
+<!-- TODO: Search bar -->
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Foods</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let menu of menus; let index = index">
+      <th scope="row">{{ index+1 }}</th>
+      <th>{{ menu.name }}</th>
+      <th>{{ menu.foods.length }}</th>
+    </tr>
+  </tbody>
+</table>
