@@ -1,0 +1,6 @@
+<div>
+    <h6 class="align-self-center align-middle" *ngIf="selector.isSelectedAny()">
+      Selected <span class="font-weight-bold">{{ selector.getSelectedCount() }}</span>
+      of <span class="font-weight-bold">{{ selector.getTotalCount() }}</span>
+    </h6>
+</div>

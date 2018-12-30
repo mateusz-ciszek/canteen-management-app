@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Menu } from '../../../models';
-import { noop } from 'rxjs';
+import { Selector } from '../../../common/Selector';
 
 @Component({
   selector: 'app-menu-list',
@@ -11,12 +11,17 @@ import { noop } from 'rxjs';
 export class MenuListComponent {
 
   menus: Menu[];
+  totalMealsCount: number = 0;
+  selector: Selector<Menu>;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute) {
     this.menus = this.route.snapshot.data['menus'];
+    this.selector = new Selector<Menu>(this.menus);
+    this.totalMealsCount = MenuListComponent.calculateTotalMealsCount(this.menus);
   }
 
-  openDetails(id: string): void {
-    this.router.navigateByUrl(`/main/menu/details/${id}`).catch(noop);
+  private static calculateTotalMealsCount(menus: Menu[]): number {
+    return menus.map(value => value.foods.length)
+      .reduce((previousValue, currentValue) => previousValue + currentValue);
   }
 }
