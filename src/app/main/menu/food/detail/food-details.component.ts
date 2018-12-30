@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Food } from '../../../../models';
+import { Addition, Food } from '../../../../models';
 import { ActivatedRoute } from '@angular/router';
+import { Selector } from '../../../../common/Selector';
 
 @Component({
   selector: 'app-food-details',
@@ -10,9 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 export class FoodDetailsComponent {
 
   food: Food;
+  selector: Selector<Addition>;
 
   constructor(private route: ActivatedRoute) {
     this.food = this.route.snapshot.data['food'];
+    this.selector = new Selector<Addition>(this.food.additions);
   }
-
 }

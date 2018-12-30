@@ -9,7 +9,7 @@ export class CurrencyFormatterPipe implements PipeTransform {
 
   transform(value: number, requestedCurrency?: string): string {
     const currency = requestedCurrency || this.defaultCurrency;
-    return `${value.toFixed(2)} ${currency}`;
+    return `${value.toFixed(2)}\xA0${currency}`;
   }
 
 }
