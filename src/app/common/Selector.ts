@@ -30,7 +30,10 @@ export class Selector<T> {
     return this.getSelected().length === 1;
   }
 
-  onChangeAll(state: boolean): void {
+  onChangeAll(event: Event, state?: boolean): void {
+    if (state === undefined || state === null) {
+      state = event.currentTarget['checked'];
+    }
     this.selection.forEach(item => item.isSelected = state);
   }
 

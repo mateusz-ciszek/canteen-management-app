@@ -28,9 +28,7 @@
   <thead>
     <tr>
       <th scope="col" class="check-box-col">
-        <input type="checkbox"
-               [ngModel]="selector.isSelectedAll()"
-               (change)="selector.onChangeAll($event.currentTarget['checked'])">
+        <input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="selector.onChangeAll($event)">
       </th>
       <th scope="col" class="index-col">#</th>
       <th scope="col">Name</th>
