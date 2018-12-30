@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <label>Name</label>
+  <input id="name" name="name" class="form-control" required
+         [(ngModel)]="model.name" #name="ngModel" placeholder="Enter menu name">
+  <div>
+    <small [style.visibility]="name.invalid && (name.dirty || name.touched) ? 'visible' : 'hidden'"
+           class="error">Menu name is required.</small>
+  </div>
+</div>
+
+<div class="actions">
+  <app-selector-summary [selector]="selector"></app-selector-summary>
+  <div class="float-right">
+    <button type="button" class="btn btn-secondary" disabled="true">Add meal</button>
+    <button type="button" class="btn btn-primary"
+            [disabled]="name.invalid || !(name.dirty || name.touched)">Create menu</button>
+  </div>
+</div>

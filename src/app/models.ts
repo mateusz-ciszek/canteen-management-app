@@ -17,3 +17,20 @@ export class Addition {
   name: string;
   price: number;
 }
+
+export class CreateMenuModel {
+  name: string;
+  foods: CreateFoodModel[] = [];
+}
+
+export class CreateFoodModel {
+  name: string;
+  price: number;
+  description: string;
+  additions: CreateFoodAdditionModel[] = [];
+}
+
+export class CreateFoodAdditionModel {
+  name: string;
+  price: number;
+}

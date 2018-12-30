@@ -17,6 +17,7 @@ import { ShortenerPipe } from './common/pipe/shortener.pipe';
 import { CurrencyFormatterPipe } from './common/pipe/currency-formatter.pipe';
 import { FoodDetailsComponent } from './main/menu/food/detail/food-details.component';
 import { SelectorSummaryComponent } from './common/selector-summary/selector-summary.component';
+import { MenuCreateComponent } from './main/menu/create/menu-create.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -31,6 +32,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     FoodDetailsComponent,
     HeaderBarComponent,
     LoginComponent,
+    MenuCreateComponent,
     MenuDetailsComponent,
     MenuListComponent,
     SelectorSummaryComponent,
