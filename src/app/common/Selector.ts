@@ -10,10 +10,6 @@ export class Selector<T> {
     this.selection = items.map(item => ({ item, isSelected: false }));
   }
 
-  getItems(): SelectionModel<T>[] {
-    return this.selection;
-  }
-
   getItem(index: number): SelectionModel<T> {
     return this.selection[index];
   }
@@ -30,6 +26,10 @@ export class Selector<T> {
     return this.getSelected().length === 1;
   }
 
+  isSelectedMany(): boolean {
+    return this.getSelected().length > 1;
+  }
+
   onChangeAll(event: Event, state?: boolean): void {
     if (state === undefined || state === null) {
       state = event.currentTarget['checked'];
@@ -37,16 +37,24 @@ export class Selector<T> {
     this.selection.forEach(item => item.isSelected = state);
   }
 
-  private getSelected(): SelectionModel<T>[] {
-    return this.selection.filter(item => item.isSelected === true);
+  getTotalCount(): number {
+    return this.selection.length;
+  }
+
+  getSelectedCount(): number {
+    return this.getSelected().length;
   }
 
   getSelectedItems(): T[] {
     return this.getSelected().map(item => item.item);
   }
+
+  private getSelected(): SelectionModel<T>[] {
+    return this.selection.filter(item => item.isSelected === true);
+  }
 }
 
-export class SelectionModel<T> {
+class SelectionModel<T> {
   item: T;
   isSelected: boolean;
 }

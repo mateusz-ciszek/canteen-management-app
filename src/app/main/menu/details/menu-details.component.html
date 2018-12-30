@@ -3,22 +3,25 @@
   <span>Foods number: {{ menu.foods.length }}</span>
 </div>
 
-<div class="actions float-right" *ngIf="selector.isSelectedOne()">
-  <button type="button" class="btn btn-secondary" disabled="true">Modify meal</button>
-  <button type="button" class="btn btn-primary" disabled="true">Delete meal</button>
-</div>
-<div class="actions float-right" *ngIf="!selector.isSelectedOne() && selector.isSelectedAny()">
-  <button type="button" class="btn btn-primary" disabled="true">Delete meals</button>
-</div>
-<div class="actions float-right" *ngIf="!selector.isSelectedAny()">
-  <button type="button" class="btn btn-secondary" disabled="true">Modify menu</button>
-  <button type="button" class="btn btn-secondary" disabled="true">Delete menu</button>
-  <button type="button" class="btn btn-primary" disabled="true">Add meal</button>
+<div class="actions">
+  <app-selector-summary [selector]="selector"></app-selector-summary>
+  <div class="float-right" *ngIf="selector.isSelectedOne()">
+    <button type="button" class="btn btn-secondary" disabled="true">Modify meal</button>
+    <button type="button" class="btn btn-primary" disabled="true">Delete meal</button>
+  </div>
+  <div class="float-right" *ngIf="selector.isSelectedMany()">
+    <button type="button" class="btn btn-primary" disabled="true">Delete meals</button>
+  </div>
+  <div class="float-right" *ngIf="!selector.isSelectedAny()">
+    <button type="button" class="btn btn-secondary" disabled="true">Modify menu</button>
+    <button type="button" class="btn btn-secondary" disabled="true">Delete menu</button>
+    <button type="button" class="btn btn-primary" disabled="true">Add meal</button>
+  </div>
 </div>
 
 <!-- TODO: Search bar -->
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" *ngIf="menu.foods.length">
   <thead>
     <tr>
       <th scope="col" class="check-box-col">

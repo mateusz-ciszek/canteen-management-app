@@ -11,20 +11,23 @@
   <div>Additions: {{ food.additions.length }}</div>
 </div>
 
-<div class="actions float-right" *ngIf="selector.isSelectedOne()">
-  <button type="button" class="btn btn-secondary" disabled="true">Modify addition</button>
-  <button type="button" class="btn btn-primary" disabled="true">Delete additions</button>
-</div>
-<div class="actions float-right" *ngIf="!selector.isSelectedOne() && selector.isSelectedAny()">
-  <button type="button" class="btn btn-primary" disabled="true">Delete addition</button>
-</div>
-<div class="actions float-right" *ngIf="!selector.isSelectedAny()">
-  <button type="button" class="btn btn-secondary" disabled="true">Add addition</button>
-  <button type="button" class="btn btn-secondary" disabled="true">Delete meal</button>
-  <button type="button" class="btn btn-primary" disabled="true">Edit meal</button>
+<div class="actions">
+  <app-selector-summary [selector]="selector"></app-selector-summary>
+  <div class="float-right" *ngIf="selector.isSelectedOne()">
+    <button type="button" class="btn btn-secondary" disabled="true">Modify addition</button>
+    <button type="button" class="btn btn-primary" disabled="true">Delete additions</button>
+  </div>
+  <div class="float-right" *ngIf="selector.isSelectedMany()">
+    <button type="button" class="btn btn-primary" disabled="true">Delete addition</button>
+  </div>
+  <div class="float-right" *ngIf="!selector.isSelectedAny()">
+    <button type="button" class="btn btn-secondary" disabled="true">Add addition</button>
+    <button type="button" class="btn btn-secondary" disabled="true">Delete meal</button>
+    <button type="button" class="btn btn-primary" disabled="true">Edit meal</button>
+  </div>
 </div>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" *ngIf="food.additions.length">
   <thead>
     <tr>
       <th scope="col" class="check-box-col">
