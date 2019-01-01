@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Menu } from '../models';
+import { CreateMenuModel, Menu } from '../models';
 import { noop, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -27,6 +27,13 @@ export class MenuService {
         this.router.navigateByUrl('/main/menu/list').catch(noop);
         return err;
       })
+    );
+  }
+
+  public createMenu(model: CreateMenuModel): Observable<void> {
+    const url: string = '/menu';
+    return this.http.post(url, model).pipe(
+      map(() => null),
     );
   }
 }
