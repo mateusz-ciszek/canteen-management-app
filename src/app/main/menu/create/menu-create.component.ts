@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { CreateFoodModel, CreateMenuModel } from '../../../models';
 import { Selector } from '../../../common/Selector';
-import { MenuService } from '../../../services/menu.service';
+import { ModalService } from '../../../services/modal.service';
+import { MenuCreateSummaryComponent } from './summary/menu-create-summary.component';
 
 @Component({
   selector: 'app-menu-create',
@@ -13,9 +15,15 @@ export class MenuCreateComponent {
   model: CreateMenuModel = new CreateMenuModel();
   selector: Selector<CreateFoodModel> = new Selector<CreateFoodModel>(this.model.foods);
 
-  constructor(private menuService: MenuService) { }
+  constructor(private modalService: ModalService, private location: Location) { }
 
   createNewMenu() {
-    this.menuService.createMenu(this.model).subscribe(result => console.log(result));
+    const inputs = { model: this.model };
+    this.modalService.init(MenuCreateSummaryComponent, inputs, {});
+    this.modalService.onClose().subscribe(result => {
+      if (result === true) {
+        this.location.back();
+      }
+    });
   }
 }

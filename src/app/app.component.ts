@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'canteen-management-app';
+  constructor(private modalService: ModalService) {}
+
+  removeModal() {
+    this.modalService.destroy();
+  }
 }
