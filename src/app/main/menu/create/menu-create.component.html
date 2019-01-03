@@ -11,7 +11,7 @@
 <div class="actions">
   <app-selector-summary [selector]="selector"></app-selector-summary>
   <div class="float-right">
-    <button type="button" class="btn btn-secondary" disabled="true">Add meal</button>
+    <button type="button" class="btn btn-secondary" (click)="addMeal()">Add meal</button>
     <button type="button" class="btn btn-primary" (click)="createNewMenu()"
             [disabled]="name.invalid || !(name.dirty || name.touched)">Create menu</button>
   </div>

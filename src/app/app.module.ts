@@ -21,6 +21,7 @@ import { MenuCreateComponent } from './main/menu/create/menu-create.component';
 import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-create-summary.component';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
+import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -41,6 +42,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     MenuListComponent,
     SelectorSummaryComponent,
     ShortenerPipe,
+    MenuCreateFoodComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -68,6 +70,7 @@ const jwtModuleOptions: JwtModuleOptions = {
   bootstrap: [AppComponent],
   entryComponents: [
     MenuCreateSummaryComponent,
+    MenuCreateFoodComponent,
   ],
 })
 export class AppModule {}
