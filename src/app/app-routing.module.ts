@@ -9,6 +9,7 @@ import { MenuDetailsComponent } from './main/menu/details/menu-details.component
 import { MenuDetailsResolver } from './main/menu/details/menu-details-resolver';
 import { FoodDetailsComponent } from './main/menu/food/detail/food-details.component';
 import { FoodDetailsResolver } from './main/menu/food/detail/food-details-resolver';
+import { MenuCreateComponent } from './main/menu/create/menu-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
         path: 'menu',
         children: [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
+          { path: 'create', component: MenuCreateComponent },
           { path: 'list', component: MenuListComponent, resolve: { menus: MenuListResolver } },
           { path: 'details/:menuId', component: MenuDetailsComponent, resolve: { menu: MenuDetailsResolver } },
           { path: ':menuId/food/details/:foodId', component: FoodDetailsComponent, resolve: { food: FoodDetailsResolver } },
