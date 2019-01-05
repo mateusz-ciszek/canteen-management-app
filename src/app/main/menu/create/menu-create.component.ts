@@ -33,8 +33,10 @@ export class MenuCreateComponent {
     const inputs = { model: foodModel };
     const outputs = { model: foodModel };
     this.modalService.init(MenuCreateFoodComponent, inputs, outputs);
-    this.modalService.onClose().subscribe(() => {
-
+    this.modalService.onClose().subscribe(result => {
+      if (result) {
+        this.model.foods.push(foodModel);
+      }
     });
   }
 }

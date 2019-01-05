@@ -32,6 +32,7 @@ export class ModalService {
     document.getElementById(this.overlayElementId).className = 'hidden';
     this.subject.next(result || false);
     this.subject.complete();
+    this.subject = new Subject();
   }
 
   public onClose(): Observable<boolean> {

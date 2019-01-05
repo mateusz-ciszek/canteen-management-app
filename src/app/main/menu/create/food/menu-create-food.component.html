@@ -11,15 +11,16 @@
     <form>
       <div class="form-group">
         <label for="mealName">Name:</label>
-        <input type="text" class="form-control" id="mealName">
+        <input type="text" class="form-control" id="mealName" name="mealName" [(ngModel)]="model.name">
       </div>
       <div class="form-group">
         <label for="mealPrice">Price:</label>
-        <input type="number" class="form-control" id="mealPrice">
+        <input type="number" class="form-control" id="mealPrice" name="mealPrice" [(ngModel)]="model.price">
       </div>
       <div class="form-group">
         <label for="mealDescription">Description:</label>
-        <textarea class="form-control" id="mealDescription" rows="3"></textarea>
+        <textarea class="form-control" id="mealDescription" rows="3" name="mealDescription"
+                  [(ngModel)]="model.description"></textarea>
       </div>
     </form>
 
