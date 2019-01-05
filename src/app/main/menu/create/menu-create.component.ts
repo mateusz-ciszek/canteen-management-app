@@ -39,4 +39,9 @@ export class MenuCreateComponent {
       }
     });
   }
+
+  removeMeals(): void {
+    this.selector.getSelectedItems().forEach(item => this.model.foods.splice(this.model.foods.indexOf(item), 1));
+    this.selector.setItems(this.model.foods);
+  }
 }
