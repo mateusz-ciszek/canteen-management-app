@@ -11,7 +11,23 @@
   }
 }
 
-nav {
+.nav-link {
+  color: white;
+  margin-right: 8px;
+
+  &:hover {
+    color: darkgray;
+    background: dimgray;
+    border-radius: 2px;
+  }
+}
+
+.active {
+  background: dimgray;
+  border-radius: 2px;
+}
+
+/* nav {
   @element-margin: 8px;
 
   background: @color-main;
@@ -25,8 +41,13 @@ nav {
     font-weight: bold;
 
     &:hover {
-      background: white;
-      color: @color-main;
+      background: #6985b3;
     }
   }
 }
+
+.link-active {
+  background: white;
+  color: @color-main !important;
+}
+*/
