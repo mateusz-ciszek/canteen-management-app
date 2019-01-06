@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h3>Orders</h3>
+  <h3>{{ headerTitle }}</h3>
   <div>Total orders: {{ orders.length }}</div>
   <div>New orders: {{ newOrdersCount }}</div>
   <div>Ready orders: {{ readyOrdersCount }}</div>
@@ -7,6 +7,18 @@
 
 <div class="actions">
   <app-selector-summary [selector]="selector"></app-selector-summary>
+  <div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" (click)="refreshOrders()">Refresh</button>
+    </div>
+    <div class="float-right" *ngIf="containsReady">
+      <button type="button" class="btn btn-secondary" (click)="serveOrders()">Serve orders</button>
+    </div>
+    <div class="float-right" *ngIf="containsSaved">
+      <button type="button" class="btn btn-secondary" (click)="confirmOrders()">Confirm orders</button>
+      <button type="button" class="btn btn-secondary" (click)="rejectOrders()">Reject orders</button>
+    </div>
+  </div>
 </div>
 
 <!-- TODO: add filtering -->
@@ -14,7 +26,7 @@
   <thead>
     <tr>
       <th scope="col" class="check-box-col">
-        <input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="selector.onChangeAll($event)">
+        <input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="onChangeAll($event)">
       </th>
       <th scope="col" class="index-col">#</th>
       <th scope="col">User</th>
@@ -27,7 +39,7 @@
   <tbody>
     <tr *ngFor="let order of orders; let index = index">
       <th scope="row">
-        <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected">
+        <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected" (ngModelChange)="ngOnChanges()">
       </th>
       <th>{{ index + 1 }}</th>
       <th>{{ order.user.firstName + ' ' + order.user.lastName }}</th>
