@@ -34,3 +34,31 @@ export class CreateFoodAdditionModel {
   name: string;
   price: number;
 }
+
+export interface Order {
+  _id: string;
+  user: User;
+  state: 'SAVED' | 'READY' | 'SERVED' | 'REJECTED';
+  totalPrice: number;
+  items: OrderItem[];
+}
+
+export interface User {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface OrderItem {
+  _id: string;
+  food: Food;
+  additions: OrderItemAddition[];
+}
+
+export interface OrderItemAddition {
+  _is: string;
+  price: number;
+  quantity: number;
+  foodAddition: Addition;
+}

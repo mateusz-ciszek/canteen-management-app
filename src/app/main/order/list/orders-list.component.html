@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <h3>{{ headerTitle }}</h3>
+  <div>Total orders: {{ orders.length }}</div>
+  <div>New orders: {{ newOrdersCount }}</div>
+  <div>Ready orders: {{ readyOrdersCount }}</div>
+</div>
+
+<div class="actions">
+  <app-selector-summary [selector]="selector"></app-selector-summary>
+  <div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" (click)="refreshOrders()">Refresh</button>
+    </div>
+    <div class="float-right" *ngIf="containsReady">
+      <button type="button" class="btn btn-secondary" (click)="serveOrders()">Serve orders</button>
+    </div>
+    <div class="float-right" *ngIf="containsSaved">
+      <button type="button" class="btn btn-secondary" (click)="confirmOrders()">Confirm orders</button>
+      <button type="button" class="btn btn-secondary" (click)="rejectOrders()">Reject orders</button>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: add filtering -->
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col" class="check-box-col">
+        <input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="onChangeAll($event)">
+      </th>
+      <th scope="col" class="index-col">#</th>
+      <th scope="col">User</th>
+      <!--<th scope="col">Order date</th>-->
+      <th scope="col">Items</th>
+      <th scope="col" class="price-col">Price</th>
+      <th scope="col"><span class="float-right">State</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let index = index">
+      <th scope="row">
+        <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected" (ngModelChange)="ngOnChanges()">
+      </th>
+      <th>{{ index + 1 }}</th>
+      <th>{{ order.user.firstName + ' ' + order.user.lastName }}</th>
+      <!--<th>{{ order.date }}</th>-->
+      <th>{{ order.items.length }}</th>
+      <th>{{ order.totalPrice | currency }}</th>
+      <th><span class="float-right">{{ order.state }}</span></th>
+    </tr>
+  </tbody>
+</table>

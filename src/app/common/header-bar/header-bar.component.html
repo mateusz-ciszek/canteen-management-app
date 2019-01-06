@@ -2,10 +2,11 @@
   <div class="header">
     <img src="../../../assets/logo.png" class="img" alt="Restaurant management logo">
     <div>
-      <button type="button" class="btn btn-outline-primary btn-sm" (click)="onLogoutButtonClick()">Logout</button>
+      <button type="button" class="btn btn-outline-dark btn-sm" (click)="onLogoutButtonClick()">Logout</button>
     </div>
   </div>
-  <nav>
-    <a routerLink="main/menu">Menu</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a routerLink="main/menu" class="nav-link" routerLinkActive="active">Menu</a>
+    <a routerLink="main/order" class="nav-link" routerLinkActive="active">Orders</a>
   </nav>
 </div>
