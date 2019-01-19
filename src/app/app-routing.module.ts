@@ -12,6 +12,8 @@ import { FoodDetailsResolver } from './main/menu/food/detail/food-details-resolv
 import { MenuCreateComponent } from './main/menu/create/menu-create.component';
 import { OrdersListComponent } from './main/order/list/orders-list.component';
 import { OrdersListResolver } from './main/order/list/orders-list-resolver';
+import { OrderDetailsComponent } from './main/order/details/order-details.component';
+import { OrderDetailsResolver } from './main/order/details/order-details-resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -36,6 +38,7 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: OrdersListComponent, resolve: { orders: OrdersListResolver } },
+          { path: 'details/:orderId', component: OrderDetailsComponent, resolve: { order: OrderDetailsResolver } },
           { path: '**', redirectTo: 'list', pathMatch: 'full' },
         ],
       },

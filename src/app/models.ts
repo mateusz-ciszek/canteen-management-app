@@ -41,6 +41,7 @@ export interface Order {
   state: 'SAVED' | 'READY' | 'SERVED' | 'REJECTED';
   totalPrice: number;
   items: OrderItem[];
+  orderDate: Date;
 }
 
 export interface User {

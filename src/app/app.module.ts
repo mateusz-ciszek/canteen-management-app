@@ -23,6 +23,9 @@ import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
 import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
 import { OrdersListComponent } from './main/order/list/orders-list.component';
+import { OrderDetailsComponent } from './main/order/details/order-details.component';
+import { DateTimePipe } from './common/pipe/date-time.pipe';
+import { AdditionsFormatterPipe } from './common/pipe/additions-formatter.pipe';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -34,6 +37,7 @@ const jwtModuleOptions: JwtModuleOptions = {
   declarations: [
     AppComponent,
     CurrencyFormatterPipe,
+    DateTimePipe,
     FoodDetailsComponent,
     HeaderBarComponent,
     LoginComponent,
@@ -42,9 +46,11 @@ const jwtModuleOptions: JwtModuleOptions = {
     MenuCreateSummaryComponent,
     MenuDetailsComponent,
     MenuListComponent,
+    OrderDetailsComponent,
     OrdersListComponent,
     SelectorSummaryComponent,
     ShortenerPipe,
+    AdditionsFormatterPipe,
   ],
   imports: [
     AppRoutingModule,

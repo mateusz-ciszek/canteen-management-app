@@ -37,7 +37,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let order of orders; let index = index">
+    <tr *ngFor="let order of orders; let index = index" routerLink="/main/order/details/{{ order._id }}">
       <th scope="row">
         <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected" (ngModelChange)="ngOnChanges()">
       </th>
