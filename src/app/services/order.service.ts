@@ -15,6 +15,16 @@ export class OrderService {
     const url = '/order/';
     return this.http.get<Orders>(url).pipe(map(obj => obj.orders));
   }
+
+  getOrderDetails(orderId: string): Observable<Order> {
+    const url = `/order/${orderId}`;
+    return this.http.get<Order>(url).pipe(
+      map(order => {
+        order.orderDate = new Date(order.orderDate);
+        return order;
+      }),
+    );
+  }
 }
 
 interface Orders {
