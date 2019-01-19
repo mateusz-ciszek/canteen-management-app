@@ -13,7 +13,6 @@ export class OrderDetailsComponent {
 
   constructor(private route: ActivatedRoute) {
     this.order = route.snapshot.data['order'];
-    console.log(this.order);
   }
 
   contact() {
