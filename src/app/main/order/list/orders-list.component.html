@@ -46,7 +46,7 @@
       <!--<th>{{ order.date }}</th>-->
       <th>{{ order.items.length }}</th>
       <th>{{ order.totalPrice | currency }}</th>
-      <th><span class="float-right">{{ order.state }}</span></th>
+      <th><span class="float-right">{{ order.currentState.state }}</span></th>
     </tr>
   </tbody>
 </table>

@@ -3,9 +3,9 @@
     <div class="col-sm-6">
       <h3>Order</h3>
       <div>Ordered by: {{ order.user.firstName }} {{ order.user.lastName}}</div>
-      <div>Created on: {{ order.orderDate | dateTime }}</div>
+      <div>Created on: {{ order.createdDate | dateTime }}</div>
       <div>Items: {{ order.items.length }}</div>
-      <div>State: <span class="badge badge-primary">{{ order.state }}</span></div>
+      <div>State: <span class="badge badge-primary">{{ order.currentState.state }}</span></div>
     </div>
     <div class="col-sm-6">
       <div class="float-right">

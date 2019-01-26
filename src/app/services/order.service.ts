@@ -13,14 +13,16 @@ export class OrderService {
 
   getOrders(): Observable<Order[]> {
     const url = '/order/';
-    return this.http.get<Orders>(url).pipe(map(obj => obj.orders));
+    return this.http.get<Orders>(url).pipe(
+      map(obj => obj.orders),
+    );
   }
 
   getOrderDetails(orderId: string): Observable<Order> {
     const url = `/order/${orderId}`;
     return this.http.get<Order>(url).pipe(
       map(order => {
-        order.orderDate = new Date(order.orderDate);
+        order.createdDate = new Date(order.createdDate);
         return order;
       }),
     );
