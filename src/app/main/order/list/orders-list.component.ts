@@ -27,8 +27,8 @@ export class OrdersListComponent implements OnChanges {
 
   ngOnChanges(): void {
     const orders = this.selector.getSelectedItems();
-    this.containsSaved = !!orders.find(order => order.state === 'SAVED');
-    this.containsReady = !!orders.find(order => order.state === 'READY');
+    this.containsSaved = !!orders.find(order => order.currentState.state === 'SAVED');
+    this.containsReady = !!orders.find(order => order.currentState.state === 'READY');
     this.headerTitle = this.selector.getSelectedCount() ? 'Selected orders' : 'Orders';
   }
 
@@ -69,7 +69,7 @@ export class OrdersListComponent implements OnChanges {
 
   private evaluateCounts(): void {
     const orders: Order[] = this.selector.getSelectedCount() ? this.selector.getSelectedItems() : this.orders;
-    this.newOrdersCount = orders.filter(order => order.state === 'SAVED').length;
-    this.readyOrdersCount = orders.filter(order => order.state === 'READY').length;
+    this.newOrdersCount = orders.filter(order => order.currentState.state === 'SAVED').length;
+    this.readyOrdersCount = orders.filter(order => order.currentState.state === 'READY').length;
   }
 }

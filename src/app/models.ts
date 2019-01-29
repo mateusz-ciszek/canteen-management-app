@@ -38,11 +38,22 @@ export class CreateFoodAdditionModel {
 export interface Order {
   _id: string;
   user: User;
-  state: 'SAVED' | 'READY' | 'SERVED' | 'REJECTED';
   totalPrice: number;
   items: OrderItem[];
-  orderDate: Date;
+  createdDate: Date;
+  finishedDate: Date;
+  history: OrderState[];
+  currentState: OrderState;
+  comment: string;
 }
+
+export interface OrderState {
+  state: State;
+  enteredBy: User;
+  enteredDate: Date;
+}
+
+export type State = 'SAVED' | 'PAID' | 'SENT_TO_PREPARATION' | 'IN_PREPARATION' | 'READY' | 'SERVED' | 'REJECTED';
 
 export interface User {
   _id: string;
