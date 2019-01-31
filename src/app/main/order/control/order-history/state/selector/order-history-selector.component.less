@@ -1,0 +1,70 @@
+.separator {
+  height: 0;
+  border-bottom: #007bff solid;
+  margin-bottom: -15px;
+}
+
+.time-line {
+  display: inline-flex;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid rgb(233, 236, 239);
+
+  margin-top: -21px;
+}
+
+.circle {
+  -moz-border-radius: 8px/8px;
+  -webkit-border-radius: 8px 8px;
+  border-radius: 8px;
+  border: solid 3px;
+  outline: solid 3px white;
+  background: white;
+  width: 16px;
+  height: 16px;
+  margin-top: 6px;
+  margin-left: 12px;
+  margin-right: 12px;
+
+  &:hover {
+    border: solid 3px rgb(0, 123, 255);
+    cursor: pointer;
+  }
+}
+
+.circle-disabled {
+  .circle;
+  border: solid 3px rgb(108, 117, 125);
+
+  &:hover {
+    border: solid 3px rgb(108, 117, 125);
+    cursor: default;
+  }
+}
+
+.circle-rejected {
+  .circle;
+  border: solid 3px #f00;
+  background: #f00;
+
+  &:hover {
+    border: solid 3px #f00;
+  }
+}
+
+.circle-enabled {
+  .circle;
+  border: solid 3px rgb(89, 169, 255);
+}
+
+.circle-selected {
+  .circle;
+  border: solid 3px rgb(0, 123, 255);
+  background: rgb(0, 123, 255);
+}

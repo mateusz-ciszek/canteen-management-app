@@ -26,6 +26,10 @@ import { OrdersListComponent } from './main/order/list/orders-list.component';
 import { OrderDetailsComponent } from './main/order/details/order-details.component';
 import { DateTimePipe } from './common/pipe/date-time.pipe';
 import { AdditionsFormatterPipe } from './common/pipe/additions-formatter.pipe';
+import { OrderHistoryComponent } from './main/order/control/order-history/order-history.component';
+import { OrderHistoryStateComponent } from './main/order/control/order-history/state/details/order-history-state.component';
+import { OrderHistorySelectorComponent } from './main/order/control/order-history/state/selector/order-history-selector.component';
+import { OrderStateBadgeComponent } from './main/order/control/order-state-badge/order-state-badge.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -51,6 +55,10 @@ const jwtModuleOptions: JwtModuleOptions = {
     SelectorSummaryComponent,
     ShortenerPipe,
     AdditionsFormatterPipe,
+    OrderHistoryComponent,
+    OrderHistoryStateComponent,
+    OrderHistorySelectorComponent,
+    OrderStateBadgeComponent,
   ],
   imports: [
     AppRoutingModule,

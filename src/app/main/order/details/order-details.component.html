@@ -5,7 +5,7 @@
       <div>Ordered by: {{ order.user.firstName }} {{ order.user.lastName}}</div>
       <div>Created on: {{ order.createdDate | dateTime }}</div>
       <div>Items: {{ order.items.length }}</div>
-      <div>State: <span class="badge badge-primary">{{ order.currentState.state }}</span></div>
+      <div>State: <app-order-state-badge [state]="order.currentState.state"></app-order-state-badge></div>
     </div>
     <div class="col-sm-6">
       <div class="float-right">
@@ -20,7 +20,7 @@
   <div class="col-sm-12">
     <div class="actions float-right">
       <button type="button" class="btn btn-secondary" (click)="contact()">Contact</button>
-      <div *ngIf="order.state === 'SAVED'">
+      <div *ngIf="order.currentState.state === 'SAVED'">
         <button type="button" class="btn btn-secondary">Reject</button>
         <button type="button" class="btn btn-primary">Confirm</button>
       </div>
@@ -51,11 +51,12 @@
   </div>
 </div>
 
-
 <!-- TODO: history of past order states -->
-<!--<div class="row col">-->
-  <!--<div class="card">-->
-    <!--<h5 class="card-header">State history</h5>-->
-    <!--<div class="card-body"></div>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="row col">
+  <div class="card">
+    <h5 class="card-header">Order history</h5>
+    <div class="card-body">
+      <app-order-history [history]="order.history"></app-order-history>
+    </div>
+  </div>
+</div>
