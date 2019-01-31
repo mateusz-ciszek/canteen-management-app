@@ -1,0 +1,13 @@
+<div class="flex-row">
+  <div class="separator"></div>
+  <div class="d-flex justify-content-around">
+    <div *ngFor="let n of array; let index = index">
+      <div class="arrow-down" *ngIf="isSelected(index)"></div>
+      <div [ngClass]="{ 'circle-selected': isSelected(index) && !isRejected(index),
+                        'circle-rejected': isRejected(index),
+                        'circle-enabled': index < history.length && !isSelected(index),
+                        'circle-disabled': true }"
+           (click)="changeSelection(index)"></div>
+    </div>
+  </div>
+</div>

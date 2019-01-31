@@ -1,0 +1,8 @@
+<span [ngClass]="{ 'badge': true,
+                   'badge-primary': true,
+                   'badge-info': isSaved(),
+                   'badge-danger': isRejected(),
+                   'badge-success': isServed(),
+                   'badge-warning': isReady() }">
+  {{ state.split('_').join(' ') }}
+</span>

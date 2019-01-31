@@ -23,6 +23,7 @@ export class OrderService {
     return this.http.get<Order>(url).pipe(
       map(order => {
         order.createdDate = new Date(order.createdDate);
+        order.history.forEach(state => state.enteredDate = new Date(state.enteredDate));
         return order;
       }),
     );
