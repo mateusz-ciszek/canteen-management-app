@@ -2,6 +2,7 @@
   <h3>{{ headerTitle }}</h3>
   <div>Total orders: {{ orders.length }}</div>
   <div>New orders: {{ newOrdersCount }}</div>
+  <!-- TODO: add orders in preparation count (PAID || SENT_TO_PREPARATION || IN_PREPARATION) -->
   <div>Ready orders: {{ readyOrdersCount }}</div>
 </div>
 
@@ -25,28 +26,23 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th scope="col" class="check-box-col">
-        <input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="onChangeAll($event)">
-      </th>
       <th scope="col" class="index-col">#</th>
       <th scope="col">User</th>
+      <!-- TODO: show created and finished dates once those can be retrieved from server -->
       <!--<th scope="col">Order date</th>-->
       <th scope="col">Items</th>
+      <th scope="col">State</th>
       <th scope="col" class="price-col">Price</th>
-      <th scope="col"><span class="float-right">State</span></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let order of orders; let index = index" routerLink="/main/order/details/{{ order._id }}">
-      <th scope="row">
-        <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected" (ngModelChange)="ngOnChanges()">
-      </th>
+    <tr class="clickable" *ngFor="let order of orders; let index = index" routerLink="/main/order/details/{{ order._id }}">
       <th>{{ index + 1 }}</th>
       <th>{{ order.user.firstName + ' ' + order.user.lastName }}</th>
       <!--<th>{{ order.date }}</th>-->
       <th>{{ order.items.length }}</th>
+      <th>{{ order.currentState.state }}</th>
       <th>{{ order.totalPrice | currency }}</th>
-      <th><span class="float-right">{{ order.currentState.state }}</span></th>
     </tr>
   </tbody>
 </table>
