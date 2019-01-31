@@ -32,11 +32,6 @@ export class OrdersListComponent implements OnChanges {
     this.headerTitle = this.selector.getSelectedCount() ? 'Selected orders' : 'Orders';
   }
 
-  onChangeAll(event): void {
-    this.selector.onChangeAll(event);
-    this.ngOnChanges();
-  }
-
   refreshOrders(): void {
     this.assignOrders([]);
     this.ngOnChanges();
