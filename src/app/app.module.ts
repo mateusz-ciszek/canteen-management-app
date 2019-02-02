@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
 import { SharedModule } from './common/shared.module';
+import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-create-summary.component';
+import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -24,6 +26,10 @@ const jwtModuleOptions: JwtModuleOptions = {
   declarations: [
     AppComponent,
     LoginComponent,
+
+    // for entryComponents, as those cannot be declared in submodules
+    MenuCreateSummaryComponent,
+    MenuCreateFoodComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -50,5 +56,9 @@ const jwtModuleOptions: JwtModuleOptions = {
     ModalService,
   ],
   bootstrap: [AppComponent],
+  entryComponents: [
+    MenuCreateSummaryComponent,
+    MenuCreateFoodComponent,
+  ],
 })
 export class AppModule {}
