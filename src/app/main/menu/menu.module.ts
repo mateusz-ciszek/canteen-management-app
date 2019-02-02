@@ -8,7 +8,7 @@ import { MenuDetailsComponent } from './details/menu-details.component';
 import { MenuListComponent } from './list/menu-list.component';
 import { SharedModule } from '../../common/shared.module';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../../app-routing.module';
+import { MenuRoutingModule } from './menu-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,9 +20,9 @@ import { AppRoutingModule } from '../../app-routing.module';
     MenuListComponent,
   ],
   imports: [
-    AppRoutingModule,
     CommonModule,
     FormsModule,
+    MenuRoutingModule,
     SharedModule,
   ],
   entryComponents: [

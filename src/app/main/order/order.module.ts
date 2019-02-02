@@ -8,6 +8,7 @@ import { OrderHistorySelectorComponent } from './control/order-history/state/sel
 import { OrderStateBadgeComponent } from './control/order-state-badge/order-state-badge.component';
 import { SharedModule } from '../../common/shared.module';
 import { RouterModule } from '@angular/router';
+import { OrderRoutingModule } from './order-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SharedModule,
+    OrderRoutingModule,
     RouterModule,
   ],
 })

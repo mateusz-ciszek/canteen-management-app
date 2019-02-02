@@ -12,9 +12,7 @@ import { AuthErrorInterceptor } from './interceptors/auth-error.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
-import { MenuModule } from './main/menu/menu.module';
 import { SharedModule } from './common/shared.module';
-import { OrderModule } from './main/order/order.module';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -33,8 +31,6 @@ const jwtModuleOptions: JwtModuleOptions = {
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot(jwtModuleOptions),
-    MenuModule,
-    OrderModule,
     SharedModule,
   ],
   providers: [
