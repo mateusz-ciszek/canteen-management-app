@@ -10,26 +10,11 @@ import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth.guard';
 import { AuthErrorInterceptor } from './interceptors/auth-error.interceptor';
 import { AppRoutingModule } from './app-routing.module';
-import { MenuListComponent } from './main/menu/list/menu-list.component';
-import { HeaderBarComponent } from './common/header-bar/header-bar.component';
-import { MenuDetailsComponent } from './main/menu/details/menu-details.component';
-import { ShortenerPipe } from './common/pipe/shortener.pipe';
-import { CurrencyFormatterPipe } from './common/pipe/currency-formatter.pipe';
-import { FoodDetailsComponent } from './main/menu/food/detail/food-details.component';
-import { SelectorSummaryComponent } from './common/selector-summary/selector-summary.component';
-import { MenuCreateComponent } from './main/menu/create/menu-create.component';
-import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-create-summary.component';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
-import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
-import { OrdersListComponent } from './main/order/list/orders-list.component';
-import { OrderDetailsComponent } from './main/order/details/order-details.component';
-import { DateTimePipe } from './common/pipe/date-time.pipe';
-import { AdditionsFormatterPipe } from './common/pipe/additions-formatter.pipe';
-import { OrderHistoryComponent } from './main/order/control/order-history/order-history.component';
-import { OrderHistoryStateComponent } from './main/order/control/order-history/state/details/order-history-state.component';
-import { OrderHistorySelectorComponent } from './main/order/control/order-history/state/selector/order-history-selector.component';
-import { OrderStateBadgeComponent } from './main/order/control/order-state-badge/order-state-badge.component';
+import { MenuModule } from './main/menu/menu.module';
+import { SharedModule } from './common/shared.module';
+import { OrderModule } from './main/order/order.module';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -40,25 +25,7 @@ const jwtModuleOptions: JwtModuleOptions = {
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyFormatterPipe,
-    DateTimePipe,
-    FoodDetailsComponent,
-    HeaderBarComponent,
     LoginComponent,
-    MenuCreateComponent,
-    MenuCreateFoodComponent,
-    MenuCreateSummaryComponent,
-    MenuDetailsComponent,
-    MenuListComponent,
-    OrderDetailsComponent,
-    OrdersListComponent,
-    SelectorSummaryComponent,
-    ShortenerPipe,
-    AdditionsFormatterPipe,
-    OrderHistoryComponent,
-    OrderHistoryStateComponent,
-    OrderHistorySelectorComponent,
-    OrderStateBadgeComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -66,6 +33,9 @@ const jwtModuleOptions: JwtModuleOptions = {
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot(jwtModuleOptions),
+    MenuModule,
+    OrderModule,
+    SharedModule,
   ],
   providers: [
     // NOTE: HttpInterceptors are all disabled on a LoginComponent
@@ -84,9 +54,5 @@ const jwtModuleOptions: JwtModuleOptions = {
     ModalService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    MenuCreateSummaryComponent,
-    MenuCreateFoodComponent,
-  ],
 })
 export class AppModule {}
