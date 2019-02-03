@@ -51,9 +51,24 @@
   </div>
 </div>
 
-<!-- TODO: history of past order states -->
 <div class="row col">
   <div class="card">
+    <h5 class="card-header">Comment
+      <a class="alert alert-link link" (click)="changeCommentVisibility()" href="javascript:void(0)">
+        {{ (expanded ? 'Hide' : 'Show') | uppercase }}
+      </a>
+    </h5>
+    <div class="card-body" *ngIf="expanded">
+      <div *ngIf="hasComment; else noComment">{{ order.comment }}</div>
+      <ng-template #noComment>
+        <div class="font-italic">No comment provided</div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="row col">
+  <div class="card last">
     <h5 class="card-header">Order history</h5>
     <div class="card-body">
       <app-order-history [history]="order.history"></app-order-history>
