@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OrderState } from '../../../../../../models';
 
 @Component({
@@ -6,13 +6,9 @@ import { OrderState } from '../../../../../../models';
   templateUrl: './order-history-state.component.html',
   styleUrls: ['./order-history-state.component.less']
 })
-export class OrderHistoryStateComponent implements OnInit {
+export class OrderHistoryStateComponent {
 
   @Input()
   orderState: OrderState;
-
-  ngOnInit(): void {
-    console.log(this.orderState);
-  }
 
 }
