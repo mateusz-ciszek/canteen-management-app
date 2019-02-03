@@ -1,6 +1,9 @@
 <div class="jumbotron">
   <div>State: <app-order-state-badge [state]="orderState.state"></app-order-state-badge></div>
-  <!-- FIXME: show users full name and contact button once it can be retrieved from server -->
-  <div>Entered by: {{ orderState.enteredBy }}</div>
+  <div>
+    Entered by:
+    <span>{{ orderState.enteredBy.firstName }} {{ orderState.enteredBy.lastName }}</span>
+    <a class="alert alert-link" href="mailto:{{ orderState.enteredBy.email }}">Contact</a>
+  </div>
   <div>Entered date: {{ orderState.enteredDate | dateTime }}</div>
 </div>
