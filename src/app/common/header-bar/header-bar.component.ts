@@ -12,7 +12,6 @@ export class HeaderBarComponent {
   constructor(private authService: AuthService) {
     this.isLoggedIn = authService.isAuthenticated();
     authService.authentication.subscribe(next => {
-      console.log(`Change in header component: isLoggedIn = ${next}`);
       this.isLoggedIn = next;
     });
   }
