@@ -1,0 +1,114 @@
+<form #createFoodForm="ngForm">
+  <div class="jumbotron">
+    <div class="row form-group">
+      <div class="col">
+        <h3>Create meal</h3>
+        <div class="form-group">
+          <label for="mealName">Name:</label>
+          <input id="mealName" name="mealName" type="text" class="form-control" placeholder="Meal name"
+                 [(ngModel)]="model.name" required minlength="3" #mealName="ngModel"
+                 [class.is-invalid]="mealName.invalid && (mealName.dirty || mealName.touched)">
+          <div class="error" *ngIf="mealName.invalid && (mealName.dirty || mealName.touched)">
+            <small *ngIf="mealName.errors.required">Meal name is required</small>
+            <small *ngIf="mealName.errors.minlength">Meal name has to be at least 3 characters long</small>
+          </div>
+        </div>
+        <div>
+          <label for="mealPrice">Price:</label>
+          <div class="input-group">
+            <input id="mealPrice" name="mealPrice" type="number" class="form-control" [(ngModel)]="model.price"
+                   required appValidPrice #mealPrice="ngModel"
+                   [class.is-invalid]="mealPrice.invalid && (mealPrice.dirty || mealPrice.touched)">
+            <div class="input-group-append">
+              <div class="input-group-text">zł</div>
+            </div>
+          </div>
+          <div class="error" *ngIf="mealPrice.invalid && (mealPrice.dirty || mealPrice.touched)">
+            <small *ngIf="mealPrice.errors.required">Meal price is required</small>
+            <small *ngIf="mealPrice.errors.validPrice">Meal price is invalid</small>
+          </div>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <img class="img-thumbnail" *ngIf="image; else noImage" [src]="image" alt="Meal image selected by user"
+             width="196" height="196">
+        <ng-template #noImage>
+          <img class="img-thumbnail" src="assets/placeholder/food_196x196.png" alt="Placeholder image" width="196"
+               height="196">
+        </ng-template>
+        <div class="no-space">
+          <div class="spinner-border text-primary" [hidden]="!imageLoading"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-12">
+        <label for="mealImage">Meal image: </label>
+        <div class="input-group">
+          <div class="custom-file">
+            <input id="mealImage" type="file" class="form-control" accept="image/*" (change)="loadImage($event)"
+                   [disabled]="imageLoading" #fileInput>
+            <label for="mealImage" class="custom-file-label">{{ imagePath || 'Choose image...' }}</label>
+          </div>
+          <div class="input-group-append">
+            <button class="input-group-text btn btn-danger" (click)="removeImage()">&times;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <label for="mealDescription">Description:</label>
+        <textarea id="mealDescription" name="mealDescription" rows="3" class="form-control"
+                  [(ngModel)]="model.description"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="actions float-right" *ngIf="selector.isSelectedMany()">
+        <button class="btn btn-primary" (click)="deleteAdditions()">Delete additions</button>
+      </div>
+      <div class="actions float-right" *ngIf="selector.isSelectedOne()">
+        <button class="btn btn-secondary" (click)="deleteAdditions()">Delete addition</button>
+        <button class="btn btn-primary">Modify addition</button>
+      </div>
+      <div class="actions float-right" *ngIf="!selector.isSelectedAny()">
+        <button class="btn btn-secondary" (click)="newAddition()">New addition</button>
+        <input type="submit" value="Save" class="btn btn-primary" [disabled]="!createFoodForm.valid" (click)="save()">
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <h5 class="card-header">Additions ({{ model.additions.length }})</h5>
+      <table *ngIf="model.additions.length; else noAdditions" class="table table-borderless table-hover table-striped">
+        <thead>
+          <tr>
+            <th class="check-box-col"><input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="selector.onChangeAll($event)"></th>
+            <th class="index-col">#</th>
+            <th>Name</th>
+            <th class="price-col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let addition of model.additions; let index = index">
+            <th class="check-box-col"><input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected"></th>
+            <th class="index-col">{{ index + 1 }}</th>
+            <th>{{ addition.name }}</th>
+            <th class="price-col">{{ addition.price | currency }}</th>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noAdditions>
+        <div class="card-body font-italic">There aren't any additions added</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

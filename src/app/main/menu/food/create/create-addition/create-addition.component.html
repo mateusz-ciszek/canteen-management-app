@@ -1,0 +1,36 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Create new addition</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #createAdditionForm="ngForm">
+      <div class="form-group">
+        <label for="additionName">Name:</label>
+        <input class="form-control" type="text" name="additionName" id="additionName" [(ngModel)]="model.name"
+               required minlength="3" #additionName="ngModel"
+               [class.is-invalid]="(additionName.dirty || additionName.touched) && additionName.errors">
+        <ng-container *ngIf="(additionName.dirty || additionName.touched) && additionName.errors">
+          <small class="error" *ngIf="additionName.errors.required">Addition name is required</small>
+          <small class="error" *ngIf="additionName.errors.minlength">Addition name have to be at least 3 characters long</small>
+        </ng-container>
+      </div>
+      <div class="form-group">
+        <label for="additionPrice">Price:</label>
+        <input class="form-control" type="number" name="additionPrice" id="additionPrice" [(ngModel)]="model.price"
+               required appValidPrice #additionPrice="ngModel"
+               [class.is-invalid]="(additionPrice.dirty || additionPrice.touched) && additionPrice.errors">
+        <ng-container *ngIf="(additionPrice.dirty || additionPrice.touched) && additionPrice.errors">
+          <small class="error" *ngIf="additionPrice.errors.required">Addition price is required</small>
+          <small class="error" *ngIf="additionPrice.errors.validPrice">Addition price is invalid</small>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="close()">Cancel</button>
+    <button class="btn btn-primary" (click)="createAddition()" [disabled]="!createAdditionForm.valid">Add</button>
+  </div>
+</div>

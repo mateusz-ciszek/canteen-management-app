@@ -7,6 +7,7 @@ import { CurrencyFormatterPipe } from './pipe/currency-formatter.pipe';
 import { DateTimePipe } from './pipe/date-time.pipe';
 import { AdditionsFormatterPipe } from './pipe/additions-formatter.pipe';
 import { RouterModule } from '@angular/router';
+import { PriceValidatorDirective } from './validator/price.directive';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
     CurrencyFormatterPipe,
     DateTimePipe,
     HeaderBarComponent,
+    PriceValidatorDirective,
     SelectorSummaryComponent,
     ShortenerPipe,
   ],
@@ -26,6 +28,7 @@ import { RouterModule } from '@angular/router';
     CurrencyFormatterPipe,
     DateTimePipe,
     HeaderBarComponent,
+    PriceValidatorDirective,
     SelectorSummaryComponent,
     ShortenerPipe,
   ],

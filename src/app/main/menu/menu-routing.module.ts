@@ -8,6 +8,7 @@ import { MenuDetailsResolver } from './details/menu-details-resolver';
 import { FoodDetailsComponent } from './food/detail/food-details.component';
 import { FoodDetailsResolver } from './food/detail/food-details-resolver';
 import { CommonModule } from '@angular/common';
+import { FoodCreateComponent } from './food/create/food-create.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,13 @@ const routes: Routes = [
       { path: 'create', component: MenuCreateComponent },
       { path: 'list', component: MenuListComponent, resolve: { menus: MenuListResolver } },
       { path: 'details/:menuId', component: MenuDetailsComponent, resolve: { menu: MenuDetailsResolver } },
-      { path: ':menuId/food/details/:foodId', component: FoodDetailsComponent, resolve: { food: FoodDetailsResolver } },
+      {
+        path: ':menuId/food',
+        children: [
+          { path: 'details/:foodId', component: FoodDetailsComponent, resolve: { food: FoodDetailsResolver } },
+          { path: 'create', component: FoodCreateComponent },
+        ],
+      },
       { path: '**', redirectTo: 'list', pathMatch: 'full' },
     ],
   },

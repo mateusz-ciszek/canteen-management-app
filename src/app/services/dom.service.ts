@@ -1,4 +1,4 @@
-import { Injectable, Injector, ComponentFactoryResolver, EmbeddedViewRef, ApplicationRef } from '@angular/core';
+import { Injectable, Injector, ComponentFactoryResolver, EmbeddedViewRef, ApplicationRef, ComponentRef } from '@angular/core';
 
 /**
  * Created based on:
@@ -15,9 +15,9 @@ export class DomService {
     private injector: Injector
   ) { }
 
-  public appendComponentTo(parentId: string, child: any, childConfig?: ChildConfig) {
+  public appendComponentTo(parentId: string, child: any, childConfig?: ChildConfig): void {
     // Create a component reference from the component
-    const childComponentRef = this.componentFactoryResolver
+    const childComponentRef: ComponentRef<any> = this.componentFactoryResolver
       .resolveComponentFactory(child)
       .create(this.injector);
 
@@ -37,12 +37,12 @@ export class DomService {
 
   }
 
-  public removeComponent() {
+  public removeComponent(): void {
     this.appRef.detachView(this.childComponentRef.hostView);
     this.childComponentRef.destroy();
   }
 
-  private attachConfig(config, componentRef) {
+  private attachConfig(config: ChildConfig, componentRef: ComponentRef<any>): void {
     const inputs = config.inputs;
     const outputs = config.outputs;
     for (const key in inputs) {
