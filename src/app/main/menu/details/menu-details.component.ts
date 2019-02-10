@@ -14,6 +14,7 @@ export class MenuDetailsComponent {
   selector: Selector<Food>;
 
   constructor(private route: ActivatedRoute) {
+
     this.menu = this.route.snapshot.data['menu'];
     this.selector = new Selector<Food>(this.menu.foods);
   }

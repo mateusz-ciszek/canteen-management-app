@@ -5,6 +5,7 @@ import { Selector } from '../../../common/Selector';
 import { ModalService } from '../../../services/modal.service';
 import { MenuCreateSummaryComponent } from './summary/menu-create-summary.component';
 import { MenuCreateFoodComponent } from './food/menu-create-food.component';
+import { FoodUtil } from '../food/create/food-util';
 
 @Component({
   selector: 'app-menu-create',
@@ -29,7 +30,7 @@ export class MenuCreateComponent {
   }
 
   addMeal() {
-    const foodModel: CreateFoodModel = new CreateFoodModel();
+    const foodModel: CreateFoodModel = FoodUtil.getCreateFoodModel();
     const inputs = { model: foodModel };
     const outputs = { model: foodModel };
     this.modalService.init(MenuCreateFoodComponent, inputs, outputs);

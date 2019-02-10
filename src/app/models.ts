@@ -23,7 +23,8 @@ export class CreateMenuModel {
   foods: CreateFoodModel[] = [];
 }
 
-export class CreateFoodModel {
+export interface CreateFoodModel {
+  _id?: string;
   name: string;
   price: number;
   description: string;
@@ -31,7 +32,8 @@ export class CreateFoodModel {
   image?: File;
 }
 
-export class CreateFoodAdditionModel {
+export interface CreateFoodAdditionModel {
+  _id?: string;
   name: string;
   price: number;
 }
