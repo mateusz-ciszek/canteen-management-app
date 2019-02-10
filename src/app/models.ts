@@ -27,7 +27,8 @@ export class CreateFoodModel {
   name: string;
   price: number;
   description: string;
-  additions: CreateFoodAdditionModel[] = [];
+  additions: CreateFoodAdditionModel[];
+  image?: File;
 }
 
 export class CreateFoodAdditionModel {

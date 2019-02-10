@@ -15,7 +15,7 @@
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
     <button type="button" class="btn btn-secondary" disabled="true">Modify menu</button>
     <button type="button" class="btn btn-secondary" disabled="true">Delete menu</button>
-    <button type="button" class="btn btn-primary" disabled="true">Add meal</button>
+    <button type="button" class="btn btn-primary" routerLink="/main/menu/{{ menu._id }}/food/create">Add meal</button>
   </div>
 </div>
 

@@ -15,6 +15,7 @@ import { DomService } from './services/dom.service';
 import { SharedModule } from './common/shared.module';
 import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-create-summary.component';
 import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
+import { CreateAdditionComponent } from './main/menu/food/create/create-addition/create-addition.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -28,6 +29,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     LoginComponent,
 
     // for entryComponents, as those cannot be declared in submodules
+    CreateAdditionComponent,
     MenuCreateSummaryComponent,
     MenuCreateFoodComponent,
   ],
@@ -59,6 +61,7 @@ const jwtModuleOptions: JwtModuleOptions = {
   entryComponents: [
     MenuCreateSummaryComponent,
     MenuCreateFoodComponent,
+    CreateAdditionComponent,
   ],
 })
 export class AppModule {}

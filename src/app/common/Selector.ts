@@ -8,12 +8,22 @@ export class Selector<T> {
 
   setItems(items: T[]): void {
     this.selection = items.map(item => ({ item, isSelected: false }));
-    items.push = (...newItems: T[]) => {
+
+    items.push = (...newItems: T[]): number => {
       const newLength: number = Array.prototype.push.apply(items, newItems);
       if (this.selection) {
         newItems.forEach(item => this.selection.push({ item, isSelected: false }));
       }
       return newLength;
+    };
+
+    items.splice = (start: number, deleteCount: number, ...newItems: T[]): T[] => {
+      const deletedItems: T[] = Array.prototype.splice.apply(items, [start, deleteCount, ...newItems]);
+      deletedItems.forEach(item => {
+        this.selection.splice(this.selection.findIndex(o => o.item === item), 1,
+            ...newItems.map(o => ({ item: o, isSelected: false })));
+      });
+      return deletedItems;
     };
   }
 
@@ -64,7 +74,7 @@ export class Selector<T> {
   }
 }
 
-class SelectionModel<T> {
+interface SelectionModel<T> {
   item: T;
   isSelected: boolean;
 }

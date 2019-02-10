@@ -7,9 +7,11 @@ import { MenuListComponent } from './list/menu-list.component';
 import { SharedModule } from '../../common/shared.module';
 import { FormsModule } from '@angular/forms';
 import { MenuRoutingModule } from './menu-routing.module';
+import { FoodCreateComponent } from './food/create/food-create.component';
 
 @NgModule({
   declarations: [
+    FoodCreateComponent,
     FoodDetailsComponent,
     MenuCreateComponent,
     MenuDetailsComponent,
