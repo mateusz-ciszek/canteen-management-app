@@ -1,11 +1,13 @@
 import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
-import { CreateFoodAdditionModel, CreateFoodModel } from '../../../../models';
+import { CreateFoodAdditionModel, CreateFoodModel, Food } from '../../../../models';
 import { FoodService } from '../../../../services/food.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../../../services/modal.service';
 import { CreateAdditionComponent } from './create-addition/create-addition.component';
 import { Selector } from '../../../../common/Selector';
 import { FoodUtil } from './food-util';
+import { DataStorageService } from '../../../../services/data-storage.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-food-create',
@@ -14,10 +16,11 @@ import { FoodUtil } from './food-util';
 })
 export class FoodCreateComponent {
 
-  model: CreateFoodModel = FoodUtil.emptyCreateFoodModel();
+  model: CreateFoodModel;
   image = null;
   imagePath: string = null;
   imageLoading: boolean = false;
+  isFoodModification: boolean;
 
   selector: Selector<CreateFoodAdditionModel>;
 
@@ -29,9 +32,12 @@ export class FoodCreateComponent {
       private activatedRoute: ActivatedRoute,
       private modalService: ModalService,
       private router: Router,
-  ) {
+      private dataStorage: DataStorageService,
+      private _location: Location) {
 
+    this.initModel();
     this.selector = new Selector(this.model.additions);
+    this.isFoodModification = !!this.model._id;
   }
 
   loadImage(event): void {
@@ -68,6 +74,15 @@ export class FoodCreateComponent {
     this.selector.getSelectedItems().forEach(toDelete => {
       this.model.additions.splice(this.model.additions.indexOf(toDelete), 1);
     });
+  }
+
+  goBack() {
+    this._location.back();
+  }
+
+  private initModel(): void {
+    const food: Food = this.dataStorage.fetchData('model');
+    this.model = FoodUtil.getCreateFoodModel(food);
   }
 
 }

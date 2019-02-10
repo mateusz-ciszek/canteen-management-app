@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-import { CreateFoodAdditionModel, CreateFoodModel } from '../../../../models';
+import { CreateFoodModel } from '../../../../models';
+import { FoodUtil } from '../../food/create/food-util';
 
 @Component({
   selector: 'app-menu-create-food',
@@ -28,7 +29,7 @@ export class MenuCreateFoodComponent {
   }
 
   createAddition(): void {
-    this.model.additions.push(new CreateFoodAdditionModel());
+    this.model.additions.push(FoodUtil.getCreateFoodAdditionModel());
   }
 
 }

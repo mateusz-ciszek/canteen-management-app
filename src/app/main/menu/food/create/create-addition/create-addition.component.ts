@@ -16,7 +16,7 @@ export class CreateAdditionComponent {
   output: EventEmitter<CreateFoodAdditionModel>;
 
   constructor(private modalService: ModalService) {
-    this.model = FoodUtil.createEmptyFoodAdditionModel();
+    this.model = FoodUtil.getCreateFoodAdditionModel();
   }
 
   close() {
