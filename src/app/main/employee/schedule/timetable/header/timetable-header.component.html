@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between align-items-center">
+  <button class="btn btn-primary btn-calendar" (click)="setPreviousMonth()" [disabled]="canSetPreviousMonth()">
+    Previous
+  </button>
+  <div class="btn-group mr-3">
+    <div class="btn-group" ngbDropdown role="group">
+      <button class="btn btn-outline-primary btn-calendar-wide" ngbDropdownToggle>
+        {{ monthNames[date.getMonth()] }}
+      </button>
+      <div class="dropdown-menu" ngbDropdownMenu>
+        <button class="dropdown-item dropdown" *ngFor="let month of monthNames; let index = index"
+                (click)="setMonth(index)">{{ month }}</button>
+      </div>
+    </div>
+    <div class="btn-group" ngbDropdown role="group">
+      <button class="btn btn-outline-primary btn-dropdown-year" ngbDropdownToggle>{{ date.getFullYear() }}</button>
+      <div class="dropdown-menu menu-dropdown-year" ngbDropdownMenu>
+        <button class="dropdown-item dropdown" *ngFor="let year of years" (click)="setYear(year)">
+          {{ year }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-calendar" (click)="setNextMonth()" [disabled]="canSetNextMonth()">Next</button>
+</div>
