@@ -8,6 +8,7 @@ import { DateTimePipe } from './pipe/date-time.pipe';
 import { AdditionsFormatterPipe } from './pipe/additions-formatter.pipe';
 import { RouterModule } from '@angular/router';
 import { PriceValidatorDirective } from './validator/price.directive';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PriceValidatorDirective } from './validator/price.directive';
   ],
   imports: [
     CommonModule,
+    NgbModule,
     RouterModule,
   ],
   exports: [
@@ -28,6 +30,7 @@ import { PriceValidatorDirective } from './validator/price.directive';
     CurrencyFormatterPipe,
     DateTimePipe,
     HeaderBarComponent,
+    NgbModule,
     PriceValidatorDirective,
     SelectorSummaryComponent,
     ShortenerPipe,

@@ -1,0 +1,45 @@
+@import "~src/theme.less";
+
+@border: rgb(216, 216, 216) 1px solid;
+
+.equal-width {
+  width: 100% / 7;
+}
+
+.bordered {
+  .equal-width;
+  border-bottom: @border;
+
+  &:not(:last-child) {
+    border-right: @border;
+  }
+}
+
+.calendar-header {
+  .bordered;
+
+  text-align: center;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+}
+
+
+.cell {
+  .bordered;
+  height: 5rem;
+
+  .date {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    border-radius: 50%;
+    background: #dee2e6;
+    float: right;
+    width: 1.5rem;
+  }
+}
+
+.selected {
+  border: @color-main 1px solid !important;
+}

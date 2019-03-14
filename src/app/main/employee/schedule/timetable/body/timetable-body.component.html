@@ -1,0 +1,8 @@
+<div class="d-flex">
+  <div class="calendar-header" *ngFor="let dayName of dayNames">{{ dayName }}</div>
+</div>
+<div class="d-flex" *ngFor="let week of month.weeks">
+  <div class="cell" [class.selected]="isSelected(day)" (click)="changeSelection(day)" *ngFor="let day of week.days">
+    <div class="dell date">{{ day.date.getDate() }}</div>
+  </div>
+</div>
