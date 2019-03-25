@@ -77,3 +77,15 @@ export interface OrderItemAddition {
   quantity: number;
   foodAddition: Addition;
 }
+
+export interface Worker {
+  id: string;
+  person: User;
+  defaultWorkHours: WorkDay[];
+}
+
+export interface WorkDay {
+  day: number;
+  start: Date;
+  end: Date;
+}

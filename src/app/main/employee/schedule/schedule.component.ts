@@ -1,24 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalendarUtil, DayOfMonth, Month } from '../../../common/util/calendar-util';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.less'],
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit {
 
   YEARS: number[] = [];
 
+  workers: Worker[];
   date: Date = new Date();
   month: Month;
   selectedDay: DayOfMonth;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     this.updateMonth();
-    // this.selectedDay = this.findTodayInMonth();
     this.selectedDay = { date: this.findTodayInMonth().date, belongsToMonth: false };
     this.initAllowedYears();
+  }
+
+  ngOnInit(): void {
+    this.workers = this.route.snapshot.data['workers'];
   }
 
   updateMonth(): void {
