@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarUtil, DayOfMonth, Month } from '../../../common/util/calendar-util';
 import { ActivatedRoute } from '@angular/router';
+import { Worker } from '../../../models';
 
 @Component({
   selector: 'app-schedule',

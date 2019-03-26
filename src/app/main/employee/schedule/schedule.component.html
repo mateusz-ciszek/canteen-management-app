@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-xl-8 col-12 timetable-margin">
     <app-employees-timetable [date]="date" [month]="month" [selectedDay]="selectedDay" [years]="YEARS"
-                             (monthChanged)="updateMonth()"></app-employees-timetable>
+                             [workers]="workers" (monthChanged)="updateMonth()"></app-employees-timetable>
   </div>
   <div class="col-xl-4 col-12">
     <app-schedule-details [selectedDay]="selectedDay"></app-schedule-details>

@@ -86,6 +86,6 @@ export interface Worker {
 
 export interface WorkDay {
   day: number;
-  start: Date;
-  end: Date;
+  startHour: Date;
+  endHour: Date;
 }
