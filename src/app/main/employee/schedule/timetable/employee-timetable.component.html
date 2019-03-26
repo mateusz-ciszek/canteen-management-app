@@ -2,5 +2,6 @@
   <div class="card-header">
     <app-timetable-header [date]="date" [years]="years" (onMonthChanged)="monthChanged.emit()"></app-timetable-header>
   </div>
-  <app-timetable-body [month]="month" [selectedDay]="selectedDay" [workers]="workers"></app-timetable-body>
+  <app-timetable-body [month]="month" [selectedDay]="selectedDay" [workers]="workers"
+      [daysData]="daysData"></app-timetable-body>
 </div>

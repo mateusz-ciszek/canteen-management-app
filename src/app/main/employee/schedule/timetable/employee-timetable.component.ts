@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DayOfMonth, Month } from '../../../../common/util/calendar-util';
 import { Worker } from '../../../../models';
+import { DayData } from '../schedule.component';
 
 @Component({
   selector: 'app-employees-timetable',
@@ -23,6 +24,9 @@ export class EmployeeTimetableComponent {
 
   @Input()
   workers: Worker[];
+
+  @Input()
+  daysData: DayData[];
 
   @Output()
   selectionChanged: EventEmitter<DayOfMonth> = new EventEmitter<DayOfMonth>();
