@@ -1,0 +1,13 @@
+- dodawanie zdjęć/obrazków do posiłków
+- harmonogram pracy dla pracowników
+- dodanie czasu oczekiwania/przygotowania do posiłków/zamówień
+- zamawianie posiłku na wybraną godzinę
+- dodanie opłacania zamówienia przy jego składaniu (Google Pay/Paypal)
+- zarządanie zaopatrzeniem - nowy moduł?
+  * składanie zamówień
+- uprawnienia
+  * jakie moduły widzi pracownik, do czego ma dostęp, co może wykonać
+  * zarządzanie uprawnieniami
+- aplikacja dla pracowników na smartfony
+  * sprawdzić jak się wyświetla aplikacja webowa na smartfonach, możliwe że to wystarczy
+- aplikacja kliencka - czy wygląda dobrze, czy należy ją poprawić?
