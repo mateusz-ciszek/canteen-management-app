@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { DayOfMonth, Month } from '../../../../../common/util/calendar-util';
-import { Worker } from '../../../../../models';
 import { DayData } from '../../schedule.component';
 
 @Component({
@@ -15,9 +14,6 @@ export class TimetableBodyComponent {
 
   @Input()
   selectedDay: DayOfMonth;
-
-  @Input()
-  workers: Worker[];
 
   @Input()
   daysData: DayData[];
