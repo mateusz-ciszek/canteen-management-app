@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarUtil, DayOfMonth, Month } from '../../../common/util/calendar-util';
 import { ActivatedRoute } from '@angular/router';
-import { WorkDay, Worker } from '../../../models';
+import { ArrayUtil } from '../../../common/util/array-util';
+import { MonthResponse } from '../../../models';
 
 @Component({
   selector: 'app-schedule',
@@ -12,64 +13,44 @@ export class ScheduleComponent implements OnInit {
 
   YEARS: number[] = [];
 
-  workers: Worker[];
-  daysData: DayData[];
   date: Date = new Date();
   month: Month;
   selectedDay: DayOfMonth;
 
   constructor(private route: ActivatedRoute) {
-    this.updateMonth();
-    this.selectedDay = { date: this.findTodayInMonth().date, belongsToMonth: false };
+
+    this.month = CalendarUtil.getMonth(this.date.getMonth(), this.date.getFullYear());
+    this.selectedDay = this.findTodayInMonth();
+    this.selectedDay.isSelected = true;
     this.initAllowedYears();
   }
 
   ngOnInit(): void {
-    this.workers = this.route.snapshot.data['workers'];
-    this.daysData = this.calculateDefaultsForDays();
+    this.assignSnapshotData();
   }
 
   updateMonth(): void {
     this.month = CalendarUtil.getMonth(this.date.getMonth(), this.date.getFullYear());
   }
 
+  daySelectionChange(day: DayOfMonth) {
+    this.selectedDay = day;
+  }
+
   private findTodayInMonth(): DayOfMonth {
-    for (const week of this.month.weeks) {
-      for (const day of week.days) {
-        if (CalendarUtil.isToday(day.date)) {
-          return day;
-        }
-      }
-    }
-    return null;
+    return ArrayUtil.flatMap(this.month.weeks, week => week.days).find(day => CalendarUtil.isToday(day.date));
   }
 
   private initAllowedYears(): void {
-    for (let year = 2000; year < 2099; ++year) {
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear - 10; year < currentYear + 10; ++year) {
       this.YEARS.push(year);
     }
   }
 
-  private calculateDefaultsForDays(): DayData[] {
-    const daysNumbers = [0, 1, 2, 3, 4, 5, 6];
-    const daysData: DayData[] = daysNumbers.map(() => ({ people: [] }));
-
-    this.workers.forEach(worker => {
-      daysNumbers.forEach(dayNumber => {
-        if (this.isWorking(worker.defaultWorkHours[dayNumber])) {
-          daysData[dayNumber].people.push(worker);
-        }
-      });
-    });
-
-    return daysData;
+  private assignSnapshotData(): void {
+    const response: MonthResponse = this.route.snapshot.data['month'];
+    const monthDetails = response.weeks.reduce((accumulated, currentValue) => ({ ...accumulated, ...currentValue }), {});
+    this.month.weeks.forEach(week => week.days.forEach(day => day.details = monthDetails[day.date.toISOString()]));
   }
-
-  private isWorking(workDay: WorkDay): boolean {
-    return workDay.endHour > workDay.startHour;
-  }
-}
-
-export interface DayData {
-  people: Worker[];
 }

@@ -8,7 +8,7 @@ const routes: Routes = [{
   path: '',
   children: [
     { path: '', redirectTo: 'timetable', pathMatch: 'full' },
-    { path: 'timetable', component: ScheduleComponent, resolve: { workers: ScheduleResolver } },
+    { path: 'timetable', component: ScheduleComponent, resolve: { month: ScheduleResolver } },
   ],
 }];
 

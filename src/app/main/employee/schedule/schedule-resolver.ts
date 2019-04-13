@@ -1,16 +1,16 @@
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WorkerService } from '../../../services/worker.service';
-import { Worker } from '../../../models';
 import { Injectable } from '@angular/core';
+import { MonthResponse } from '../../../models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ScheduleResolver implements Resolve<Worker[]> {
+export class ScheduleResolver implements Resolve<MonthResponse> {
   constructor(private workerService: WorkerService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Worker[]> | Promise<Worker[]> | Worker[] {
-    return this.workerService.getAllWorkers();
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MonthResponse> | Promise<MonthResponse> | MonthResponse {
+    return this.workerService.getMonth();
   }
 }

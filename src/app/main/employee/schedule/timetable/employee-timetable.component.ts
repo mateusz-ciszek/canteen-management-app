@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DayOfMonth, Month } from '../../../../common/util/calendar-util';
-import { DayData } from '../schedule.component';
 
 @Component({
   selector: 'app-employees-timetable',
@@ -13,16 +12,13 @@ export class EmployeeTimetableComponent {
   date: Date;
 
   @Input()
+  day: DayOfMonth;
+
+  @Input()
   month: Month;
 
   @Input()
-  selectedDay: DayOfMonth;
-
-  @Input()
   years: number[];
-
-  @Input()
-  daysData: DayData[];
 
   @Output()
   selectionChanged: EventEmitter<DayOfMonth> = new EventEmitter<DayOfMonth>();

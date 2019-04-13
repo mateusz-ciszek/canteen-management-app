@@ -2,8 +2,8 @@
 
 <div class="row">
   <div class="col-xl-8 col-12 timetable-margin">
-    <app-employees-timetable [date]="date" [month]="month" [selectedDay]="selectedDay" [years]="YEARS"
-                             [daysData]="daysData" (monthChanged)="updateMonth()"></app-employees-timetable>
+    <app-employees-timetable [date]="date" [month]="month" [years]="YEARS" (monthChanged)="updateMonth()"
+                             (selectionChanged)="daySelectionChange($event)"></app-employees-timetable>
   </div>
   <div class="col-xl-4 col-12">
     <app-schedule-details [selectedDay]="selectedDay"></app-schedule-details>

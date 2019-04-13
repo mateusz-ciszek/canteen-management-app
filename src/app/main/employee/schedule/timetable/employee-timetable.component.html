@@ -2,5 +2,6 @@
   <div class="card-header">
     <app-timetable-header [date]="date" [years]="years" (monthChanged)="monthChanged.emit()"></app-timetable-header>
   </div>
-  <app-timetable-body [month]="month" [selectedDay]="selectedDay" [daysData]="daysData"></app-timetable-body>
+  <app-timetable-body [month]="month"
+                      (daySelectionChange)="selectionChanged.emit($event)"></app-timetable-body>
 </div>

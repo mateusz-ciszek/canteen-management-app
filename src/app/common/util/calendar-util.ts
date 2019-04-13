@@ -1,3 +1,5 @@
+import { Day } from '../../models';
+
 export class CalendarUtil {
 
   public static getMonth(monthNumber?: number, year?: number) {
@@ -13,7 +15,11 @@ export class CalendarUtil {
     for (let weekNumber = 0; weekNumber < 6; ++weekNumber) {
       const week: Week = { days: [] };
       for (let index = 0; index < 7; ++index) {
-        week.days.push({ date: new Date(iterableDate), belongsToMonth: iterableDate.getMonth() === CalendarUtil.getCurrentMonth()});
+        week.days.push({
+          date: new Date(iterableDate),
+          belongsToMonth: iterableDate.getMonth() === CalendarUtil.getCurrentMonth(),
+          isSelected: false,
+        });
         iterableDate.setDate(iterableDate.getDate() + 1);
       }
       month.weeks.push(week);
@@ -22,7 +28,8 @@ export class CalendarUtil {
   }
 
   public static isToday(date: Date): boolean {
-    return date.setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
+    const today = new Date();
+    return date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate();
   }
 
   public static getCurrentYear(): number {
@@ -62,6 +69,8 @@ export interface Week {
 export interface DayOfMonth {
   date: Date;
   belongsToMonth: boolean;
+  isSelected: boolean;
+  details?: Day;
 }
 
 export const MONTH_NAMES: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
