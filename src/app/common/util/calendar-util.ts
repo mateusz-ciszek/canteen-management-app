@@ -28,13 +28,16 @@ export class CalendarUtil {
   }
 
   public static isToday(date: Date): boolean {
-    const today = new Date();
-    return date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate();
+    return this.dateEquals(date, new Date());
   }
 
   public static getCurrentYear(): number {
     return new Date().getFullYear();
   }
+
+  public static dateEquals(date: Date, other: Date): boolean {
+    return date.getFullYear() === other.getFullYear() && date.getMonth() === other.getMonth() && date.getDate() === other.getDate();
+}
 
   private static getCurrentMonth(): number {
     return new Date().getMonth();

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarUtil, DayOfMonth, Month } from '../../../common/util/calendar-util';
 import { ActivatedRoute } from '@angular/router';
 import { ArrayUtil } from '../../../common/util/array-util';
-import { MonthResponse } from '../../../models';
+import { WorkerService } from '../../../services/worker.service';
 
 @Component({
   selector: 'app-schedule',
@@ -17,7 +17,10 @@ export class ScheduleComponent implements OnInit {
   month: Month;
   selectedDay: DayOfMonth;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+      private route: ActivatedRoute,
+      private workerService: WorkerService,
+    ) {
 
     this.month = CalendarUtil.getMonth(this.date.getMonth(), this.date.getFullYear());
     this.selectedDay = this.findTodayInMonth();
@@ -26,11 +29,16 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.assignSnapshotData();
+    this.updateMonth();
   }
 
   updateMonth(): void {
     this.month = CalendarUtil.getMonth(this.date.getMonth(), this.date.getFullYear());
+    this.workerService.getMonth(this.date.getFullYear(), this.date.getMonth()).subscribe(response => {
+      const monthDetails = response.weeks.reduce((accumulated, currentValue) => ({ ...accumulated, ...currentValue }), {});
+      this.month.weeks.forEach(week => week.days.forEach(day => day.details = monthDetails[day.date.toISOString()]));
+    });
+    this.updateSelectedDay();
   }
 
   daySelectionChange(day: DayOfMonth) {
@@ -48,9 +56,13 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  private assignSnapshotData(): void {
-    const response: MonthResponse = this.route.snapshot.data['month'];
-    const monthDetails = response.weeks.reduce((accumulated, currentValue) => ({ ...accumulated, ...currentValue }), {});
-    this.month.weeks.forEach(week => week.days.forEach(day => day.details = monthDetails[day.date.toISOString()]));
+  private updateSelectedDay(): void {
+    const previouslySelectedDay = ArrayUtil.flatMap(this.month.weeks, week => week.days)
+        .find(day => CalendarUtil.dateEquals(day.date, this.selectedDay.date));
+    if (previouslySelectedDay) {
+      this.selectedDay.isSelected = false;
+      this.selectedDay = previouslySelectedDay;
+      this.selectedDay.isSelected = true;
+    }
   }
 }

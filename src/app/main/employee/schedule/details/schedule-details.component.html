@@ -17,7 +17,7 @@
         People working
       </div>
       <table class="table table-striped table-hover"
-             *ngIf="selectedDay.details.workersPresent.length; else noWorkersPresentData">
+             *ngIf="selectedDay.details && selectedDay.details.workersPresent.length; else noWorkersPresentData">
         <thead>
         <tr>
           <th scope="col">Person</th>
