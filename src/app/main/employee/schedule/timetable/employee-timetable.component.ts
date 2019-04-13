@@ -12,10 +12,10 @@ export class EmployeeTimetableComponent {
   date: Date;
 
   @Input()
-  month: Month;
+  day: DayOfMonth;
 
   @Input()
-  selectedDay: DayOfMonth;
+  month: Month;
 
   @Input()
   years: number[];

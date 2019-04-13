@@ -77,3 +77,27 @@ export interface OrderItemAddition {
   quantity: number;
   foodAddition: Addition;
 }
+
+export interface MonthResponse {
+  weeks: Days[];
+}
+
+export interface Days {
+  [date: string]: Day;
+}
+
+export interface Day {
+  workersPresent: Worker[];
+}
+
+export interface Worker {
+  id: string;
+  person: User;
+  workHours: WorkHours;
+}
+
+export interface WorkHours {
+  day: number;
+  startHour: Date;
+  endHour: Date;
+}

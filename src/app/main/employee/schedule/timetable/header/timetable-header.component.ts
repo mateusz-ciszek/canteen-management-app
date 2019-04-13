@@ -14,12 +14,10 @@ export class TimetableHeaderComponent implements OnInit {
   @Input()
   years: number[];
 
-  @Input()
-
   monthNames = MONTH_NAMES;
 
   @Output()
-  onMonthChanged: EventEmitter<void> = new EventEmitter();
+  monthChanged: EventEmitter<void> = new EventEmitter();
 
   ngOnInit() {
     if (!this.years || this.years.length === 0) {
@@ -30,22 +28,22 @@ export class TimetableHeaderComponent implements OnInit {
 
   setMonth(monthNumber: number): void {
     this.date.setMonth(monthNumber);
-    this.onMonthChanged.emit();
+    this.monthChanged.emit();
   }
 
   setYear(year: number) {
     this.date.setFullYear(year);
-    this.onMonthChanged.emit();
+    this.monthChanged.emit();
   }
 
   setPreviousMonth(): void {
     this.date.setMonth(this.date.getMonth() - 1);
-    this.onMonthChanged.emit();
+    this.monthChanged.emit();
   }
 
   setNextMonth(): void {
     this.date.setMonth(this.date.getMonth() + 1);
-    this.onMonthChanged.emit();
+    this.monthChanged.emit();
   }
 
   canSetPreviousMonth(): boolean {
