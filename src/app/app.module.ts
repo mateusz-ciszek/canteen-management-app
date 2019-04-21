@@ -16,6 +16,7 @@ import { SharedModule } from './common/shared.module';
 import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-create-summary.component';
 import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
 import { CreateAdditionComponent } from './main/menu/food/create/create-addition/create-addition.component';
+import { DayOffModalComponent } from './main/employee/schedule/day-off-modal/day-off-modal.component';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -32,6 +33,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     CreateAdditionComponent,
     MenuCreateSummaryComponent,
     MenuCreateFoodComponent,
+    DayOffModalComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -62,6 +64,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     MenuCreateSummaryComponent,
     MenuCreateFoodComponent,
     CreateAdditionComponent,
+    DayOffModalComponent,
   ],
 })
 export class AppModule {}
