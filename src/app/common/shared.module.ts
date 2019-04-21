@@ -9,6 +9,7 @@ import { AdditionsFormatterPipe } from './pipe/additions-formatter.pipe';
 import { RouterModule } from '@angular/router';
 import { PriceValidatorDirective } from './validator/price.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PriceValidatorDirective,
     SelectorSummaryComponent,
     ShortenerPipe,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PriceValidatorDirective,
     SelectorSummaryComponent,
     ShortenerPipe,
+    AlertComponent,
   ],
 })
 export class SharedModule { }

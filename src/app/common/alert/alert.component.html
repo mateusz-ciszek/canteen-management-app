@@ -1,0 +1,3 @@
+<ngb-alert class="sticky-top" *ngIf="alert" [type]="mapType(alert.level)" (close)="close()">
+  {{ alert.content }}
+</ngb-alert>
