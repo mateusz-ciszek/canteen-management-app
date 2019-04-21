@@ -13,4 +13,9 @@ export class WorkerService {
   getMonth(year: number = new Date().getFullYear(), month: number = new Date().getMonth()): Observable<MonthResponse> {
     return this.http.get<MonthResponse>(`/worker/month/${year}/${month}`);
   }
+
+  requestDaysOff(dates: Date[]): Observable<void> {
+    const request = { dates: dates.map(date => date.toISOString()) };
+    return this.http.post<void>('/worker/dayOff', request);
+  }
 }

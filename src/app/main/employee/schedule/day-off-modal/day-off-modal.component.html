@@ -1,0 +1,41 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Select days</h5>
+    <button type="button" style="float: right " class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="input-group input-group-sm d-flex">
+      <div class="input-group-prepend">
+        <button class="btn btn-sm btn-outline-primary no-margin top-button" (click)="previousMonth()">Previous</button>
+      </div>
+      <div class="input-group-prepend input-group-append flex-grow-1">
+        <div class="input-group-text">{{ monthNames[month.monthNumber] }} {{ month.ofYear }}</div>
+      </div>
+      <div class="input-group-append">
+        <button class="btn btn-sm btn-outline-primary top-button" (click)="nextMonth()">Next</button>
+      </div>
+    </div>
+    <div class="calendar">
+      <div class="row">
+        <div class="col day-abbreviation" *ngFor="let abbreviation of dayNameAbbreviation">{{ abbreviation }}</div>
+      </div>
+      <div class="row" *ngFor="let week of month.weeks">
+        <div class="col cell-data" [class.selected]="isSelected(day)" [class.clickable]="!isBeforeToday(day.date)"
+             [class.disabled]="isBeforeToday(day.date)" *ngFor="let day of week.days" (click)="changeSelection(day)">
+          {{ day.date.getDate() }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="d-flex">
+      <span>Days selected: {{ selected.length }}</span>
+      <div>
+        <button class="btn btn-primary" [disabled]="selected.length === 0" (click)="makeRequest()">Request</button>
+        <button class="btn btn-secondary" (click)="close()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

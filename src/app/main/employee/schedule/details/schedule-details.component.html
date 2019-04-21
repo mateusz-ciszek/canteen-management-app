@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col">
     <div class="actions float-right">
-      <button class="btn btn-primary" [disabled]="true">Add</button>
+      <button class="btn btn-primary" (click)="requestDaysOff()">Days off</button>
     </div>
   </div>
 </div>
@@ -17,7 +17,7 @@
         People working
       </div>
       <table class="table table-striped table-hover"
-             *ngIf="selectedDay.details && selectedDay.details.workersPresent.length; else noWorkersPresentData">
+             *ngIf="selectedDay.details && selectedDay.details.workersPresent.length; else noWorkersDataPresent">
         <thead>
         <tr>
           <th scope="col">Person</th>
@@ -27,13 +27,13 @@
         </thead>
         <tbody>
         <tr *ngFor="let worker of selectedDay.details.workersPresent">
-          <th>{{ worker.person.firstName }} {{ worker.person.lastName }}</th>
-          <th>{{ worker.workHours.startHour | date:'HH:mm' }}</th>
-          <th>{{ worker.workHours.endHour | date:'HH:mm' }}</th>
+          <td>{{ worker.person.firstName }} {{ worker.person.lastName }}</td>
+          <td>{{ worker.workHours.startHour | date:'HH:mm' }}</td>
+          <td>{{ worker.workHours.endHour | date:'HH:mm' }}</td>
         </tr>
         </tbody>
       </table>
-      <ng-template #noWorkersPresentData>
+      <ng-template #noWorkersDataPresent>
         <div class="card-body font-italic">
           No workers present for this day
         </div>
