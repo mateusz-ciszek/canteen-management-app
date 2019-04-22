@@ -33,12 +33,13 @@ export class ScheduleComponent implements OnInit {
   }
 
   updateMonth(): void {
-    this.month = CalendarUtil.getMonth(this.date.getMonth(), this.date.getFullYear());
+    const month = CalendarUtil.getMonth(this.date.getMonth(), this.date.getFullYear());
     this.workerService.getMonth(this.date.getFullYear(), this.date.getMonth()).subscribe(response => {
       const monthDetails = response.weeks.reduce((accumulated, currentValue) => ({ ...accumulated, ...currentValue }), {});
-      this.month.weeks.forEach(week => week.days.forEach(day => day.details = monthDetails[day.date.toISOString()]));
+      month.weeks.forEach(week => week.days.forEach(day => day.details = monthDetails[day.date.toISOString()]));
+      this.month = month;
+      this.updateSelectedDay();
     });
-    this.updateSelectedDay();
   }
 
   daySelectionChange(day: DayOfMonth) {

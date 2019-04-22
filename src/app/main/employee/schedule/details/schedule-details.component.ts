@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DayOfMonth } from '../../../../common/util/calendar-util';
 import { ModalService } from '../../../../services/modal.service';
 import { DayOffModalComponent } from '../day-off-modal/day-off-modal.component';
@@ -15,6 +15,9 @@ export class ScheduleDetailsComponent {
 
   @Input()
   selectedDay: DayOfMonth;
+
+  @Output()
+  change: EventEmitter<void> = new EventEmitter();
 
   constructor(
     private modalService: ModalService,
@@ -35,7 +38,10 @@ export class ScheduleDetailsComponent {
 
   private changeRequest(id: string, state: DayOffState): void {
     this.workerService.changeDayOffState(id, state).subscribe(
-      () => this.alertService.addAlert('Request state has been changed', 'SUCCESS'),
+      () => {
+        this.alertService.addAlert('Request state has been changed', 'SUCCESS');
+        this.change.emit();
+      },
       () => this.alertService.addAlert('Error changing request state. Try again later', 'FAILURE')
     );
   }

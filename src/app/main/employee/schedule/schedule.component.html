@@ -6,6 +6,6 @@
                              (selectionChanged)="daySelectionChange($event)"></app-employees-timetable>
   </div>
   <div class="col-xl-4 col-12">
-    <app-schedule-details [selectedDay]="selectedDay"></app-schedule-details>
+    <app-schedule-details [selectedDay]="selectedDay" (change)="updateMonth()"></app-schedule-details>
   </div>
 </div>
