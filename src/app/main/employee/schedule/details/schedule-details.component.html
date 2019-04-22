@@ -57,8 +57,8 @@
               <td>{{ request.person.firstName }} {{ request.person.lastName }}</td>
               <td>
                 <div class="float-right">
-                  <button class="btn btn-sm btn-success" [disabled]="true">Accept</button>
-                  <button class="btn btn-sm btn-danger" [disabled]="true">Reject</button>
+                  <button class="btn btn-sm btn-success" (click)="acceptRequest(request.id)">Accept</button>
+                  <button class="btn btn-sm btn-danger" (click)="rejectRequest(request.id)">Reject</button>
                 </div>
               </td>
             </tr>
