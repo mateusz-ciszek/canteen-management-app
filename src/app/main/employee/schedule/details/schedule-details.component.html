@@ -10,34 +10,61 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="card-header">
-        People working
+<ng-container *ngIf="selectedDay.details">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">People working</div>
+        <table class="table table-striped table-hover"
+               *ngIf="selectedDay.details.workersPresent.length; else noWorkersDataPresent">
+          <thead>
+            <tr>
+              <th scope="col">Person</th>
+              <th scope="col">Start</th>
+              <th scope="col">End</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let worker of selectedDay.details.workersPresent">
+              <td>{{ worker.person.firstName }} {{ worker.person.lastName }}</td>
+              <td>{{ worker.workHours.startHour | date:'HH:mm' }}</td>
+              <td>{{ worker.workHours.endHour | date:'HH:mm' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noWorkersDataPresent>
+          <div class="card-body font-italic">
+            No workers present for this day
+          </div>
+        </ng-template>
       </div>
-      <table class="table table-striped table-hover"
-             *ngIf="selectedDay.details && selectedDay.details.workersPresent.length; else noWorkersDataPresent">
-        <thead>
-        <tr>
-          <th scope="col">Person</th>
-          <th scope="col">Start</th>
-          <th scope="col">End</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let worker of selectedDay.details.workersPresent">
-          <td>{{ worker.person.firstName }} {{ worker.person.lastName }}</td>
-          <td>{{ worker.workHours.startHour | date:'HH:mm' }}</td>
-          <td>{{ worker.workHours.endHour | date:'HH:mm' }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <ng-template #noWorkersDataPresent>
-        <div class="card-body font-italic">
-          No workers present for this day
-        </div>
-      </ng-template>
     </div>
   </div>
-</div>
+
+  <div class="row" *ngIf="selectedDay.details.requests.length">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Day off requests</div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Person</th>
+              <th scope="col"><span class="float-right">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of selectedDay.details.requests">
+              <td>{{ request.person.firstName }} {{ request.person.lastName }}</td>
+              <td>
+                <div class="float-right">
+                  <button class="btn btn-sm btn-success" [disabled]="true">Accept</button>
+                  <button class="btn btn-sm btn-danger" [disabled]="true">Reject</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
