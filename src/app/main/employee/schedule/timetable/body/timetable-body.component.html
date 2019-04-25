@@ -7,7 +7,12 @@
     <div class="date">{{ day.date.getDate() }}</div>
     <ng-container *ngIf="day.details">
       <div class="cell-data">
-        <div class="working-people-label"><span class="badge badge-success">{{ day.details.workersPresent.length }}</span> people working</div>
+        <div class="label">
+          <span class="badge badge-success">{{ day.details.workersPresent.length }}</span> workers
+        </div>
+        <div class="label" *ngIf="day.details.requests.length !== 0">
+          <span class="badge badge-warning">{{ day.details.requests.length }}</span> requests
+        </div>
       </div>
     </ng-container>
   </div>

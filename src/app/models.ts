@@ -88,7 +88,17 @@ export interface Days {
 
 export interface Day {
   workersPresent: Worker[];
+  requests: DayOffRequest[];
 }
+
+export interface DayOffRequest {
+  id: string;
+  person: User;
+  state: DayOffState;
+  date: Date;
+}
+
+export type DayOffState = 'UNRESOLVED' | 'APPROVED' | 'REJECTED';
 
 export interface Worker {
   id: string;
