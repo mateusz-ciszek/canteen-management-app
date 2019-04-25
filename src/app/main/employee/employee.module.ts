@@ -8,15 +8,17 @@ import { SharedModule } from '../../common/shared.module';
 import { TimetableHeaderComponent } from './schedule/timetable/header/timetable-header.component';
 import { TimetableBodyComponent } from './schedule/timetable/body/timetable-body.component';
 import { ScheduleDetailsComponent } from './schedule/details/schedule-details.component';
+import { EmployeeListComponent } from './list/employee-list.component';
 
 @NgModule({
   declarations: [
     EmployeeComponentsSwitcherComponent,
+    EmployeeListComponent,
     EmployeeTimetableComponent,
     ScheduleComponent,
+    ScheduleDetailsComponent,
     TimetableHeaderComponent,
     TimetableBodyComponent,
-    ScheduleDetailsComponent,
   ],
   imports: [
     CommonModule,

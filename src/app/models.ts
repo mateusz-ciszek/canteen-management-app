@@ -111,3 +111,12 @@ export interface WorkHours {
   startHour: Date;
   endHour: Date;
 }
+
+export interface WorkerListItem {
+  id: string;
+  person: User;
+}
+
+export interface WorkerList {
+  workers: WorkerListItem[];
+}
