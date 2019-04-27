@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { DayOffState, MonthResponse } from '../models';
+import { DayOffState, MonthResponse, WorkerList } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +22,9 @@ export class WorkerService {
   changeDayOffState(id: string, state: DayOffState): Observable<void> {
     const request = { id, state };
     return this.http.patch<void>('/worker/dayoff', request);
+  }
+
+  getWorkers(): Observable<WorkerList> {
+    return this.http.get<WorkerList>('/worker');
   }
 }

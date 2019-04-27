@@ -1,4 +1,6 @@
 @defaultWidthNarrow: 10px;
+@tableBorderWidth: 1px;
+@tableBorderColor: #dee2e6;
 
 .card > table {
   margin-bottom: 0;
@@ -10,9 +12,14 @@
 }
 
 .index-col {
-  width: @defaultWidthNarrow;
+  width: 3rem;
+  text-align: center;
 }
 
 .price-col {
   width: @defaultWidthNarrow;
+}
+
+table.table-outer-border {
+  border: @tableBorderWidth solid @tableBorderColor;
 }
