@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ComponentFactoryResolver, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeTimetableComponent } from './schedule/timetable/employee-timetable.component';
@@ -9,6 +9,9 @@ import { TimetableHeaderComponent } from './schedule/timetable/header/timetable-
 import { TimetableBodyComponent } from './schedule/timetable/body/timetable-body.component';
 import { ScheduleDetailsComponent } from './schedule/details/schedule-details.component';
 import { EmployeeListComponent } from './list/employee-list.component';
+import { CreateEmployeeModalComponent } from './list/create/create-employee-modal.component';
+import { CoalescingComponentFactoryResolver } from '../../services/coalescing-component-factory-resolver.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,11 +22,24 @@ import { EmployeeListComponent } from './list/employee-list.component';
     ScheduleDetailsComponent,
     TimetableHeaderComponent,
     TimetableBodyComponent,
+    CreateEmployeeModalComponent,
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
+  entryComponents: [
+    CreateEmployeeModalComponent,
+  ]
 })
-export class EmployeeModule {}
+export class EmployeeModule {
+  constructor(
+      coalescingResolver: CoalescingComponentFactoryResolver,
+      localResolver: ComponentFactoryResolver) {
+
+    coalescingResolver.registerResolver(localResolver);
+  }
+}

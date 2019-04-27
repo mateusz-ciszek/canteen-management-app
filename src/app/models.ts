@@ -120,3 +120,8 @@ export interface WorkerListItem {
 export interface WorkerList {
   workers: WorkerListItem[];
 }
+
+export interface WorkerCreateRequest {
+  firstName: string;
+  lastName: string;
+}
