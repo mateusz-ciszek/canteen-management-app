@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DomService } from './dom.service';
-import { Observable, Subject } from 'rxjs';
 
 /**
  * Created based on:
@@ -14,28 +13,31 @@ export class ModalService {
   private modalElementId = 'modal-container';
   private overlayElementId = 'overlay';
 
-  private subject: Subject<boolean> = new Subject();
-
   init(component: any, inputs: object, outputs: object) {
     const componentConfig = {
       inputs: inputs,
       outputs: outputs,
     };
-    this.domService.appendComponentTo(this.modalElementId, component, componentConfig);
+    const onClose = this.domService.appendComponentTo(this.modalElementId, component, componentConfig);
     document.getElementById(this.modalElementId).className = 'show';
     document.getElementById(this.overlayElementId).className = 'show';
+    return onClose;
   }
 
   destroy(result?: boolean) {
-    this.domService.removeComponent();
-    document.getElementById(this.modalElementId).className = 'hidden';
-    document.getElementById(this.overlayElementId).className = 'hidden';
-    this.subject.next(result || false);
-    this.subject.complete();
-    this.subject = new Subject();
+    this.domService.removeAllComponents(result);
+    this.hideOverlay();
   }
 
-  public onClose(): Observable<boolean> {
-    return this.subject;
+  back(result?: boolean) {
+    this.domService.removeComponent(result);
+    if (!this.domService.hasComponents()) {
+      this.hideOverlay();
+    }
+  }
+
+  private hideOverlay() {
+    document.getElementById(this.modalElementId).className = 'hidden';
+    document.getElementById(this.overlayElementId).className = 'hidden';
   }
 }

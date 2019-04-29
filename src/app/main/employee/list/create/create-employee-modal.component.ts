@@ -4,6 +4,7 @@ import { WorkerService } from '../../../../services/worker.service';
 import { DAY_NAMES } from '../../../../common/util/calendar-util';
 import { TimePeriodModel } from '../../../../common/time-period-input/time-period-input.component';
 import { WorkerCreateRequest, WorkHoursCreateRequest } from '../../../../models';
+import { CreateEmployeeSummaryModalComponent } from './summary/create-employee-summary-modal.component';
 
 @Component({
   selector: 'app-create-employee-modal',
@@ -33,8 +34,10 @@ export class CreateEmployeeModalComponent {
   }
 
   createWorker(): void {
-    this.model.workHours = this.workingDays.map(this.mapTimeStringToWorkHousrsCreateRequest);
-    this.workerService.createWorker(this.model).subscribe();
+    this.model.workHours = this.workingDays.map(this.mapTimeStringToWorkHoursCreateRequest);
+    this.workerService.createWorker(this.model).subscribe(response => {
+      this.modalService.init(CreateEmployeeSummaryModalComponent, response, {});
+    });
   }
 
   workDayValidationChange(index: number, validation: boolean): void {
@@ -45,7 +48,7 @@ export class CreateEmployeeModalComponent {
     return this.customWorkingDays ? this.timePeriodValidation.every(Boolean) : true;
   }
 
-  private mapTimeStringToWorkHousrsCreateRequest(value: TimePeriodModel, day: number): WorkHoursCreateRequest {
+  private mapTimeStringToWorkHoursCreateRequest(value: TimePeriodModel, day: number): WorkHoursCreateRequest {
     const start = value.from.split(':');
     const end = value.to.split(':');
 

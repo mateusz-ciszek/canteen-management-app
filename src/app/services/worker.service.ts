@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { DayOffState, MonthResponse, WorkerCreateRequest, WorkerList } from '../models';
+import { DayOffState, MonthResponse, WorkerCreateRequest, WorkerCreateResponse, WorkerList } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,7 @@ export class WorkerService {
     return this.http.get<WorkerList>('/worker');
   }
 
-  createWorker(request: WorkerCreateRequest): Observable<void> {
-    return this.http.post<void>('/worker', request);
+  createWorker(request: WorkerCreateRequest): Observable<WorkerCreateResponse> {
+    return this.http.post<WorkerCreateResponse>('/worker', request);
   }
 }
