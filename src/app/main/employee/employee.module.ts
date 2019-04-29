@@ -12,6 +12,7 @@ import { EmployeeListComponent } from './list/employee-list.component';
 import { CreateEmployeeModalComponent } from './list/create/create-employee-modal.component';
 import { CoalescingComponentFactoryResolver } from '../../services/coalescing-component-factory-resolver.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateEmployeeSummaryModalComponent } from './list/create/summary/create-employee-summary-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TimetableHeaderComponent,
     TimetableBodyComponent,
     CreateEmployeeModalComponent,
+    CreateEmployeeSummaryModalComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   entryComponents: [
     CreateEmployeeModalComponent,
+    CreateEmployeeSummaryModalComponent,
   ]
 })
 export class EmployeeModule {

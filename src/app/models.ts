@@ -133,6 +133,11 @@ export interface WorkHoursCreateRequest {
   end: SimpleTime;
 }
 
+export interface WorkerCreateResponse {
+  email: string;
+  password: string;
+}
+
 export interface SimpleTime {
   hour: number;
   minute: number;

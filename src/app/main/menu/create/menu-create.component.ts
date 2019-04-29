@@ -21,8 +21,7 @@ export class MenuCreateComponent {
 
   createNewMenu() {
     const inputs = { model: this.model };
-    this.modalService.init(MenuCreateSummaryComponent, inputs, {});
-    this.modalService.onClose().subscribe(result => {
+    this.modalService.init(MenuCreateSummaryComponent, inputs, {}).subscribe(result => {
       if (result === true) {
         this.location.back();
       }
@@ -33,8 +32,7 @@ export class MenuCreateComponent {
     const foodModel: CreateFoodModel = FoodUtil.getCreateFoodModel();
     const inputs = { model: foodModel };
     const outputs = { model: foodModel };
-    this.modalService.init(MenuCreateFoodComponent, inputs, outputs);
-    this.modalService.onClose().subscribe(result => {
+    this.modalService.init(MenuCreateFoodComponent, inputs, outputs).subscribe(result => {
       if (result) {
         this.model.foods.push(foodModel);
       }
