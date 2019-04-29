@@ -37,7 +37,7 @@ export class DomService {
     }
 
     this.componentBundleHistory.push(bundle);
-    this.appendToDom(bundle);
+    this.showComponent(bundle);
     return bundle._onClose;
   }
 
@@ -50,7 +50,7 @@ export class DomService {
 
     if (this.hasComponents()) {
       const prevBundle = this.componentBundleHistory[this.componentBundleHistory.length - 1];
-      this.appendToDom(prevBundle);
+      this.showComponent(prevBundle);
     }
   }
 
@@ -70,7 +70,7 @@ export class DomService {
     return !!this.componentBundleHistory.length;
   }
 
-  private appendToDom(bundle: ComponentBundle): void {
+  private showComponent(bundle: ComponentBundle): void {
     // Attach component to the appRef so that it's inside the ng component tree
     this.appRef.attachView(bundle.component.hostView);
 
