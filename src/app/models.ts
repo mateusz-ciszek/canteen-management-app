@@ -124,4 +124,16 @@ export interface WorkerList {
 export interface WorkerCreateRequest {
   firstName: string;
   lastName: string;
+  workHours?: WorkHoursCreateRequest[];
+}
+
+export interface WorkHoursCreateRequest {
+  dayOfTheWeek: number;
+  start: SimpleTime;
+  end: SimpleTime;
+}
+
+export interface SimpleTime {
+  hour: number;
+  minute: number;
 }

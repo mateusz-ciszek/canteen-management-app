@@ -27,10 +27,25 @@
           Last name is required
         </small>
       </div>
+
+      <div class="custom-control custom-switch form-group">
+        <input type="checkbox" class="custom-control-input" id="customWorkingDaysSwitch" [(ngModel)]="customWorkingDays"
+               name="customWorkingDaysSwitch">
+        <label class="custom-control-label" for="customWorkingDaysSwitch">Set custom working days</label>
+      </div>
+
+      <ng-container *ngIf="customWorkingDays">
+        <div *ngFor="let workDay of workingDays; let index = index">
+          <h5>{{ dayNames[index] }}</h5>
+          <app-time-period-input (validationChange)="workDayValidationChange(index, $event)"
+                                 [(timePeriod)]="workDay"></app-time-period-input>
+        </div>
+      </ng-container>
     </form>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary" type="submit" [disabled]="createWorkerForm.invalid" (click)="createWorker()">Save</button>
+      <button class="btn btn-primary" type="submit" [disabled]="createWorkerForm.invalid || !isFormValid()"
+              (click)="createWorker()">Save</button>
       <button class="btn btn-danger" (click)="close()">Cancel</button>
   </div>
 </div>
