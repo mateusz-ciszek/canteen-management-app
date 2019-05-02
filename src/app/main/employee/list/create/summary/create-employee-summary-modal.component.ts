@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalService } from '../../../../../services/modal.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-create-employee-summary-modal',
@@ -15,5 +16,11 @@ export class CreateEmployeeSummaryModalComponent {
 
   close() {
     this.modalService.destroy();
+  }
+
+  saveAsText() {
+    const content = new Blob([`email: ${this.email}\npassword: ${this.password}`], { type: 'text/plain', endings: 'native' });
+    const fileName = `USER_${new Date().toISOString()}.txt`;
+    saveAs(content, fileName);
   }
 }

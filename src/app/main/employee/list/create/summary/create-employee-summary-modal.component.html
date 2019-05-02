@@ -14,5 +14,9 @@
       <div class="col-2">Password:</div>
       <div class="col-10">{{ password }}</div>
     </div>
+    <div class="alert alert-warning"><b>Warning!</b> Save or print this information as it <b>cannot</b> be retrieved later! </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="saveAsText()">Save as text file</button>
   </div>
 </div>
