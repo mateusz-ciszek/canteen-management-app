@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { PriceValidatorDirective } from './validator/price.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './alert/alert.component';
+import { TimePeriodInputComponent } from './time-period-input/time-period-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { AlertComponent } from './alert/alert.component';
     SelectorSummaryComponent,
     ShortenerPipe,
     AlertComponent,
+    TimePeriodInputComponent,
   ],
   imports: [
     CommonModule,
     NgbModule,
     RouterModule,
+    FormsModule,
   ],
   exports: [
     AdditionsFormatterPipe,
@@ -37,6 +41,7 @@ import { AlertComponent } from './alert/alert.component';
     SelectorSummaryComponent,
     ShortenerPipe,
     AlertComponent,
+    TimePeriodInputComponent,
   ],
 })
 export class SharedModule { }

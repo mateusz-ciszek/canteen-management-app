@@ -1,0 +1,25 @@
+<div class="form-group">
+  <div class="row">
+    <div class="col input-group">
+      <div class="input-group-prepend">
+        <label class="col-form-label input-group-text" for="periodStart">Start</label>
+      </div>
+      <input class="form-control" type="time" id="periodStart" [(ngModel)]="timePeriod.from"  (change)="onChange()"
+             [class.is-invalid]="!valid && showValidationErrors" #periodStart="ngModel" (ngModelChange)="onChange()"
+             [class.is-valid]="valid && showValidationErrors">
+    </div>
+    <div class="col input-group">
+      <div class="input-group-prepend">
+        <label class="col-form-label input-group-text" for="periodEnd">End</label>
+      </div>
+      <input class="form-control" type="time" id="periodEnd" [(ngModel)]="timePeriod.to" (ngModelChange)="onChange()"
+             [class.is-invalid]="!valid && showValidationErrors" #periodEnd="ngModel" (change)="onChange()"
+             [class.is-valid]="valid && showValidationErrors">
+    </div>
+  </div>
+  <div class="row">
+    <small *ngIf="!valid && showValidationErrors" class="col invalid-feedback">
+      Invalid time period.
+    </small>
+  </div>
+</div>

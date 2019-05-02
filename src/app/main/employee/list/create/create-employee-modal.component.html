@@ -1,0 +1,51 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Insert worker data</h5>
+    <button type="button" style="float: right " class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #createWorkerForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input class="form-control" id="firstName" [(ngModel)]="model.firstName"
+               required #firstName="ngModel" name="firstName"
+               [class.is-invalid]="firstName.invalid && (firstName.dirty || firstName.touched)"
+               [class.is-valid]="firstName.valid && firstName.dirty && firstName.touched">
+        <small class="invalid-feedback" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+          First name is required
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input class="form-control" id="lastName" [(ngModel)]="model.lastName"
+               required #lastName="ngModel" name="lastName"
+               [class.is-invalid]="lastName.invalid && (lastName.dirty || lastName.touched)"
+               [class.is-valid]="lastName.valid && lastName.dirty && lastName.touched">
+        <small class="invalid-feedback" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+          Last name is required
+        </small>
+      </div>
+
+      <div class="custom-control custom-switch form-group">
+        <input type="checkbox" class="custom-control-input" id="customWorkingDaysSwitch" [(ngModel)]="customWorkingDays"
+               name="customWorkingDaysSwitch">
+        <label class="custom-control-label" for="customWorkingDaysSwitch">Set custom working days</label>
+      </div>
+
+      <ng-container *ngIf="customWorkingDays">
+        <div *ngFor="let workDay of workingDays; let index = index">
+          <h5>{{ dayNames[index] }}</h5>
+          <app-time-period-input (validationChange)="workDayValidationChange(index, $event)"
+                                 [(timePeriod)]="workDay"></app-time-period-input>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" [disabled]="createWorkerForm.invalid || !isFormValid()"
+              (click)="createWorker()">Save</button>
+      <button class="btn btn-danger" (click)="close()">Cancel</button>
+  </div>
+</div>

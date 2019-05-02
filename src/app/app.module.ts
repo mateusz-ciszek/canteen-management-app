@@ -17,6 +17,7 @@ import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-crea
 import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
 import { CreateAdditionComponent } from './main/menu/food/create/create-addition/create-addition.component';
 import { DayOffModalComponent } from './main/employee/schedule/day-off-modal/day-off-modal.component';
+import { CoalescingComponentFactoryResolver } from './services/coalescing-component-factory-resolver.service';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -58,6 +59,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     AuthGuard,
     DomService,
     ModalService,
+    CoalescingComponentFactoryResolver,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -67,4 +69,8 @@ const jwtModuleOptions: JwtModuleOptions = {
     DayOffModalComponent,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(coalescingResolver: CoalescingComponentFactoryResolver) {
+    coalescingResolver.init();
+  }
+}

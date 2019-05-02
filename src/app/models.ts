@@ -120,3 +120,25 @@ export interface WorkerListItem {
 export interface WorkerList {
   workers: WorkerListItem[];
 }
+
+export interface WorkerCreateRequest {
+  firstName: string;
+  lastName: string;
+  workHours?: WorkHoursCreateRequest[];
+}
+
+export interface WorkHoursCreateRequest {
+  dayOfTheWeek: number;
+  start: SimpleTime;
+  end: SimpleTime;
+}
+
+export interface WorkerCreateResponse {
+  email: string;
+  password: string;
+}
+
+export interface SimpleTime {
+  hour: number;
+  minute: number;
+}
