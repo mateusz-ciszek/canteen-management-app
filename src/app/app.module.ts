@@ -18,6 +18,7 @@ import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-foo
 import { CreateAdditionComponent } from './main/menu/food/create/create-addition/create-addition.component';
 import { DayOffModalComponent } from './main/employee/schedule/day-off-modal/day-off-modal.component';
 import { CoalescingComponentFactoryResolver } from './services/coalescing-component-factory-resolver.service';
+import { DateHttpParserInterceptor } from './interceptors/date-http-parser.interceptor';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -49,11 +50,16 @@ const jwtModuleOptions: JwtModuleOptions = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppendBaseUrlInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DateHttpParserInterceptor,
       multi: true,
     },
     AuthGuard,

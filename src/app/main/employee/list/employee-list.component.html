@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let worker of workers; let index = index">
+    <tr class="clickable" *ngFor="let worker of workers; let index = index" (click)="showDetails(worker.id)">
       <td class="index-col">{{ index + 1 }}</td>
       <td>{{ worker.person.firstName }} {{ worker.person.lastName }}</td>
       <td>{{ worker.person.email }}</td>
