@@ -1,0 +1,90 @@
+<div class="jumbotron">
+  <h3>{{ model.person.firstName }} {{ model.person.lastName }}</h3>
+  Employment date: {{ model.employedDate | date:'d MMM yyyy' }}
+</div>
+
+<!-- TODO -->
+<!--<div class="row">-->
+<!--  <div class="col">-->
+<!--    <div class="actions float-right">-->
+<!--      <button class="btn btn-secondary">Generate new password</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header">Personal information</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-lg-4 col-md-6 col-sm-12">
+            <small>First name</small>
+            <div>{{ model.person.firstName }}</div>
+          </div>
+          <div class="col col-lg-4 col-md-6 col-sm-12">
+            <small>Last name</small>
+            <div>{{ model.person.lastName }}</div>
+          </div>
+          <div class="col col-lg-4 col-md-6 col-sm-12">
+            <small>Employment date</small>
+            <div>{{ model.employedDate | date:DATE_FORMAT }}</div>
+          </div>
+          <div class="col col-lg-4 col-md-6 col-sm-12">
+            <small>Email</small>
+            <div>{{ model.person.email }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header">Work days</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-lg-3 col-md-6 col-sm-12" *ngFor="let details of model.workDays">
+            <small>{{ dayNames[details.day] }}</small>
+            <div *ngIf="details.isWorking; else notWorking">
+              {{ details.start | date:TIME_FORMAT }} - {{ details.end | date:TIME_FORMAT }} ({{ details.hours }}:{{ details.minutes | number:'2.0-0' }})
+            </div>
+            <ng-template #notWorking>
+              <div class="font-italic">Not working</div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header">Day off requests</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Requested date</th>
+            <th>Resolved by</th>
+            <th>Resolved date</th>
+            <th>State</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of model.requests">
+            <td>{{ request.date | date:DATE_FORMAT }}</td>
+            <td>{{ request.resolvedBy?.firstName }} {{ request.resolvedBy?.lastName }}</td>
+            <td>{{ request.resolvedDate | date:DATE_FORMAT }}</td>
+            <td class="text-uppercase">{{ request.state }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

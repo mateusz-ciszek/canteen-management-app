@@ -142,3 +142,27 @@ export interface SimpleTime {
   hour: number;
   minute: number;
 }
+
+export interface WorkerDetailsResponse {
+  person: User;
+  employedDate: Date;
+  workDays: WorkHoursDetails[];
+  requests: DayOffRequestDetails[];
+}
+
+export interface WorkHoursDetails {
+  start: Date;
+  end: Date;
+  hours: string;
+  minutes: string;
+  isWorking: boolean;
+  day: number;
+}
+
+export interface DayOffRequestDetails {
+  id: string;
+  state: DayOffState;
+  date: Date;
+  resolvedBy: User;
+  resolvedDate: Date;
+}

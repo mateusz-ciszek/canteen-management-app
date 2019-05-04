@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { DayOffState, MonthResponse, WorkerCreateRequest, WorkerCreateResponse, WorkerList } from '../models';
+import { DayOffState, MonthResponse, WorkerCreateRequest, WorkerCreateResponse, WorkerList, WorkerDetailsResponse } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,9 @@ export class WorkerService {
 
   createWorker(request: WorkerCreateRequest): Observable<WorkerCreateResponse> {
     return this.http.post<WorkerCreateResponse>('/worker', request);
+  }
+
+  getWorkerDetails(workerId: string): Observable<WorkerDetailsResponse> {
+    return this.http.get<WorkerDetailsResponse>(`/worker/${workerId}`);
   }
 }
