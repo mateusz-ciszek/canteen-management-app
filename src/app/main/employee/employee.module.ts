@@ -15,30 +15,33 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEmployeeSummaryModalComponent } from './list/create/summary/create-employee-summary-modal.component';
 import { EmployeeDetailsComponent } from './details/employee-details.component';
 import { EmployeeDetailsResolver } from './details/employee-details-resolver';
+import { EmployeeResetPasswordModalComponent } from './details/reset-password-modal/employee-reset-password-modal.component';
 
 @NgModule({
   declarations: [
+    CreateEmployeeModalComponent,
+    CreateEmployeeSummaryModalComponent,
     EmployeeComponentsSwitcherComponent,
+    EmployeeDetailsComponent,
     EmployeeListComponent,
+    EmployeeResetPasswordModalComponent,
     EmployeeTimetableComponent,
     ScheduleComponent,
     ScheduleDetailsComponent,
-    TimetableHeaderComponent,
     TimetableBodyComponent,
-    CreateEmployeeModalComponent,
-    CreateEmployeeSummaryModalComponent,
-    EmployeeDetailsComponent,
+    TimetableHeaderComponent,
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
-    SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   entryComponents: [
     CreateEmployeeModalComponent,
     CreateEmployeeSummaryModalComponent,
+    EmployeeResetPasswordModalComponent,
   ],
   providers: [
     EmployeeDetailsResolver,

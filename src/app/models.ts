@@ -166,3 +166,12 @@ export interface DayOffRequestDetails {
   resolvedBy: User;
   resolvedDate: Date;
 }
+
+export interface WorkerPasswordResetRequest {
+  workerId: string;
+}
+
+export interface WorkerPasswordResetResponse {
+  email: string;
+  password: string;
+}
