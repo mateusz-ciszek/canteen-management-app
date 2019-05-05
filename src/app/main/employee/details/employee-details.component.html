@@ -3,14 +3,13 @@
   Employment date: {{ model.employedDate | date:'d MMM yyyy' }}
 </div>
 
-<!-- TODO -->
-<!--<div class="row">-->
-<!--  <div class="col">-->
-<!--    <div class="actions float-right">-->
-<!--      <button class="btn btn-secondary">Generate new password</button>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="row">
+  <div class="col">
+    <div class="actions float-right">
+      <button class="btn btn-secondary" (click)="resetPassword()">Generate new password</button>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col">

@@ -1,7 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { DayOffState, MonthResponse, WorkerCreateRequest, WorkerCreateResponse, WorkerList, WorkerDetailsResponse } from '../models';
+import {
+  DayOffState,
+  MonthResponse,
+  WorkerCreateRequest,
+  WorkerCreateResponse,
+  WorkerDetailsResponse,
+  WorkerList,
+  WorkerPasswordResetRequest,
+  WorkerPasswordResetResponse
+} from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +43,10 @@ export class WorkerService {
 
   getWorkerDetails(workerId: string): Observable<WorkerDetailsResponse> {
     return this.http.get<WorkerDetailsResponse>(`/worker/${workerId}`);
+  }
+
+  resetPassword(workerId: string): Observable<WorkerPasswordResetResponse> {
+    const request: WorkerPasswordResetRequest = { workerId };
+    return this.http.post<WorkerPasswordResetResponse>('/worker/password/reset', request);
   }
 }
