@@ -4,7 +4,6 @@ import { SelectorSummaryComponent } from './selector-summary/selector-summary.co
 import { ShortenerPipe } from './pipe/shortener.pipe';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
 import { CurrencyFormatterPipe } from './pipe/currency-formatter.pipe';
-import { DateTimePipe } from './pipe/date-time.pipe';
 import { AdditionsFormatterPipe } from './pipe/additions-formatter.pipe';
 import { RouterModule } from '@angular/router';
 import { PriceValidatorDirective } from './validator/price.directive';
@@ -17,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AdditionsFormatterPipe,
     CurrencyFormatterPipe,
-    DateTimePipe,
     HeaderBarComponent,
     PriceValidatorDirective,
     SelectorSummaryComponent,
@@ -34,7 +32,6 @@ import { FormsModule } from '@angular/forms';
   exports: [
     AdditionsFormatterPipe,
     CurrencyFormatterPipe,
-    DateTimePipe,
     HeaderBarComponent,
     NgbModule,
     PriceValidatorDirective,

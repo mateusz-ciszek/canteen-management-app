@@ -5,5 +5,5 @@
     <span>{{ orderState.enteredBy.firstName }} {{ orderState.enteredBy.lastName }}</span>
     <a class="alert alert-link" href="mailto:{{ orderState.enteredBy.email }}">Contact</a>
   </div>
-  <div>Entered date: {{ orderState.enteredDate | dateTime }}</div>
+  <div>Entered date: {{ orderState.enteredDate | date:'dd.MM.yyyy HH:mm' }}</div>
 </div>

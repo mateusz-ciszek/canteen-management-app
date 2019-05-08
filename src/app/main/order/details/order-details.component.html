@@ -3,7 +3,7 @@
     <div class="col-sm-6">
       <h3>Order</h3>
       <div>Ordered by: {{ order.user.firstName }} {{ order.user.lastName}}</div>
-      <div>Created on: {{ order.createdDate | dateTime }}</div>
+      <div>Created on: {{ order.createdDate | date:'dd.MM.yyyy HH:mm' }}</div>
       <div>Items: {{ order.items.length }}</div>
       <div>State: <app-order-state-badge [state]="order.currentState.state"></app-order-state-badge></div>
     </div>
