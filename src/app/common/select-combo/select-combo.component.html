@@ -1,0 +1,13 @@
+<label>
+  <small>{{ label }}</small>
+</label>
+<div ngbDropdown autoClose="outside">
+  <button class="btn btn-light" id="dropdownForm1" ngbDropdownToggle>{{ buttonLabel }}</button>
+  <div ngbDropdownMenu>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item list-group-item-action" [class.list-group-item-primary]="item.selected" *ngFor="let item of items" (click)="itemClick(item)">
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+</div>

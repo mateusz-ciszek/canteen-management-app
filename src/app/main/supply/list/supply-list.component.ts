@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SupplyPageableListService } from '../../../services/pageable-list/supply-pageable-list.service';
-import { SupplyListResponse } from '../../../models';
+import { SupplyListResponse, SupplyStateEnum } from '../../../models';
+import { SelectComboDataModel } from '../../../common/select-combo/select-combo.component';
 
 @Component({
   selector: 'app-supply-list',
@@ -17,8 +18,14 @@ export class SupplyListComponent {
   query: string = '';
   page: number = 1;
   clearable: boolean = false;
+  showFilters: boolean = false;
+
+  states: SelectComboDataModel<SupplyStateEnum>[];
+  currencies: SelectComboDataModel<string>[];
 
   constructor(private listService: SupplyPageableListService) {
+    this.initFilterLists();
+
     listService.$results.subscribe(result => {
       this.response = result;
       this.maxPages = Math.ceil(this.response.itemsCount / this.pageSize);
@@ -48,9 +55,27 @@ export class SupplyListComponent {
     }
   }
 
+  switchFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
+  statesComboSelectionChange(items: SupplyStateEnum[]) {
+    console.table(items);
+  }
+
+  currenciesComboSelectionChange(items: string[]) {
+    console.table(items);
+  }
+
   private requestData() {
     this.clearable = !!this.query;
     this.ready = false;
     this.listService.more(this.page - 1, this.query, undefined);
+  }
+
+  private initFilterLists() {
+    const stateEnums: SupplyStateEnum[] = ['NEW', 'ACCEPTED', 'REJECTED', 'CANCELLED', 'DELIVERED', 'PENDING', 'READY'];
+    this.states = stateEnums.map<SelectComboDataModel<SupplyStateEnum>>(item => ({ name: item, item: item }));
+    this.currencies = ['PLN', 'EUR', 'USD'].map<SelectComboDataModel<string>>(item => ({ name: item, item }));
   }
 }
