@@ -6,6 +6,7 @@ import { CanActivateMainGuard } from './services/guard/can-activate-main.guard';
 import { OrderModule } from './main/order/order.module';
 import { MenuModule } from './main/menu/menu.module';
 import { EmployeeModule } from './main/employee/employee.module';
+import { SupplyModule } from './main/supply/supply.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'menu', loadChildren: () => MenuModule },
       { path: 'order', loadChildren: () => OrderModule },
       { path: 'employees', loadChildren: () => EmployeeModule },
+      { path: 'supply', loadChildren: () => SupplyModule },
       { path: '**', redirectTo: 'menu', pathMatch: 'full' },
     ],
     canActivate: [CanActivateMainGuard],

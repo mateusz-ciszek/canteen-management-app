@@ -1,0 +1,30 @@
+<table class="table table-outer-border table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th><span class="float-right">State</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.requestedBy }}</td>
+      <td>{{ item.requestedDate | date }}</td>
+      <td>{{ item.price.amount | number:'1.2-2' }} {{ item.price.currency | uppercase }}</td>
+      <td><span class="float-right">{{ item.state }}</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<nav>
+  <ul class="pagination">
+    <li class="page-item"><button class="page-link" [disabled]="page === 1" (click)="previousPage()">&laquo;</button></li>
+    <li class="page-item" *ngFor="let pageNumber of pages">
+      <button class="page-link active" [class.btn-primary]="pageNumber === page" (click)="changePage(pageNumber)">{{ pageNumber }}</button>
+    </li>
+    <li class="page-item"><button class="page-link" [disabled]="page === maxPages" (click)="nextPage()">&raquo;</button></li>
+  </ul>
+</nav>
