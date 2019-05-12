@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-select-combo',
   templateUrl: './select-combo.component.html',
   styleUrls: ['./select-combo.component.less']
 })
-export class SelectComboComponent<T> {
+export class SelectComboComponent<T> implements OnInit {
 
   @Input()
   items: SelectComboDataModel<T>[];
@@ -18,11 +18,19 @@ export class SelectComboComponent<T> {
   @Output()
   selectionChange: EventEmitter<T[]> = new EventEmitter<T[]>();
 
+  ngOnInit(): void {
+    this.updateButtonLabel(this.items.filter(o => o.selected));
+  }
+
   itemClick(item: SelectComboDataModel<T>) {
     item.selected = !item.selected;
     const selectedItems = this.items.filter(o => o.selected);
     this.updateButtonLabel(selectedItems);
     this.selectionChange.emit(selectedItems.map(o => o.item));
+  }
+
+  reset() {
+    this.items.forEach(item => item.selected = false);
   }
 
   private updateButtonLabel(items: SelectComboDataModel<T>[]): void {

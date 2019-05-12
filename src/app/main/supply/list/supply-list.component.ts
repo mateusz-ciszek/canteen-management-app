@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { SupplyPageableListService } from '../../../services/pageable-list/supply-pageable-list.service';
-import { SupplyListResponse, SupplyStateEnum } from '../../../models';
-import { SelectComboDataModel } from '../../../common/select-combo/select-combo.component';
+import { SupplyListFilter, SupplyListResponse, SupplyStateEnum } from '../../../models';
+import { SelectComboComponent, SelectComboDataModel } from '../../../common/select-combo/select-combo.component';
 
 @Component({
   selector: 'app-supply-list',
@@ -22,6 +22,11 @@ export class SupplyListComponent {
 
   states: SelectComboDataModel<SupplyStateEnum>[];
   currencies: SelectComboDataModel<string>[];
+
+  filter: SupplyListFilter;
+
+  @ViewChildren(SelectComboComponent)
+  comboSelectors: QueryList<SelectComboComponent<any>>;
 
   constructor(private listService: SupplyPageableListService) {
     this.initFilterLists();
@@ -60,22 +65,48 @@ export class SupplyListComponent {
   }
 
   statesComboSelectionChange(items: SupplyStateEnum[]) {
-    console.table(items);
+    this.filter.states = items;
   }
 
   currenciesComboSelectionChange(items: string[]) {
-    console.table(items);
+    this.filter.currencies = items;
+  }
+
+  applyFilter() {
+    this.requestData();
+  }
+
+  clearFilter() {
+    this.filter = {
+      states: [],
+      amountFrom: undefined,
+      amountTo: undefined,
+      currencies: [],
+      dateFrom: undefined,
+      dateTo: undefined,
+    };
+    this.requestData();
+    this.comboSelectors.forEach(selector => selector.reset());
+    this.showFilters = false;
   }
 
   private requestData() {
     this.clearable = !!this.query;
     this.ready = false;
-    this.listService.more(this.page - 1, this.query, undefined);
+    this.listService.more(this.page - 1, this.query, this.filter);
   }
 
   private initFilterLists() {
     const stateEnums: SupplyStateEnum[] = ['NEW', 'ACCEPTED', 'REJECTED', 'CANCELLED', 'DELIVERED', 'PENDING', 'READY'];
     this.states = stateEnums.map<SelectComboDataModel<SupplyStateEnum>>(item => ({ name: item, item: item }));
     this.currencies = ['PLN', 'EUR', 'USD'].map<SelectComboDataModel<string>>(item => ({ name: item, item }));
+    this.filter = {
+      states: [],
+      amountFrom: undefined,
+      amountTo: undefined,
+      currencies: [],
+      dateFrom: undefined,
+      dateTo: undefined,
+    };
   }
 }
