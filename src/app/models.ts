@@ -175,3 +175,47 @@ export interface WorkerPasswordResetResponse {
   email: string;
   password: string;
 }
+
+export interface PageableListRequest<T> {
+  page: number;
+  pageSize: number;
+  search: string;
+  filter: T;
+}
+
+export interface PageableListResponse<T> {
+  page: number;
+  totalCount: number;
+  itemsCount: number;
+  items: T[];
+}
+
+export interface SupplyListRequest extends PageableListRequest<SupplyListFilter> {}
+
+export interface SupplyListResponse extends PageableListResponse<Supply> {}
+
+export interface Supply {
+  id: string;
+  name: string;
+  url?: string;
+  price: Price;
+  requestedBy: string;
+  requestedDate: Date;
+  state: SupplyStateEnum;
+}
+
+export interface Price {
+  amount: number;
+  currency: string;
+}
+
+export interface SupplyListFilter {
+  states: SupplyStateEnum[];
+  amountFrom: number;
+  amountTo: number;
+  currencies: string[];
+  dateFrom: Date;
+  dateTo: Date;
+}
+
+export type SupplyStateEnum = 'NEW' | 'ACCEPTED' | 'REJECTED' | 'CANCELLED' | 'PENDING' | 'READY' | 'DELIVERED';

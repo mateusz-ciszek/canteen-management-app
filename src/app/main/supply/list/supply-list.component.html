@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <h3>Supplies requests</h3>
+  <ng-container *ngIf="ready; else notReady">
+    <div>Total requests: {{ response.totalCount }}</div>
+    <div>Filtered requests: {{ response.itemsCount }}</div>
+  </ng-container>
+  <ng-template #notReady>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="input-group">
+      <input class="form-control" type="text" placeholder="Search" [(ngModel)]="query" (keypress)="search($event)">
+      <div class="input-group-append input-group-prepend">
+        <button class="btn btn-outline-danger" *ngIf="query" (click)="clear()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" (click)="search(null)">
+          <i class="fas fa-search"></i>
+          <span>Search</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-supply-list-table [items]="response?.items" [maxPages]="maxPages" [page]="page" (pageChange)="onPageChange($event)"></app-supply-list-table>
