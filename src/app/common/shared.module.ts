@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './alert/alert.component';
 import { TimePeriodInputComponent } from './time-period-input/time-period-input.component';
 import { FormsModule } from '@angular/forms';
+import { SelectComboComponent } from './select-combo/select-combo.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     ShortenerPipe,
     AlertComponent,
     TimePeriodInputComponent,
+    SelectComboComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     ShortenerPipe,
     AlertComponent,
     TimePeriodInputComponent,
+    SelectComboComponent,
   ],
 })
 export class SharedModule { }

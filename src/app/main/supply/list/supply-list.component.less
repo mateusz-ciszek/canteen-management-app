@@ -11,6 +11,40 @@
   margin-left: 1px;
 }
 
-.fa-search {
+.fa-search, .fa-filter {
   margin-right: .5rem;
+}
+
+.jumbotron {
+  &.filter {
+    padding: 0 .5rem .5rem .5rem;
+  }
+
+  & > .row {
+    margin-bottom: .5rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .col-auto:not(:first-child) {
+      padding-left: 0;
+    }
+  }
+}
+
+label {
+  margin-bottom: 0;
+
+  small {
+    text-transform: uppercase;
+  }
+}
+
+.col-auto > .row {
+  margin-bottom: 0;
+}
+
+.d-inline-flex > div, .d-inline-flex > app-select-combo:not(:first-child) {
+  margin-left: .5rem;
+  margin-bottom: .5rem;
 }

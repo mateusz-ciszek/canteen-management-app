@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col">
     <div class="input-group">
       <input class="form-control" type="text" placeholder="Search" [(ngModel)]="query" (keypress)="search($event)">
       <div class="input-group-append input-group-prepend">
@@ -30,6 +30,54 @@
       </div>
     </div>
   </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-secondary" (click)="switchFilters()">
+      <i class="fas fa-filter"></i>
+      <span>Filter</span>
+    </button>
+  </div>
 </div>
+
+<ng-container *ngIf="showFilters">
+  <div class="jumbotron filter">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <app-select-combo [items]="states" [label]="'States'"
+                          (selectionChange)="statesComboSelectionChange($event)"></app-select-combo>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <label for="amountFrom">
+          <small>Minimum price</small>
+        </label>
+        <input class="form-control" type="number" id="amountFrom" [(ngModel)]="filter.amountFrom">
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <label for="amountTo">
+          <small>Maximum price</small>
+        </label>
+        <input class="form-control" type="number" id="amountTo" [(ngModel)]="filter.amountTo">
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <app-select-combo [items]="currencies" [label]="'Currencies'"
+                          (selectionChange)="currenciesComboSelectionChange($event)"></app-select-combo>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-auto">
+        <div class="row">
+          <div class="col-auto">
+            <button class="btn btn-primary" (click)="applyFilter()">Show</button>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-secondary" (click)="clearFilter()">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
 
 <app-supply-list-table [items]="response?.items" [maxPages]="maxPages" [page]="page" (pageChange)="onPageChange($event)"></app-supply-list-table>

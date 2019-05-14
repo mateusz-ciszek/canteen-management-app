@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { SupplyPageableListService } from '../../../services/pageable-list/supply-pageable-list.service';
-import { SupplyListResponse } from '../../../models';
+import { SupplyListFilter, SupplyListResponse, SupplyStateEnum } from '../../../models';
+import { SelectComboComponent, SelectComboDataModel } from '../../../common/select-combo/select-combo.component';
 
 @Component({
   selector: 'app-supply-list',
@@ -17,8 +18,19 @@ export class SupplyListComponent {
   query: string = '';
   page: number = 1;
   clearable: boolean = false;
+  showFilters: boolean = false;
+
+  states: SelectComboDataModel<SupplyStateEnum>[];
+  currencies: SelectComboDataModel<string>[];
+
+  filter: SupplyListFilter;
+
+  @ViewChildren(SelectComboComponent)
+  comboSelectors: QueryList<SelectComboComponent<any>>;
 
   constructor(private listService: SupplyPageableListService) {
+    this.initFilterLists();
+
     listService.$results.subscribe(result => {
       this.response = result;
       this.maxPages = Math.ceil(this.response.itemsCount / this.pageSize);
@@ -48,9 +60,53 @@ export class SupplyListComponent {
     }
   }
 
+  switchFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
+  statesComboSelectionChange(items: SupplyStateEnum[]) {
+    this.filter.states = items;
+  }
+
+  currenciesComboSelectionChange(items: string[]) {
+    this.filter.currencies = items;
+  }
+
+  applyFilter() {
+    this.requestData();
+  }
+
+  clearFilter() {
+    this.filter = {
+      states: [],
+      amountFrom: undefined,
+      amountTo: undefined,
+      currencies: [],
+      dateFrom: undefined,
+      dateTo: undefined,
+    };
+    this.requestData();
+    this.comboSelectors.forEach(selector => selector.reset());
+    this.showFilters = false;
+  }
+
   private requestData() {
     this.clearable = !!this.query;
     this.ready = false;
-    this.listService.more(this.page - 1, this.query, undefined);
+    this.listService.more(this.page - 1, this.query, this.filter);
+  }
+
+  private initFilterLists() {
+    const stateEnums: SupplyStateEnum[] = ['NEW', 'ACCEPTED', 'REJECTED', 'CANCELLED', 'DELIVERED', 'PENDING', 'READY'];
+    this.states = stateEnums.map<SelectComboDataModel<SupplyStateEnum>>(item => ({ name: item, item: item }));
+    this.currencies = ['PLN', 'EUR', 'USD'].map<SelectComboDataModel<string>>(item => ({ name: item, item }));
+    this.filter = {
+      states: [],
+      amountFrom: undefined,
+      amountTo: undefined,
+      currencies: [],
+      dateFrom: undefined,
+      dateTo: undefined,
+    };
   }
 }
