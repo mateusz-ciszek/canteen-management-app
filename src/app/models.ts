@@ -219,3 +219,30 @@ export interface SupplyListFilter {
 }
 
 export type SupplyStateEnum = 'NEW' | 'ACCEPTED' | 'REJECTED' | 'CANCELLED' | 'PENDING' | 'READY' | 'DELIVERED';
+
+export interface SupplyState {
+  state: SupplyStateEnum;
+  enteredBy: User;
+  enteredDate: Date;
+  rejectionReason: string;
+}
+
+export interface SupplyDetailsResponse {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  price: Price;
+  requestedBy: User;
+  requedtedDate: Date; // FIXME: spelling
+  history: SupplyState[];
+  comments: Comment[];
+  currentState: SupplyState;
+}
+
+
+export interface Comment {
+  content: string;
+  author: User;
+  date: Date;
+}

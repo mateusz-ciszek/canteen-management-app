@@ -6,11 +6,14 @@ import { SupplyPageableListService } from '../../services/pageable-list/supply-p
 import { SupplyListTableComponent } from './list/table/supply-list-table.component';
 import { SharedModule } from '../../common/shared.module';
 import { FormsModule } from '@angular/forms';
+import { SupplyDetailsComponent } from './details/supply-details.component';
+import { SupplyDetailsResolver } from './details/supply-details-resolver';
 
 @NgModule({
   declarations: [
+    SupplyDetailsComponent,
     SupplyListComponent,
-    SupplyListTableComponent
+    SupplyListTableComponent,
   ],
   imports: [
     CommonModule,
@@ -19,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     SupplyRoutingModule,
   ],
   providers: [
+    SupplyDetailsResolver,
     SupplyPageableListService,
   ]
 })

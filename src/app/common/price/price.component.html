@@ -1,0 +1,4 @@
+<div class="d-flex" *ngIf="price">
+  <h3>{{ price.amount | number:'1.2-2' }}</h3>
+  <h5>{{ price.currency }}</h5>
+</div>
