@@ -234,7 +234,7 @@ export interface SupplyDetailsResponse {
   url: string;
   price: Price;
   requestedBy: User;
-  requedtedDate: Date; // FIXME: spelling
+  requestedDate: Date;
   history: SupplyState[];
   comments: Comment[];
   currentState: SupplyState;
