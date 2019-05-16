@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SupplyDetailsResponse } from '../../../models';
+import { SupplyService } from '../../../services/supply.service';
+import { AlertsService } from '../../../services/alerts.service';
 
 @Component({
   selector: 'app-supply-details',
@@ -11,11 +13,24 @@ export class SupplyDetailsComponent {
 
   model: SupplyDetailsResponse;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+      private route: ActivatedRoute,
+      private alertService: AlertsService,
+      private supplyService: SupplyService) {
+
     this.model = this.route.snapshot.data['supply'];
-    console.log(this.model);
   }
 
   saveComment(content: string): void {
+    this.supplyService.addComment(this.model.id, content).subscribe(() => {
+      this.alertService.addAlert('Your comment has been posted', 'SUCCESS');
+      this.refreshData();
+    },
+      () => this.alertService.addAlert('Error posting your comment. Please try again later', 'FAILURE'),
+    );
+  }
+
+  private refreshData(): void {
+    this.supplyService.getSupplyDetails(this.model.id).subscribe(response => this.model = response);
   }
 }

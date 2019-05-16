@@ -246,3 +246,7 @@ export interface Comment {
   author: User;
   date: Date;
 }
+
+export interface CreateCommentRequest {
+  content: string;
+}
