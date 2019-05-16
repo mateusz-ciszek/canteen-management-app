@@ -16,6 +16,10 @@ export class CommentsSectionComponent {
   @Output()
   postComment: EventEmitter<string> = new EventEmitter();
 
+  clear(): void {
+    this.commentContent = '';
+  }
+
   post(): void {
     this.postComment.emit(this.commentContent);
   }
