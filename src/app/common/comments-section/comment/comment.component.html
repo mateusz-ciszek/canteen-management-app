@@ -1,4 +1,6 @@
 <div class="comment">
-  <small>{{ comment.author.firstName }} {{ comment.author.lastName }} on {{ comment.date | date }}</small>
+  <small>
+    {{ comment.author.firstName }} {{ comment.author.lastName }} on {{ comment.date | date:'EEEE, dd.MM.yyyy, HH:mm' }}
+  </small>
   <div>{{ comment.content }}</div>
 </div>
