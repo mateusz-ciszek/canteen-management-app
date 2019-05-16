@@ -76,7 +76,7 @@
     <div class="card">
       <h5 class="card-header"><i class="fas fa-comment-alt"></i>Comments</h5>
       <div class="card-body">
-        <app-comments-section (postComment)="saveComment($event)"></app-comments-section>
+        <app-comments-section [comments]="model.comments" (postComment)="saveComment($event)"></app-comments-section>
       </div>
     </div>
   </div>
