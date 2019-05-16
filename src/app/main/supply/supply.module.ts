@@ -8,12 +8,14 @@ import { SharedModule } from '../../common/shared.module';
 import { FormsModule } from '@angular/forms';
 import { SupplyDetailsComponent } from './details/supply-details.component';
 import { SupplyDetailsResolver } from './details/supply-details-resolver';
+import { SupplyStateBadgeComponent } from './control/supply-state-badge/supply-state-badge.component';
 
 @NgModule({
   declarations: [
     SupplyDetailsComponent,
     SupplyListComponent,
     SupplyListTableComponent,
+    SupplyStateBadgeComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,6 @@ import { SupplyDetailsResolver } from './details/supply-details-resolver';
   providers: [
     SupplyDetailsResolver,
     SupplyPageableListService,
-  ]
+  ],
 })
 export class SupplyModule { }
