@@ -8,15 +8,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="col col-6 col-sm-2">
-      <small>State: </small>
+    <div class="col col-12 col-sm-3 col-md-2">
+      <small>State</small>
       <div>
         <app-supply-state-badge [state]="model.currentState.state"></app-supply-state-badge>
       </div>
     </div>
-    <div class="col col-6 col-sm-10">
-      <small>Date: </small>
+    <div class="col col-12 col-sm-9 col-md-10">
+      <small>Date</small>
       <div>{{ model.requestedDate | date }}</div>
+    </div>
+  </div>
+  <div class="row" *ngIf="model.currentState.rejectionReason">
+    <div class="col">
+      <small>Rejection reason</small>
+      <div>{{ model.currentState.rejectionReason }}</div>
     </div>
   </div>
 </div>
