@@ -37,12 +37,12 @@
   </thead>
   <tbody>
     <tr class="clickable" *ngFor="let order of orders; let index = index" routerLink="/main/order/details/{{ order._id }}">
-      <th>{{ index + 1 }}</th>
-      <th>{{ order.user.firstName + ' ' + order.user.lastName }}</th>
+      <td>{{ index + 1 }}</td>
+      <td>{{ order.user.firstName + ' ' + order.user.lastName }}</td>
       <!--<th>{{ order.date }}</th>-->
-      <th>{{ order.items.length }}</th>
-      <th>{{ order.currentState.state }}</th>
-      <th>{{ order.totalPrice | currency }}</th>
+      <td>{{ order.items.length }}</td>
+      <td>{{ order.currentState.state }}</td>
+      <td>{{ order.totalPrice | currency }}</td>
     </tr>
   </tbody>
 </table>
