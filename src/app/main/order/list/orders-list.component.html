@@ -23,7 +23,7 @@
 </div>
 
 <!-- TODO: add filtering -->
-<table class="table table-bordered table-striped table-hover">
+<table class="table table-outer-border table-striped table-hover">
   <thead>
     <tr>
       <th scope="col" class="index-col">#</th>
@@ -32,17 +32,17 @@
       <!--<th scope="col">Order date</th>-->
       <th scope="col">Items</th>
       <th scope="col">State</th>
-      <th scope="col" class="price-col">Price</th>
+      <th scope="col" class="price-col"><span class="float-right">Price</span></th>
     </tr>
   </thead>
   <tbody>
     <tr class="clickable" *ngFor="let order of orders; let index = index" routerLink="/main/order/details/{{ order._id }}">
-      <th>{{ index + 1 }}</th>
-      <th>{{ order.user.firstName + ' ' + order.user.lastName }}</th>
+      <td>{{ index + 1 }}</td>
+      <td>{{ order.user.firstName + ' ' + order.user.lastName }}</td>
       <!--<th>{{ order.date }}</th>-->
-      <th>{{ order.items.length }}</th>
-      <th>{{ order.currentState.state }}</th>
-      <th>{{ order.totalPrice | currency }}</th>
+      <td>{{ order.items.length }}</td>
+      <td>{{ order.currentState.state }}</td>
+      <td><span class="float-right">{{ order.totalPrice | currency }}</span></td>
     </tr>
   </tbody>
 </table>
