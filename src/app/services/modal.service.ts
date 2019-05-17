@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DomService } from './dom.service';
+import { Observable } from 'rxjs';
 
 /**
  * Created based on:
@@ -13,7 +14,7 @@ export class ModalService {
   private modalElementId = 'modal-container';
   private overlayElementId = 'overlay';
 
-  init(component: any, inputs: object, outputs: object) {
+  init(component: any, inputs: object, outputs: object): Observable<boolean> {
     const componentConfig = {
       inputs: inputs,
       outputs: outputs,

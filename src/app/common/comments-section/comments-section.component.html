@@ -1,0 +1,18 @@
+<ng-container *ngIf="comments.length; else noComments">
+  <app-comment class="comment" *ngFor="let comment of comments" [comment]="comment"></app-comment>
+</ng-container>
+<ng-template #noComments>
+  <div class="font-italic comment">No comments yet</div>
+</ng-template>
+
+<small><label for="commentContent">Post new comment</label></small>
+<div class="row">
+  <div class="col col-12 col-sm-12 col-md">
+    <textarea class="form-control" rows="3" id="commentContent" [(ngModel)]="commentContent"></textarea>
+  </div>
+  <div class="col col-12 col-sm-12 col-md-auto">
+    <button class="btn btn-primary btn-block" [disabled]="!commentContent.length" (click)="post()">
+      <i class="fas fa-pencil-alt"></i>Post
+    </button>
+  </div>
+</div>

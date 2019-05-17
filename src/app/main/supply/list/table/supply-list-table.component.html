@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of items">
+    <tr class="clickable" *ngFor="let item of items" routerLink="/main/supply/details/{{item.id}}">
       <td>{{ item.name }}</td>
       <td>{{ item.requestedBy }}</td>
       <td>{{ item.requestedDate | date }}</td>

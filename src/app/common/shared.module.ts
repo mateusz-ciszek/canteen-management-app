@@ -12,18 +12,24 @@ import { AlertComponent } from './alert/alert.component';
 import { TimePeriodInputComponent } from './time-period-input/time-period-input.component';
 import { FormsModule } from '@angular/forms';
 import { SelectComboComponent } from './select-combo/select-combo.component';
+import { PriceComponent } from './price/price.component';
+import { CommentsSectionComponent } from './comments-section/comments-section.component';
+import { CommentComponent } from './comments-section/comment/comment.component';
 
 @NgModule({
   declarations: [
     AdditionsFormatterPipe,
+    AlertComponent,
+    CommentComponent,
+    CommentsSectionComponent,
     CurrencyFormatterPipe,
     HeaderBarComponent,
+    PriceComponent,
     PriceValidatorDirective,
+    SelectComboComponent,
     SelectorSummaryComponent,
     ShortenerPipe,
-    AlertComponent,
     TimePeriodInputComponent,
-    SelectComboComponent,
   ],
   imports: [
     CommonModule,
@@ -33,15 +39,17 @@ import { SelectComboComponent } from './select-combo/select-combo.component';
   ],
   exports: [
     AdditionsFormatterPipe,
+    AlertComponent,
+    CommentsSectionComponent,
     CurrencyFormatterPipe,
     HeaderBarComponent,
     NgbModule,
+    PriceComponent,
     PriceValidatorDirective,
+    SelectComboComponent,
     SelectorSummaryComponent,
     ShortenerPipe,
-    AlertComponent,
     TimePeriodInputComponent,
-    SelectComboComponent,
   ],
 })
 export class SharedModule { }

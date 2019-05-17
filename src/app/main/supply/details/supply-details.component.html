@@ -1,0 +1,98 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col">
+      <h3>{{ model.name }}</h3>
+    </div>
+    <div class="col-auto">
+      <app-price [price]="model.price"></app-price>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-12 col-sm-3 col-md-2">
+      <small>State</small>
+      <div>
+        <app-supply-state-badge [state]="model.currentState.state"></app-supply-state-badge>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-9 col-md-10">
+      <small>Date</small>
+      <div>{{ model.requestedDate | date }}</div>
+    </div>
+  </div>
+  <div class="row" *ngIf="model.currentState.rejectionReason">
+    <div class="col">
+      <small>Rejection reason</small>
+      <div>{{ model.currentState.rejectionReason }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <app-supply-details-action-buttons [state]="model.currentState.state" [supplyId]="model.id"
+                                       [email]="model.requestedBy.email" (stateChange)="refreshData()">
+    </app-supply-details-action-buttons>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header"><i class="fas fa-info-circle"></i>Details</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <small>URL</small>
+            <div *ngIf="model.url; else noUrl"><a class="btn-link" href="{{ model.url }}">Visit</a></div>
+            <ng-template #noUrl><div class="font-italic">No URL provided</div></ng-template>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <small>Description</small>
+            <ng-container *ngIf="model.description; else noDescription">{{ model.description }}</ng-container>
+            <ng-template #noDescription><div class="font-italic">No description provided</div></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header"><i class="fas fa-portrait"></i>Applicant data</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-12 col-sm-6 col-md-4 col-lg-3">
+            <small>First name</small>
+            <div>{{ model.requestedBy.firstName }}</div>
+          </div>
+          <div class="col col-12 col-sm-6 col-md-4 col-lg-3">
+            <small>Last name</small>
+            <div>{{ model.requestedBy.lastName }}</div>
+          </div>
+          <div class="col col-12 col-sm-6 col-md-4 col-lg-3">
+            <small>Email</small>
+            <div>{{ model.requestedBy.email }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: show supply request history -->
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header"><i class="fas fa-comment-alt"></i>Comments</h5>
+      <div class="card-body">
+        <app-comments-section [comments]="model.comments" (postComment)="saveComment($event)"
+                              #comments></app-comments-section>
+      </div>
+    </div>
+  </div>
+</div>
