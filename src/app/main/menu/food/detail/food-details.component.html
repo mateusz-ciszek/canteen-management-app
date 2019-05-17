@@ -14,15 +14,15 @@
 <div class="actions">
   <app-selector-summary [selector]="selector"></app-selector-summary>
   <div class="float-right" *ngIf="selector.isSelectedOne()">
-    <button type="button" class="btn btn-secondary" disabled="true">Modify addition</button>
-    <button type="button" class="btn btn-primary" disabled="true">Delete additions</button>
+    <button type="button" class="btn btn-secondary" [disabled]="true">Modify addition</button>
+    <button type="button" class="btn btn-primary" [disabled]="true">Delete additions</button>
   </div>
   <div class="float-right" *ngIf="selector.isSelectedMany()">
-    <button type="button" class="btn btn-primary" disabled="true">Delete addition</button>
+    <button type="button" class="btn btn-primary" [disabled]="true">Delete addition</button>
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
-    <button type="button" class="btn btn-secondary" disabled="true">Add addition</button>
-    <button type="button" class="btn btn-secondary" disabled="true">Delete meal</button>
+    <button type="button" class="btn btn-secondary" [disabled]="true">Add addition</button>
+    <button type="button" class="btn btn-secondary" [disabled]="true">Delete meal</button>
     <button type="button" class="btn btn-primary" (click)="modifyFood()">Edit meal</button>
   </div>
 </div>
@@ -40,12 +40,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let addition of food.additions; let index = index">
-      <th class="check-box-col">
+      <td class="check-box-col">
         <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected">
-      </th>
-      <th scope="row" class="index-col">{{ index }}</th>
-      <th>{{ addition.name }}</th>
-      <th class="price-col"><span class="float-right">{{ addition.price | currency }}</span></th>
+      </td>
+      <td class="index-col">{{ index }}</td>
+      <td>{{ addition.name }}</td>
+      <td class="price-col"><span class="float-right">{{ addition.price | currency }}</span></td>
     </tr>
   </tbody>
 </table>

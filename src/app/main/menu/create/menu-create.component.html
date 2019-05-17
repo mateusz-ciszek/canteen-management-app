@@ -35,14 +35,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let meal of model.foods; let index = index">
-      <th scope="row" class="check-box-col" (click)="$event.stopPropagation()">
+      <td class="check-box-col" (click)="$event.stopPropagation()">
         <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected">
-      </th>
-      <th class="index-col">{{ index + 1 }}</th>
-      <th>{{ meal.name | shortener:40 }}</th>
-      <th>{{ meal.description | shortener:80 }}</th>
-      <th>{{ meal.additions.length }}</th>
-      <th class="price-col"><span class="float-right">{{ meal.price | currency }}</span></th>
+      </td>
+      <td class="index-col">{{ index + 1 }}</td>
+      <td>{{ meal.name | shortener:40 }}</td>
+      <td>{{ meal.description | shortener:80 }}</td>
+      <td>{{ meal.additions.length }}</td>
+      <td class="price-col"><span class="float-right">{{ meal.price | currency }}</span></td>
     </tr>
   </tbody>
 </table>

@@ -6,11 +6,11 @@
 <div class="actions">
   <app-selector-summary [selector]="selector"></app-selector-summary>
   <div class="float-right" *ngIf="selector.isSelectedAny()">
-    <button type="button" class="btn btn-primary" disabled="true">Delete meals</button>
+    <button type="button" class="btn btn-primary" [disabled]="true">Delete meals</button>
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
-    <button type="button" class="btn btn-secondary" disabled="true">Modify menu</button>
-    <button type="button" class="btn btn-secondary" disabled="true">Delete menu</button>
+    <button type="button" class="btn btn-secondary" [disabled]="true">Modify menu</button>
+    <button type="button" class="btn btn-secondary" [disabled]="true">Delete menu</button>
     <button type="button" class="btn btn-primary" routerLink="/main/menu/{{ menu._id }}/food/create">Add meal</button>
   </div>
 </div>
@@ -34,14 +34,14 @@
     <tr *ngFor="let food of menu.foods; let index = index"
         class="clickable"
         routerLink="/main/menu/{{ menu._id }}/food/details/{{ food._id }}">
-      <th scope="row" class="check-box-col" (click)="$event.stopPropagation()">
+      <td class="check-box-col" (click)="$event.stopPropagation()">
         <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected">
-      </th>
-      <th class="index-col">{{ index + 1 }}</th>
-      <th>{{ food.name | shortener:40 }}</th>
-      <th>{{ food.description | shortener:80 }}</th>
-      <th class="addition-col">{{ food.additions.length }}</th>
-      <th class="price-col"><span class="float-right">{{ food.price | currency }}</span></th>
+      </td>
+      <td class="index-col">{{ index + 1 }}</td>
+      <td>{{ food.name | shortener:40 }}</td>
+      <td>{{ food.description | shortener:80 }}</td>
+      <td class="addition-col">{{ food.additions.length }}</td>
+      <td class="price-col"><span class="float-right">{{ food.price | currency }}</span></td>
     </tr>
   </tbody>
 </table>

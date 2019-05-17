@@ -100,10 +100,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let addition of model.additions; let index = index">
-            <th class="check-box-col"><input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected"></th>
-            <th class="index-col">{{ index + 1 }}</th>
-            <th>{{ addition.name }}</th>
-            <th class="price-col">{{ addition.price | currency }}</th>
+            <td class="check-box-col"><input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected"></td>
+            <td class="index-col">{{ index + 1 }}</td>
+            <td>{{ addition.name }}</td>
+            <td class="price-col">{{ addition.price | currency }}</td>
           </tr>
         </tbody>
       </table>
