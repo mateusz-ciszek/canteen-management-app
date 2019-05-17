@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SupplyDetailsComponent } from './details/supply-details.component';
 import { SupplyDetailsResolver } from './details/supply-details-resolver';
 import { SupplyStateBadgeComponent } from './control/supply-state-badge/supply-state-badge.component';
-import { SupplyDetailsActionButtonsComponent } from './control/supply-details-action-buttons/supply-details-action-buttons.component';
+import { SupplyDetailsActionButtonsComponent } from './details/supply-details-action-buttons/supply-details-action-buttons.component';
 
 @NgModule({
   declarations: [
