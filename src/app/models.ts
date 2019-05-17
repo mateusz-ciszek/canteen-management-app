@@ -250,3 +250,9 @@ export interface Comment {
 export interface CreateCommentRequest {
   content: string;
 }
+
+export interface SupplyChangeStateRequest {
+  id: string;
+  state: SupplyStateEnum;
+  rejectionReason?: string;
+}

@@ -21,7 +21,13 @@
   </div>
 </div>
 
-<!-- TODO: Supply request actions: accept, reject, edit - depending on current request state -->
+<div class="row">
+  <div class="col">
+    <app-supply-details-action-buttons [state]="model.currentState.state" [supplyId]="model.id"
+                                       [email]="model.requestedBy.email" (stateChange)="refreshData()">
+    </app-supply-details-action-buttons>
+  </div>
+</div>
 
 <div class="row">
   <div class="col">

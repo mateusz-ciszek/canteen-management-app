@@ -35,7 +35,7 @@ export class SupplyDetailsComponent {
     );
   }
 
-  private refreshData(): void {
+  refreshData(): void {
     this.supplyService.getSupplyDetails(this.model.id).subscribe(response => this.model = response);
   }
 }

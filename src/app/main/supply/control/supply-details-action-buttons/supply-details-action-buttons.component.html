@@ -1,0 +1,11 @@
+<div class="actions float-right">
+  <a class="btn btn-secondary" role="button" href="mailto:{{ email }}">Contact</a>
+  <ng-container *ngIf="state === 'NEW'">
+    <button class="btn btn-danger" (click)="changeState('REJECTED')">Reject</button>
+    <button class="btn btn-primary" (click)="changeState('ACCEPTED')">Accept</button>
+  </ng-container>
+  <button class="btn btn-danger" *ngIf="isCancellable(state)" (click)="changeState('CANCELLED')">Cancel</button>
+  <button class="btn btn-primary" *ngIf="state === 'ACCEPTED'" (click)="changeState('PENDING')">Order</button>
+  <button class="btn btn-primary" *ngIf="state === 'PENDING'" (click)="changeState('READY')">Receive</button>
+  <button class="btn btn-primary" *ngIf="state === 'READY'" (click)="changeState('DELIVERED')">Deliver</button>
+</div>
