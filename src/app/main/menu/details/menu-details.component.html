@@ -34,8 +34,8 @@
       </th>
       <th scope="col" class="index-col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col" class="addition-col">Additions</th>
+      <th scope="col" class="d-none d-md-table-cell">Description</th>
+      <th scope="col" class="d-none d-sm-table-cell addition-col">Additions</th>
       <th scope="col" class="price-col"><span class="float-right">Price</span></th>
     </tr>
   </thead>
@@ -48,8 +48,8 @@
       </td>
       <td class="index-col">{{ index + 1 }}</td>
       <td>{{ food.name | shortener:40 }}</td>
-      <td>{{ food.description | shortener:80 }}</td>
-      <td class="addition-col">{{ food.additions.length }}</td>
+      <td class="d-none d-md-table-cell">{{ food.description | shortener:80 }}</td>
+      <td class="d-none d-sm-table-cell addition-col">{{ food.additions.length }}</td>
       <td class="price-col"><span class="float-right">{{ food.price | currency }}</span></td>
     </tr>
   </tbody>
