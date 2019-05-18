@@ -14,6 +14,12 @@ export class AlertComponent {
     ['INFO', 'info'],
   ]);
 
+  private LEVEL_TO_ICON_MAP = new Map<AlertLevel, string>([
+    ['SUCCESS', 'fa-check'],
+    ['FAILURE', 'fa-times'],
+    ['INFO', 'fa-info'],
+  ]);
+
   alert: Alert;
 
   constructor(alertService: AlertsService) {
@@ -22,6 +28,10 @@ export class AlertComponent {
 
   mapType(level: AlertLevel): string {
     return this.LEVEL_TO_TYPE_MAP.get(level);
+  }
+
+  mapIcon(level: AlertLevel): string {
+    return this.LEVEL_TO_ICON_MAP.get(level);
   }
 
   close(): void {
