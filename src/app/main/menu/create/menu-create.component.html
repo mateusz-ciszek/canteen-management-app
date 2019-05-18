@@ -20,8 +20,8 @@
   </div>
 </div>
 
-<table class="table table-outer-border table-striped table-hover" *ngIf="model.foods.length">
-  <thead>
+<table class="table table-outer-border table-hover" *ngIf="model.foods.length">
+  <thead class="thead-light">
     <tr>
       <th scope="col" class="check-box-col">
         <input type="checkbox" [ngModel]="selector.isSelectedAll()" (change)="selector.onChangeAll($event)">
