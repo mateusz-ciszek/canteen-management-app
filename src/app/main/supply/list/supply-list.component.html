@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-  <div class="col">
+  <div class="col-12 col-sm">
     <div class="input-group">
       <input class="form-control" type="text" placeholder="Search" [(ngModel)]="query" (keypress)="search($event)">
       <div class="input-group-append input-group-prepend">
@@ -30,8 +30,8 @@
       </div>
     </div>
   </div>
-  <div class="col-auto">
-    <button class="btn btn-outline-secondary" (click)="switchFilters()">
+  <div class="col-12 col-sm-auto">
+    <button class="btn btn-outline-secondary btn-block" (click)="switchFilters()">
       <i class="fas fa-filter"></i>
       <span>Filter</span>
     </button>
