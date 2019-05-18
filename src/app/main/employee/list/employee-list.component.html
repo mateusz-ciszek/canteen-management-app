@@ -23,14 +23,14 @@
     <tr>
       <th class="index-col">#</th>
       <th>Person</th>
-      <th>Email</th>
+      <th class="d-none d-sm-table-cell">Email</th>
     </tr>
   </thead>
   <tbody>
     <tr class="clickable" *ngFor="let worker of workers; let index = index" (click)="showDetails(worker.id)">
       <td class="index-col">{{ index + 1 }}</td>
       <td>{{ worker.person.firstName }} {{ worker.person.lastName }}</td>
-      <td>{{ worker.person.email }}</td>
+      <td class="d-none d-sm-table-cell">{{ worker.person.email }}</td>
     </tr>
   </tbody>
 </table>
