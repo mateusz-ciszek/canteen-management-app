@@ -2,8 +2,8 @@
   <thead class="thead-light">
     <tr>
       <th>Name</th>
-      <th>User</th>
-      <th>Date</th>
+      <th class="d-none d-sm-table-cell">User</th>
+      <th class="d-none d-md-table-cell">Date</th>
       <th>Price</th>
       <th><span class="float-right">State</span></th>
     </tr>
@@ -11,8 +11,8 @@
   <tbody>
     <tr class="clickable" *ngFor="let item of items" routerLink="/main/supply/details/{{item.id}}">
       <td>{{ item.name }}</td>
-      <td>{{ item.requestedBy }}</td>
-      <td>{{ item.requestedDate | date }}</td>
+      <td class="d-none d-sm-table-cell">{{ item.requestedBy }}</td>
+      <td class="d-none d-md-table-cell">{{ item.requestedDate | date }}</td>
       <td>{{ item.price.amount | number:'1.2-2' }} {{ item.price.currency | uppercase }}</td>
       <td><span class="float-right">{{ item.state }}</span></td>
     </tr>
