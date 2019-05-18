@@ -1,6 +1,15 @@
 <div class="jumbotron">
-  <h3>{{ model.person.firstName }} {{ model.person.lastName }}</h3>
-  Employment date: {{ model.employedDate | date:'d MMM yyyy' }}
+  <div class="row">
+    <div class="col">
+      <h3>{{ model.person.firstName }} {{ model.person.lastName }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <small>Employment date</small>
+      <div>{{ model.employedDate | date:'d MMM yyyy' }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="row">

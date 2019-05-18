@@ -1,14 +1,24 @@
 <div class="jumbotron">
   <div class="row">
-    <div class="col-sm-10">
-      <h2>{{ food.name }}</h2>
+    <div class="col">
+      <h3>{{ food.name }}</h3>
     </div>
-    <div class="col-sm-2 float-right">
-      <h3>Price: {{ food.price | currency }}</h3>
+    <div class="col-auto">
+      <h3>{{ food.price | currency }}</h3>
     </div>
   </div>
-  <span>{{ food.description }}</span>
-  <div>Additions: {{ food.additions.length }}</div>
+  <div class="row">
+    <div class="col">
+      <small>Additions</small>
+      <div>{{ food.additions.length }}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <small>Description</small>
+      <div>{{ food.description }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="actions">

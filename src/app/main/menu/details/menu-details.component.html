@@ -1,6 +1,15 @@
 <div class="jumbotron">
-  <h3>{{ menu.name }}</h3>
-  <span>Foods number: {{ menu.foods.length }}</span>
+  <div class="row">
+    <div class="col">
+      <h3>{{ menu.name }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <small>Foods</small>
+      <div>{{ menu.foods.length }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="actions">

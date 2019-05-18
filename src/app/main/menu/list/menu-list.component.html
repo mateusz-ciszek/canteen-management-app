@@ -1,7 +1,19 @@
 <div class="jumbotron">
-  <h3>Menus</h3>
-  <div>Number of menus: {{ menus.length }}</div>
-  <div>Total number of meals: {{ totalMealsCount }}</div>
+  <div class="row">
+    <div class="col">
+      <h3>Menus</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-6 col-sm-4 col-md-2">
+      <small>Menus</small>
+      <div>{{ menus.length }}</div>
+    </div>
+    <div class="col col-6 col-sm-4 col-md-2">
+      <small>Meals total</small>
+      <div>{{ totalMealsCount }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="actions">

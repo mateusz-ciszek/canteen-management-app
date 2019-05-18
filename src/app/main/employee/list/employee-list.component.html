@@ -1,8 +1,17 @@
 <app-employees-components-switcher></app-employees-components-switcher>
 
 <div class="jumbotron">
-  <h3>All workers</h3>
-  <div>Workers currently employed: {{ workers.length }}</div>
+  <div class="row">
+    <div class="col">
+      <h3>Workers</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <small>All</small>
+      <div>{{ workers.length }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="actions float-right">

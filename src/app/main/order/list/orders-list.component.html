@@ -1,9 +1,24 @@
 <div class="jumbotron">
-  <h3>{{ headerTitle }}</h3>
-  <div>Total orders: {{ orders.length }}</div>
-  <div>New orders: {{ newOrdersCount }}</div>
-  <!-- TODO: add orders in preparation count (PAID || SENT_TO_PREPARATION || IN_PREPARATION) -->
-  <div>Ready orders: {{ readyOrdersCount }}</div>
+  <div class="row">
+    <div class="col">
+      <h3>{{ headerTitle }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-4 col-sm-3 col-md-2 col-xl-1">
+      <small>Total</small>
+      <div>{{ orders.length }}</div>
+    </div>
+    <div class="col col-4 col-sm-3 col-md-2 col-xl-1">
+      <small>New</small>
+      <div>{{ newOrdersCount }}</div>
+    </div>
+    <!-- TODO: add orders in preparation count (PAID || SENT_TO_PREPARATION || IN_PREPARATION) -->
+    <div class="col col-4 col-sm-3 col-md-2 col-xl-1">
+      <small>Ready</small>
+      <div>{{ readyOrdersCount }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="actions">

@@ -1,17 +1,29 @@
 <div class="jumbotron">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col">
       <h3>Order</h3>
-      <div>Ordered by: {{ order.user.firstName }} {{ order.user.lastName}}</div>
-      <div>Created on: {{ order.createdDate | date:'dd.MM.yyyy HH:mm' }}</div>
-      <div>Items: {{ order.items.length }}</div>
-      <div>State: <app-order-state-badge [state]="order.currentState.state"></app-order-state-badge></div>
     </div>
-    <div class="col-sm-6">
-      <div class="float-right">
-        <div class="float-right">Total price:</div>
-        <h3>{{ order.totalPrice | currency }}</h3>
-      </div>
+    <div class="col-auto">
+      <h3>{{ order.totalPrice | currency }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-12 col-sm-6 col-md-3 col-xl-2">
+      <small>Ordered by</small>
+      <!-- TODO: Create user pipe -->
+      <div>{{ order.user.firstName }} {{ order.user.lastName }}</div>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-xl-2">
+      <small>Date</small>
+      <div>{{ order.createdDate | date:'dd.MM.yyyy HH:mm' }}</div>
+    </div>
+    <div class="col col-6 col-sm-6 col-md-3 col-xl-2">
+      <small>State</small>
+      <div><app-order-state-badge [state]="order.currentState.state"></app-order-state-badge></div>
+    </div>
+    <div class="col col-6 col-sm-6 col-md-3 col-xl-2">
+      <small>Items</small>
+      <div>{{ order.items.length }}</div>
     </div>
   </div>
 </div>
@@ -51,27 +63,31 @@
   </div>
 </div>
 
-<div class="row col">
-  <div class="card">
-    <h5 class="card-header">Comment
-      <a class="alert alert-link link" (click)="changeCommentVisibility()" href="javascript:void(0)">
-        {{ (expanded ? 'Hide' : 'Show') | uppercase }}
-      </a>
-    </h5>
-    <div class="card-body" *ngIf="expanded">
-      <div *ngIf="hasComment; else noComment">{{ order.comment }}</div>
-      <ng-template #noComment>
-        <div class="font-italic">No comment provided</div>
-      </ng-template>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header">Comment
+        <a class="alert alert-link link" (click)="changeCommentVisibility()" href="javascript:void(0)">
+          {{ (expanded ? 'Hide' : 'Show') | uppercase }}
+        </a>
+      </h5>
+      <div class="card-body" *ngIf="expanded">
+        <div *ngIf="hasComment; else noComment">{{ order.comment }}</div>
+        <ng-template #noComment>
+          <div class="font-italic">No comment provided</div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row col">
-  <div class="card">
-    <h5 class="card-header">Order history</h5>
-    <div class="card-body">
-      <app-order-history [history]="order.history"></app-order-history>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header">Order history</h5>
+      <div class="card-body">
+        <app-order-history [history]="order.history"></app-order-history>
+      </div>
     </div>
   </div>
 </div>
