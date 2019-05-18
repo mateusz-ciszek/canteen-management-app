@@ -18,6 +18,7 @@ export class TimetableBodyComponent implements OnInit {
   daySelectionChange: EventEmitter<DayOfMonth> = new EventEmitter();
 
   dayNames: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  dayAbbreviations: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   ngOnInit(): void {
     this.selectedDay = ArrayUtil.flatMap(this.month.weeks, week => week.days).find(day => CalendarUtil.isToday(day.date));

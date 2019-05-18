@@ -4,3 +4,14 @@
   </div>
   <app-timetable-body [month]="month" (daySelectionChange)="selectionChanged.emit($event)"></app-timetable-body>
 </div>
+<div class="row d-md-none">
+  <div class="col">
+    <small>Caption</small>
+    <div>
+      <span class="badge badge-success">*</span> - people working
+    </div>
+    <div>
+      <span class="badge badge-warning">*</span> - day-off requests
+    </div>
+  </div>
+</div>
