@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col">
       <div class="card">
-        <div class="card-header">People working</div>
+        <h5 class="card-header">People working</h5>
         <table class="table table-outer-border table-hover"
                *ngIf="selectedDay.details.workersPresent.length; else noWorkersDataPresent">
           <thead class="thead-light">
@@ -44,7 +44,7 @@
   <div class="row" *ngIf="selectedDay.details.requests.length">
     <div class="col">
       <div class="card">
-        <div class="card-header">Day off requests</div>
+        <h5 class="card-header">Day off requests</h5>
         <table class="table table-outer-border table-hover">
           <thead class="thead-light">
             <tr>
