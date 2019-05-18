@@ -1,8 +1,20 @@
 <div class="jumbotron">
-  <h3>Supplies requests</h3>
+  <div class="row">
+    <div class="col">
+      <h3>Supplies requests</h3>
+    </div>
+  </div>
   <ng-container *ngIf="ready; else notReady">
-    <div>Total requests: {{ response.totalCount }}</div>
-    <div>Filtered requests: {{ response.itemsCount }}</div>
+    <div class="row">
+      <div class="col col-12 col-sm-4 col-md-3">
+        <small>Total requests</small>
+        <div>{{ response.totalCount }}</div>
+      </div>
+      <div class="col col-12 col-sm-8 col-md-9">
+        <small>Filtered requests</small>
+        <div>{{ response.itemsCount }}</div>
+      </div>
+    </div>
   </ng-container>
   <ng-template #notReady>
     <div class="d-flex justify-content-center">
