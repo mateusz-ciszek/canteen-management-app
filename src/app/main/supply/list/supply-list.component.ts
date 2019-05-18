@@ -55,6 +55,7 @@ export class SupplyListComponent {
 
   clear() {
     this.query = '';
+    this.page = 1;
     if (this.clearable) {
       this.requestData();
     }
@@ -73,6 +74,7 @@ export class SupplyListComponent {
   }
 
   applyFilter() {
+    this.page = 1;
     this.requestData();
   }
 
