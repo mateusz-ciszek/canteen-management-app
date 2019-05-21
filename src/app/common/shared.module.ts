@@ -15,6 +15,7 @@ import { SelectComboComponent } from './select-combo/select-combo.component';
 import { PriceComponent } from './price/price.component';
 import { CommentsSectionComponent } from './comments-section/comments-section.component';
 import { CommentComponent } from './comments-section/comment/comment.component';
+import { DecimalDirective } from './validator/decimal.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CommentComponent } from './comments-section/comment/comment.component';
     CommentComponent,
     CommentsSectionComponent,
     CurrencyFormatterPipe,
+    DecimalDirective,
     HeaderBarComponent,
     PriceComponent,
     PriceValidatorDirective,
@@ -50,6 +52,7 @@ import { CommentComponent } from './comments-section/comment/comment.component';
     SelectorSummaryComponent,
     ShortenerPipe,
     TimePeriodInputComponent,
+    DecimalDirective,
   ],
 })
 export class SharedModule { }
