@@ -43,7 +43,7 @@
         <div class="row">
           <div class="col">
             <small>URL</small>
-            <div *ngIf="model.url; else noUrl"><a class="btn-link" href="{{ model.url }}">Visit</a></div>
+            <div *ngIf="model.url; else noUrl"><a class="btn-link" href="{{ model.url }}" target="_blank">Visit</a></div>
             <ng-template #noUrl><div class="font-italic">No URL provided</div></ng-template>
           </div>
         </div>
