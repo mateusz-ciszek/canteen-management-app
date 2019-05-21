@@ -50,7 +50,7 @@
         <div class="row">
           <div class="col">
             <small>Description</small>
-            <ng-container *ngIf="model.description; else noDescription">{{ model.description }}</ng-container>
+            <div *ngIf="model.description; else noDescription">{{ model.description }}</div>
             <ng-template #noDescription><div class="font-italic">No description provided</div></ng-template>
           </div>
         </div>
