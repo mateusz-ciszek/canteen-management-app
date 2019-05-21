@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ComponentFactoryResolver, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectorSummaryComponent } from './selector-summary/selector-summary.component';
 import { ShortenerPipe } from './pipe/shortener.pipe';
@@ -16,6 +16,8 @@ import { PriceComponent } from './price/price.component';
 import { CommentsSectionComponent } from './comments-section/comments-section.component';
 import { CommentComponent } from './comments-section/comment/comment.component';
 import { DecimalDirective } from './validator/decimal.directive';
+import { ConfirmationModalComponent } from './modal/confirmation/confirmation-modal.component';
+import { CoalescingComponentFactoryResolver } from '../services/coalescing-component-factory-resolver.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { DecimalDirective } from './validator/decimal.directive';
     AlertComponent,
     CommentComponent,
     CommentsSectionComponent,
+    ConfirmationModalComponent,
     CurrencyFormatterPipe,
     DecimalDirective,
     HeaderBarComponent,
@@ -43,6 +46,7 @@ import { DecimalDirective } from './validator/decimal.directive';
     AdditionsFormatterPipe,
     AlertComponent,
     CommentsSectionComponent,
+    ConfirmationModalComponent,
     CurrencyFormatterPipe,
     HeaderBarComponent,
     NgbModule,
@@ -54,5 +58,15 @@ import { DecimalDirective } from './validator/decimal.directive';
     TimePeriodInputComponent,
     DecimalDirective,
   ],
+  entryComponents: [
+    ConfirmationModalComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(
+      coalescingResolver: CoalescingComponentFactoryResolver,
+      localResolver: ComponentFactoryResolver) {
+
+    coalescingResolver.registerResolver(localResolver);
+  }
+}
