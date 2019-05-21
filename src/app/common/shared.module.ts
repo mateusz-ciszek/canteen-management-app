@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ComponentFactoryResolver, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectorSummaryComponent } from './selector-summary/selector-summary.component';
 import { ShortenerPipe } from './pipe/shortener.pipe';
@@ -15,6 +15,9 @@ import { SelectComboComponent } from './select-combo/select-combo.component';
 import { PriceComponent } from './price/price.component';
 import { CommentsSectionComponent } from './comments-section/comments-section.component';
 import { CommentComponent } from './comments-section/comment/comment.component';
+import { DecimalDirective } from './validator/decimal.directive';
+import { ConfirmationModalComponent } from './modal/confirmation/confirmation-modal.component';
+import { CoalescingComponentFactoryResolver } from '../services/coalescing-component-factory-resolver.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { CommentComponent } from './comments-section/comment/comment.component';
     AlertComponent,
     CommentComponent,
     CommentsSectionComponent,
+    ConfirmationModalComponent,
     CurrencyFormatterPipe,
+    DecimalDirective,
     HeaderBarComponent,
     PriceComponent,
     PriceValidatorDirective,
@@ -41,6 +46,7 @@ import { CommentComponent } from './comments-section/comment/comment.component';
     AdditionsFormatterPipe,
     AlertComponent,
     CommentsSectionComponent,
+    ConfirmationModalComponent,
     CurrencyFormatterPipe,
     HeaderBarComponent,
     NgbModule,
@@ -50,6 +56,17 @@ import { CommentComponent } from './comments-section/comment/comment.component';
     SelectorSummaryComponent,
     ShortenerPipe,
     TimePeriodInputComponent,
+    DecimalDirective,
+  ],
+  entryComponents: [
+    ConfirmationModalComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(
+      coalescingResolver: CoalescingComponentFactoryResolver,
+      localResolver: ComponentFactoryResolver) {
+
+    coalescingResolver.registerResolver(localResolver);
+  }
+}

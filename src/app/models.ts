@@ -240,7 +240,6 @@ export interface SupplyDetailsResponse {
   currentState: SupplyState;
 }
 
-
 export interface Comment {
   content: string;
   author: User;
@@ -255,4 +254,11 @@ export interface SupplyChangeStateRequest {
   id: string;
   state: SupplyStateEnum;
   rejectionReason?: string;
+}
+
+export interface SupplyCreateRequest {
+  name: string;
+  price: Price;
+  description?: string;
+  url?: string;
 }

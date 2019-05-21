@@ -26,6 +26,14 @@
 </div>
 
 <div class="row">
+  <div class="col">
+    <div class="actions float-right">
+      <a class="btn btn-primary" routerLink="/main/supply/create">Create request</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-12 col-sm">
     <div class="input-group">
       <input class="form-control" type="text" placeholder="Search" [(ngModel)]="query" (keypress)="search($event)">

@@ -12,10 +12,12 @@ import { SupplyStateBadgeComponent } from './control/supply-state-badge/supply-s
 import { SupplyDetailsActionButtonsComponent } from './details/action-buttons/supply-details-action-buttons.component';
 import { RejectionReasonModalComponent } from './details/action-buttons/rejection-reason-modal/rejection-reason-modal.component';
 import { CoalescingComponentFactoryResolver } from '../../services/coalescing-component-factory-resolver.service';
+import { SupplyCreateRequestComponent } from './create/supply-create-request.component';
 
 @NgModule({
   declarations: [
     RejectionReasonModalComponent,
+    SupplyCreateRequestComponent,
     SupplyDetailsActionButtonsComponent,
     SupplyDetailsComponent,
     SupplyListComponent,

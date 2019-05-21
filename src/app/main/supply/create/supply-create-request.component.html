@@ -1,0 +1,74 @@
+<form #createSupplyForm="ngForm">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col">
+        <h3>Create supply request</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-12 col-sm-7 col-md-8 col-lg-9 col-xl-10">
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input class="form-control" type="text" id="nameInput" placeholder="Supply request name" name="supplyName"
+                 [(ngModel)]="name" #supplyName="ngModel" required minlength="3"
+                 [class.is-invalid]="supplyName.invalid && (supplyName.dirty || supplyName.touched)"
+                 [class.is-valid]="supplyName.valid && (supplyName.dirty || supplyName.touched)">
+          <div class="invalid-feedback" *ngIf="supplyName.invalid && (supplyName.dirty || supplyName.touched)">
+            <span *ngIf="supplyName.errors.required">Supply name is required</span>
+            <span *ngIf="supplyName.errors.minlength">Supply name has to be at least 3 characters long</span>
+          </div>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+        <div class="form-group">
+          <label for="amountInput">Price</label>
+          <div class="input-group d-inline-flex">
+            <input class="form-control" type="number" id="amountInput" placeholder="Amount" required appDecimal="2"
+                   [class.is-invalid]="supplyPrice.invalid && (supplyPrice.dirty || supplyPrice.touched)"
+                   [class.is-valid]="supplyPrice.valid && (supplyPrice.dirty || supplyPrice.touched)"
+                   name="supplyPriceAmount" [(ngModel)]="price" #supplyPrice="ngModel">
+            <div class="input-group-append">
+              <span class="input-group-text">PLN</span>
+            </div>
+          </div>
+          <input type="hidden" class="form-control is-invalid">
+          <div class="invalid-feedback" *ngIf="supplyPrice.invalid && (supplyPrice.dirty || supplyPrice.touched)">
+            <div *ngIf="supplyPrice.errors.required">Supply price is required</div>
+            <div *ngIf="supplyPrice.errors.decimal">Above</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="urlInput">URL</label>
+          <input class="form-control" [class.is-invalid]="supplyUrl.invalid" type="url" id="urlInput" name="supplyUrl"
+                 [class.is-valid]="supplyUrl.valid && supplyUrl.value"
+                 placeholder="Hyperlink for the resource" [(ngModel)]="url" [pattern]="URL_PATTERN" #supplyUrl="ngModel">
+          <div class="invalid-feedback" *ngIf="supplyUrl.invalid && (supplyUrl.dirty || supplyUrl.touched)">
+            <span>Provided URL in malformed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="descriptionInput">Description</label>
+          <textarea class="form-control" rows="3" id="descriptionInput" name="supplyDescription"
+                    [(ngModel)]="description"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="actions float-right">
+        <input type="submit" class="btn btn-primary" (click)="save()" value="Save" [disabled]="createSupplyForm.invalid">
+        <button class="btn btn-danger" (click)="discard()">Discard</button>
+      </div>
+    </div>
+  </div>
+</form>
