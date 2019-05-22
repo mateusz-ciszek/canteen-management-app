@@ -33,4 +33,8 @@ export class MenuService {
     const data: MenuChangeNameRequest = { name };
     return this.http.patch<void>(`/menu/${id}`, data);
   }
+
+  deleteMenu(id: string): Observable<void> {
+    return this.http.delete<void>(`/menu/${id}`);
+  }
 }
