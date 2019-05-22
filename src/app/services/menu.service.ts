@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CreateMenuModel, Menu } from '../models';
+import { CreateMenuModel, Menu, MenuChangeNameRequest } from '../models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export class MenuService {
     return this.http.get<Menu[]>(url).pipe(map(result => result['menus']));
   }
 
-  public getMenuDetails(menuId: string): Observable<Menu> | Promise<Menu> | Menu {
+  public getMenuDetails(menuId: string): Observable<Menu> {
     const url: string = `/menu/${menuId}`;
     return this.http.get<Menu>(url);
   }
@@ -27,5 +27,10 @@ export class MenuService {
     return this.http.post(url, model).pipe(
       map(() => null),
     );
+  }
+
+  changeName(id: string, name: string): Observable<void> {
+    const data: MenuChangeNameRequest = { name };
+    return this.http.patch<void>(`/menu/${id}`, data);
   }
 }

@@ -18,7 +18,7 @@
     <button type="button" class="btn btn-primary" [disabled]="true">Delete meals</button>
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
-    <button type="button" class="btn btn-secondary" [disabled]="true">Modify menu</button>
+    <button type="button" class="btn btn-secondary" (click)="changeName()">Change name</button>
     <button type="button" class="btn btn-secondary" [disabled]="true">Delete menu</button>
     <button type="button" class="btn btn-primary" routerLink="/main/menu/{{ menu._id }}/food/create">Add meal</button>
   </div>

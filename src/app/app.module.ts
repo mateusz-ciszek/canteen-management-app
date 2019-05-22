@@ -13,9 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
 import { SharedModule } from './common/shared.module';
-import { MenuCreateSummaryComponent } from './main/menu/create/summary/menu-create-summary.component';
-import { MenuCreateFoodComponent } from './main/menu/create/food/menu-create-food.component';
-import { CreateAdditionComponent } from './main/menu/food/create/create-addition/create-addition.component';
 import { DayOffModalComponent } from './main/employee/schedule/day-off-modal/day-off-modal.component';
 import { CoalescingComponentFactoryResolver } from './services/coalescing-component-factory-resolver.service';
 import { DateHttpParserInterceptor } from './interceptors/date-http-parser.interceptor';
@@ -32,9 +29,6 @@ const jwtModuleOptions: JwtModuleOptions = {
     LoginComponent,
 
     // for entryComponents, as those cannot be declared in submodules
-    CreateAdditionComponent,
-    MenuCreateSummaryComponent,
-    MenuCreateFoodComponent,
     DayOffModalComponent,
   ],
   imports: [
@@ -69,9 +63,6 @@ const jwtModuleOptions: JwtModuleOptions = {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    MenuCreateSummaryComponent,
-    MenuCreateFoodComponent,
-    CreateAdditionComponent,
     DayOffModalComponent,
   ],
 })
