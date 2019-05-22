@@ -1,11 +1,13 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Food, Menu } from '../../../models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Selector } from '../../../common/Selector';
 import { ModalService } from '../../../services/modal.service';
 import { ChangeNameInput, ChangeNameModalComponent, ChangeNameOutput } from '../modal/change-name/change-name-modal.component';
 import { MenuService } from '../../../services/menu.service';
 import { AlertsService } from '../../../services/alerts.service';
+import { ConfirmationDataInput, ConfirmationModalComponent } from '../../../common/modal/confirmation/confirmation-modal.component';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-menu-details',
@@ -19,6 +21,7 @@ export class MenuDetailsComponent {
 
   constructor(
       private route: ActivatedRoute,
+      private router: Router,
       private modalService: ModalService,
       private menuService: MenuService,
       private alertService: AlertsService) {
@@ -43,6 +46,20 @@ export class MenuDetailsComponent {
     this.modalService.init(ChangeNameModalComponent, input, output);
   }
 
+  delete(): void {
+    const input: ConfirmationDataInput = {
+      title: `Delete menu "${this.menu.name}"`,
+      message: 'Are you sure you want to delete this menu?',
+      confirmLabel: 'Delete',
+      cancelLabel: 'Keep',
+    };
+    this.modalService.init(ConfirmationModalComponent, input, {}).subscribe(result => {
+      if (result) {
+        this.doDelete();
+      }
+    });
+  }
+
   private doChangeName(name: string): void {
     this.menuService.changeName(this.menu._id, name).subscribe(
       () => {
@@ -51,6 +68,16 @@ export class MenuDetailsComponent {
         this.menuService.getMenuDetails(this.menu._id).subscribe(data => this.menu = data);
       },
       () => this.alertService.addAlert('Error while changing menu name. Please try again later', 'FAILURE'),
+    );
+  }
+
+  private doDelete(): void {
+    this.menuService.deleteMenu(this.menu._id).subscribe(
+      () => {
+        this.alertService.addAlert(`Menu "${this.menu.name}" has been deleted`, 'SUCCESS');
+        this.router.navigateByUrl('/main/menu/list').then(noop);
+      },
+      () => this.alertService.addAlert('Error deleting menu. Please try again later', 'FAILURE'),
     );
   }
 }
