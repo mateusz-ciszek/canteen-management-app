@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ComponentFactoryResolver, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FoodDetailsComponent } from './food/detail/food-details.component';
 import { MenuCreateComponent } from './create/menu-create.component';
@@ -8,12 +8,21 @@ import { SharedModule } from '../../common/shared.module';
 import { FormsModule } from '@angular/forms';
 import { MenuRoutingModule } from './menu-routing.module';
 import { FoodCreateComponent } from './food/create/food-create.component';
+import { ChangeNameModalComponent } from './modal/change-name/change-name-modal.component';
+import { CoalescingComponentFactoryResolver } from '../../services/coalescing-component-factory-resolver.service';
+import { CreateAdditionComponent } from './food/create/create-addition/create-addition.component';
+import { MenuCreateSummaryComponent } from './create/summary/menu-create-summary.component';
+import { MenuCreateFoodComponent } from './create/food/menu-create-food.component';
 
 @NgModule({
   declarations: [
+    ChangeNameModalComponent,
+    CreateAdditionComponent,
     FoodCreateComponent,
     FoodDetailsComponent,
     MenuCreateComponent,
+    MenuCreateFoodComponent,
+    MenuCreateSummaryComponent,
     MenuDetailsComponent,
     MenuListComponent,
   ],
@@ -23,5 +32,18 @@ import { FoodCreateComponent } from './food/create/food-create.component';
     MenuRoutingModule,
     SharedModule,
   ],
+  entryComponents: [
+    ChangeNameModalComponent,
+    CreateAdditionComponent,
+    MenuCreateSummaryComponent,
+    MenuCreateFoodComponent,
+  ],
 })
-export class MenuModule { }
+export class MenuModule {
+  constructor(
+      coalescingResolver: CoalescingComponentFactoryResolver,
+      localResolver: ComponentFactoryResolver) {
+
+    coalescingResolver.registerResolver(localResolver);
+  }
+}

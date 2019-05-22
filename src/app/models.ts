@@ -262,3 +262,7 @@ export interface SupplyCreateRequest {
   description?: string;
   url?: string;
 }
+
+export interface MenuChangeNameRequest {
+  name: string;
+}
