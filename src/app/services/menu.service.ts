@@ -11,7 +11,7 @@ export class MenuService {
 
   constructor(private http: HttpClient) { }
 
-  public getMenuList(): Observable<Menu[]> | Promise<Menu[]> | Menu[] {
+  public getMenuList(): Observable<Menu[]> {
     const url: string = '/menu';
     // TODO fix returned value from server
     return this.http.get<Menu[]>(url).pipe(map(result => result['menus']));
@@ -34,7 +34,7 @@ export class MenuService {
     return this.http.patch<void>(`/menu/${id}`, data);
   }
 
-  deleteMenu(id: string): Observable<void> {
-    return this.http.delete<void>(`/menu/${id}`);
+  deleteMenu(ids: string[]): Observable<void> {
+    return this.http.request<void>('DELETE', `/menu`, { body: { ids } });
   }
 }
