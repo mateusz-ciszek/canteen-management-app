@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Menu } from '../../../models';
 import { Selector } from '../../../common/Selector';
@@ -6,6 +6,7 @@ import { MenuService } from '../../../services/menu.service';
 import { ModalService } from '../../../services/modal.service';
 import { ConfirmationDataInput, ConfirmationModalComponent } from '../../../common/modal/confirmation/confirmation-modal.component';
 import { AlertsService } from '../../../services/alerts.service';
+import { ChangeNameInput, ChangeNameModalComponent, ChangeNameOutput } from '../modal/change-name/change-name-modal.component';
 
 @Component({
   selector: 'app-menu-list',
@@ -52,6 +53,34 @@ export class MenuListComponent {
       cancelLabel: 'Keep',
     };
     this.confirmDelete(input);
+  }
+
+  changeName(): void {
+    const input: ChangeNameInput = {
+      title: 'Change menu name',
+      inputPlaceholder: 'New menu name',
+    };
+
+    const emitter = new EventEmitter<string>();
+    emitter.subscribe(name => this.doChangeName(name));
+
+    const output: ChangeNameOutput = {
+      nameChange: emitter,
+    };
+
+    this.modalService.init(ChangeNameModalComponent, input, output);
+  }
+
+  private doChangeName(name: string): void {
+    const menuId: string = this.selector.getSelectedItems()[0]._id;
+    this.menuService.changeName(menuId, name).subscribe(
+      () => {
+        this.alertService.addAlert('Menu name has been changed', 'SUCCESS');
+        this.modalService.destroy(true);
+        this.refresh();
+      },
+      () => this.alertService.addAlert('Error while changing menu name. Please try again later', 'FAILURE'),
+    );
   }
 
   private confirmDelete(input: ConfirmationDataInput): void {
