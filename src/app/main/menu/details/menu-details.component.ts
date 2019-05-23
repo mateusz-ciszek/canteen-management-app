@@ -72,7 +72,7 @@ export class MenuDetailsComponent {
   }
 
   private doDelete(): void {
-    this.menuService.deleteMenu(this.menu._id).subscribe(
+    this.menuService.deleteMenu([ this.menu._id ]).subscribe(
       () => {
         this.alertService.addAlert(`Menu "${this.menu.name}" has been deleted`, 'SUCCESS');
         this.router.navigateByUrl('/main/menu/list').then(noop);

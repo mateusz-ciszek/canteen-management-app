@@ -20,10 +20,10 @@
   <app-selector-summary [selector]="selector"></app-selector-summary>
   <div class="float-right" *ngIf="selector.isSelectedOne()">
     <button type="button" class="btn btn-secondary" [disabled]="true">Modify menu</button>
-    <button type="button" class="btn btn-primary" [disabled]="true">Delete menu</button>
+    <button type="button" class="btn btn-primary" (click)="deleteOne()">Delete menu</button>
   </div>
   <div class="float-right" *ngIf="selector.isSelectedMany()">
-    <button type="button" class="btn btn-primary" [disabled]="true">Delete menus</button>
+    <button type="button" class="btn btn-primary" (click)="deleteMany()">Delete menus</button>
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
     <button type="button" class="btn btn-primary" routerLink="/main/menu/create">Create new menu</button>
