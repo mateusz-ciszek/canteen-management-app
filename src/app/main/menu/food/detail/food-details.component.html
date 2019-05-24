@@ -32,7 +32,7 @@
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
     <button type="button" class="btn btn-secondary" [disabled]="true">Add addition</button>
-    <button type="button" class="btn btn-secondary" [disabled]="true">Delete meal</button>
+    <button type="button" class="btn btn-secondary" (click)="deleteMeal()">Delete meal</button>
     <button type="button" class="btn btn-primary" (click)="modifyFood()">Edit meal</button>
   </div>
 </div>
