@@ -8,6 +8,7 @@ import { MenuModule } from './main/menu/menu.module';
 import { EmployeeModule } from './main/employee/employee.module';
 import { SupplyModule } from './main/supply/supply.module';
 import { ConfigGuard } from './services/guard/config-guard';
+import { ModuleGuard } from './services/guard/module.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -16,10 +17,10 @@ const routes: Routes = [
     path: 'main',
     children: [
       { path: '', redirectTo: 'menu', pathMatch: 'full' },
-      { path: 'menu', loadChildren: () => MenuModule },
-      { path: 'order', loadChildren: () => OrderModule },
-      { path: 'employees', loadChildren: () => EmployeeModule },
-      { path: 'supply', loadChildren: () => SupplyModule },
+      { path: 'menu', loadChildren: () => MenuModule, canActivate: [ ModuleGuard ] },
+      { path: 'order', loadChildren: () => OrderModule, canActivate: [ ModuleGuard ] },
+      { path: 'employees', loadChildren: () => EmployeeModule, canActivate: [ ModuleGuard ] },
+      { path: 'supply', loadChildren: () => SupplyModule, canActivate: [ ModuleGuard ] },
       { path: '**', redirectTo: 'menu', pathMatch: 'full' },
     ],
     canActivate: [CanActivateMainGuard],

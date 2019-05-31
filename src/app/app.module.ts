@@ -18,6 +18,7 @@ import { CoalescingComponentFactoryResolver } from './services/coalescing-compon
 import { DateHttpParserInterceptor } from './interceptors/date-http-parser.interceptor';
 import { ConfigService } from './services/config.service';
 import { ConfigGuard } from './services/guard/config-guard';
+import { ModuleGuard } from './services/guard/module.guard';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -64,6 +65,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     CoalescingComponentFactoryResolver,
     ConfigService,
     ConfigGuard,
+    ModuleGuard,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
