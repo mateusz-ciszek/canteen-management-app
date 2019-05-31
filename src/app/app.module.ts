@@ -16,6 +16,8 @@ import { SharedModule } from './common/shared.module';
 import { DayOffModalComponent } from './main/employee/schedule/day-off-modal/day-off-modal.component';
 import { CoalescingComponentFactoryResolver } from './services/coalescing-component-factory-resolver.service';
 import { DateHttpParserInterceptor } from './interceptors/date-http-parser.interceptor';
+import { ConfigService } from './services/config.service';
+import { ConfigGuard } from './services/guard/config-guard';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -60,6 +62,8 @@ const jwtModuleOptions: JwtModuleOptions = {
     DomService,
     ModalService,
     CoalescingComponentFactoryResolver,
+    ConfigService,
+    ConfigGuard,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

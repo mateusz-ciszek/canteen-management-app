@@ -266,3 +266,14 @@ export interface SupplyCreateRequest {
 export interface MenuChangeNameRequest {
   name: string;
 }
+
+export interface Config {
+  moduleAccessPermissions: ModuleAccessPermissions;
+}
+
+export interface ModuleAccessPermissions {
+  menu: boolean;
+  order: boolean;
+  worker: boolean;
+  supply: boolean;
+}

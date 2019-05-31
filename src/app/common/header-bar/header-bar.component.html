@@ -5,7 +5,7 @@
       <button type="button" class="btn btn-outline-dark btn-sm" (click)="onLogoutButtonClick()">Logout</button>
     </div>
   </div>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark" *ngIf="showNavigation">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,16 +14,16 @@
 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="availableModulesMap.get('MENU')">
           <a routerLink="main/menu" class="nav-link" routerLinkActive="active">Menu</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="availableModulesMap.get('ORDER')">
           <a routerLink="main/order" class="nav-link" routerLinkActive="active">Orders</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="availableModulesMap.get('WORKER')">
           <a routerLink="main/employees" class="nav-link" routerLinkActive="active">Employees</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="availableModulesMap.get('SUPPLY')">
           <a routerLink="main/supply" class="nav-link" routerLinkActive="active">Supplies</a>
         </li>
       </ul>

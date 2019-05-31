@@ -7,6 +7,7 @@ import { OrderModule } from './main/order/order.module';
 import { MenuModule } from './main/menu/menu.module';
 import { EmployeeModule } from './main/employee/employee.module';
 import { SupplyModule } from './main/supply/supply.module';
+import { ConfigGuard } from './services/guard/config-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: '**', redirectTo: 'menu', pathMatch: 'full' },
     ],
     canActivate: [CanActivateMainGuard],
+    canActivateChild: [ ConfigGuard ],
   },
   { path: '**', redirectTo: 'main', pathMatch: 'full' },
 ];
