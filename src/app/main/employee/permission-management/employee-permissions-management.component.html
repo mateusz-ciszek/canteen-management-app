@@ -1,0 +1,54 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col">
+      <h3>Permissions</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+      <small>User</small>
+      <div>{{ employee.person.firstName }} {{ employee.person.lastName }}</div>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+      <small>Email</small>
+      <div>{{ employee.person.email }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="actions float-right">
+      <button class="btn btn-secondary" (click)="resetPermissions()">Reset</button>
+      <button class="btn btn-primary" (click)="savePermissions()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngFor="let modulePermission of permissions">
+  <h5 class="card-header custom-control custom-switch">
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <input type="checkbox" class="custom-control-input" [id]="modulePermission.mainPermission.code"
+           [(ngModel)]="modulePermission.mainPermission.selected">
+    <label [for]="modulePermission.mainPermission.code" class="custom-control-label">
+      {{ modulePermission.mainPermission.label }}
+    </label>
+  </h5>
+  <div class="card-body">
+    <div class="card-text">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let subPermission of modulePermission.subPermissions">
+          <div class="custom-control custom-switch">
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input type="checkbox" class="custom-control-input" [id]="subPermission.code"
+                   [disabled]="!modulePermission.mainPermission.selected" [(ngModel)]="subPermission.selected">
+            <label [for]="subPermission.code" class="custom-control-label">{{ subPermission.label }}</label>
+          </div>
+          <div class="description" [class.text-muted]="!modulePermission.mainPermission.selected">
+            {{ subPermission.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
