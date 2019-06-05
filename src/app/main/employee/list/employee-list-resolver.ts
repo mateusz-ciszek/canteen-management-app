@@ -5,9 +5,7 @@ import { Injectable } from '@angular/core';
 import { WorkerListItem } from '../../../models';
 import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EmployeeListResolver implements Resolve<any> {
 
   constructor(private workerService: WorkerService) {}

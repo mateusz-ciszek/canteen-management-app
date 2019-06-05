@@ -16,6 +16,10 @@ import { CreateEmployeeSummaryModalComponent } from './list/create/summary/creat
 import { EmployeeDetailsComponent } from './details/employee-details.component';
 import { EmployeeDetailsResolver } from './details/employee-details-resolver';
 import { EmployeeResetPasswordModalComponent } from './details/reset-password-modal/employee-reset-password-modal.component';
+import { EmployeePermissionsManagementComponent } from './permission-management/employee-permissions-management.component';
+import { EmployeePermissionsResolver } from './permission-management/employee-permissions-resolver';
+import { WorkerService } from '../../services/worker.service';
+import { EmployeeListResolver } from './list/employee-list-resolver';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,7 @@ import { EmployeeResetPasswordModalComponent } from './details/reset-password-mo
     ScheduleDetailsComponent,
     TimetableBodyComponent,
     TimetableHeaderComponent,
+    EmployeePermissionsManagementComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +50,9 @@ import { EmployeeResetPasswordModalComponent } from './details/reset-password-mo
   ],
   providers: [
     EmployeeDetailsResolver,
+    EmployeeListResolver,
+    EmployeePermissionsResolver,
+    WorkerService,
   ],
 })
 export class EmployeeModule {
