@@ -9,12 +9,12 @@ import {
   WorkerDetailsResponse,
   WorkerList,
   WorkerPasswordResetRequest,
-  WorkerPasswordResetResponse
+  WorkerPasswordResetResponse,
+  WorkerPermissionUpdateRequest,
 } from '../models';
+import { Permission } from '../permission';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class WorkerService {
 
   constructor(private http: HttpClient) {}
@@ -48,5 +48,14 @@ export class WorkerService {
   resetPassword(workerId: string): Observable<WorkerPasswordResetResponse> {
     const request: WorkerPasswordResetRequest = { workerId };
     return this.http.post<WorkerPasswordResetResponse>('/worker/password/reset', request);
+  }
+
+  getPermissions(workerId: string): Observable<Permission[]> {
+    return this.http.get<Permission[]>(`/worker/${workerId}/permissions`);
+  }
+
+  savePermissions(workerId: string, permissions: Permission[]): Observable<void> {
+    const request: WorkerPermissionUpdateRequest = { permissions };
+    return this.http.post<void>(`/worker/${workerId}/permissions`, request);
   }
 }

@@ -1,3 +1,5 @@
+import { Permission } from './permission';
+
 export class Menu {
   _id: string;
   name: string;
@@ -144,6 +146,7 @@ export interface SimpleTime {
 }
 
 export interface WorkerDetailsResponse {
+  id: string;
   person: User;
   employedDate: Date;
   workDays: WorkHoursDetails[];
@@ -276,4 +279,8 @@ export interface ModuleAccessPermissions {
   order: boolean;
   worker: boolean;
   supply: boolean;
+}
+
+export interface WorkerPermissionUpdateRequest {
+  permissions: Permission[];
 }
