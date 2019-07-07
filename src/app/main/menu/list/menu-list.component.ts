@@ -1,5 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from '../../../models';
 import { Selector } from '../../../common/Selector';
 import { MenuService } from '../../../services/menu.service';
@@ -7,6 +7,7 @@ import { ModalService } from '../../../services/modal.service';
 import { ConfirmationDataInput, ConfirmationModalComponent } from '../../../common/modal/confirmation/confirmation-modal.component';
 import { AlertsService } from '../../../services/alerts.service';
 import { ChangeNameInput, ChangeNameModalComponent, ChangeNameOutput } from '../modal/change-name/change-name-modal.component';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-menu-list',
@@ -18,12 +19,15 @@ export class MenuListComponent {
   menus: Menu[];
   totalMealsCount: number = 0;
   selector: Selector<Menu>;
+  canDelete: boolean = false;
+  canModify: boolean = false;
 
   constructor(
       private route: ActivatedRoute,
       private menuService: MenuService,
       private modalService: ModalService,
-      private alertService: AlertsService) {
+      private alertService: AlertsService,
+      private router: Router) {
     this.menus = this.route.snapshot.data['menus'];
     this.selector = new Selector<Menu>(this.menus);
     this.totalMealsCount = MenuListComponent.calculateTotalMealsCount(this.menus);
@@ -32,6 +36,12 @@ export class MenuListComponent {
   private static calculateTotalMealsCount(menus: Menu[]): number {
     return menus.map(value => value.foods.length)
       .reduce((previousValue, currentValue) => previousValue + currentValue);
+  }
+
+  viewDetails(menu: Menu): void {
+    if (menu.actions.viewDetails) {
+      this.router.navigateByUrl(`/main/menu/details/${menu._id}`).then(noop);
+    }
   }
 
   deleteOne(): void {
@@ -108,5 +118,11 @@ export class MenuListComponent {
       this.menus = response;
       this.selector = new Selector(this.menus);
     });
+  }
+
+  private resolveActions(): void {
+    const items = this.selector.getSelectedItems();
+    this.canDelete = items.some(item => item.actions.delete);
+    this.canModify = items.length === 1 && items[0].actions.modify;
   }
 }

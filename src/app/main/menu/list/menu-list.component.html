@@ -19,11 +19,11 @@
 <div class="actions">
   <app-selector-summary [selector]="selector"></app-selector-summary>
   <div class="float-right" *ngIf="selector.isSelectedOne()">
-    <button type="button" class="btn btn-secondary" (click)="changeName()">Modify menu</button>
-    <button type="button" class="btn btn-primary" (click)="deleteOne()">Delete menu</button>
+    <button type="button" class="btn btn-secondary" (click)="changeName()" *ngIf="canModify">Modify menu</button>
+    <button type="button" class="btn btn-primary" (click)="deleteOne()" *ngIf="canDelete">Delete menu</button>
   </div>
   <div class="float-right" *ngIf="selector.isSelectedMany()">
-    <button type="button" class="btn btn-primary" (click)="deleteMany()">Delete menus</button>
+    <button type="button" class="btn btn-primary" (click)="deleteMany()" *ngIf="canDelete">Delete menus</button>
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
     <button type="button" class="btn btn-primary" routerLink="/main/menu/create">Create new menu</button>
@@ -44,9 +44,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let menu of menus; let index = index" routerLink="/main/menu/details/{{ menu._id }}" class="clickable">
+    <tr *ngFor="let menu of menus; let index = index" (click)="viewDetails(menu)"
+        [class.clickable]="menu.actions.viewDetails">
       <td class="check-box-col" (click)="$event.stopPropagation()">
-        <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected">
+        <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected" (ngModelChange)="resolveActions()">
       </td>
       <td class="index-col">{{ index+1 }}</td>
       <td>{{ menu.name }}</td>

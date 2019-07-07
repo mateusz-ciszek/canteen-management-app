@@ -4,6 +4,13 @@ export class Menu {
   _id: string;
   name: string;
   foods: Food[];
+  actions: MenuActions;
+}
+
+export interface MenuActions {
+  viewDetails: boolean;
+  modify: boolean;
+  delete: boolean;
 }
 
 export class Food {
