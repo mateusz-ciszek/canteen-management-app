@@ -19,6 +19,7 @@ import { DateHttpParserInterceptor } from './interceptors/date-http-parser.inter
 import { ConfigService } from './services/config.service';
 import { ConfigGuard } from './services/guard/config-guard';
 import { ModuleGuard } from './services/guard/module.guard';
+import { WorkerService } from './services/worker.service';
 
 const jwtModuleOptions: JwtModuleOptions = {
   config: {
@@ -66,6 +67,7 @@ const jwtModuleOptions: JwtModuleOptions = {
     ConfigService,
     ConfigGuard,
     ModuleGuard,
+    WorkerService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
