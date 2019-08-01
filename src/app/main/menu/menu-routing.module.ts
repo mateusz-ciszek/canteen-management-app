@@ -9,13 +9,15 @@ import { FoodDetailsComponent } from './food/detail/food-details.component';
 import { FoodDetailsResolver } from './food/detail/food-details-resolver';
 import { CommonModule } from '@angular/common';
 import { FoodCreateComponent } from './food/create/food-create.component';
+import { MenuConfigResolver } from './menu-config-resolver';
+import { MenuCreateGuard } from './create/menu-create.guard';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'create', component: MenuCreateComponent },
+      { path: 'create', component: MenuCreateComponent, canActivate: [ MenuCreateGuard ] },
       { path: 'list', component: MenuListComponent, resolve: { menus: MenuListResolver } },
       { path: 'details/:menuId', component: MenuDetailsComponent, resolve: { menu: MenuDetailsResolver } },
       {
@@ -27,6 +29,7 @@ const routes: Routes = [
       },
       { path: '**', redirectTo: 'list', pathMatch: 'full' },
     ],
+    resolve: { config: MenuConfigResolver },
   },
 ];
 

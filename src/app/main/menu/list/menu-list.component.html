@@ -26,13 +26,15 @@
     <button type="button" class="btn btn-primary" (click)="deleteMany()" *ngIf="canDelete">Delete menus</button>
   </div>
   <div class="float-right" *ngIf="!selector.isSelectedAny()">
-    <button type="button" class="btn btn-primary" routerLink="/main/menu/create">Create new menu</button>
+    <button type="button" class="btn btn-primary" routerLink="/main/menu/create" *ngIf="!moduleActions.createMenu">
+      Create new menu
+    </button>
   </div>
 </div>
 
 <!-- TODO: Search bar -->
 
-<table class="table table-outer-border table-hover">
+<table class="table table-outer-border table-hover" *ngIf="moduleActions.viewList">
   <thead class="thead-light">
     <tr>
       <th scope="col" class="check-box-col">

@@ -1,6 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Menu } from '../../../models';
+import { Menu, MenuConfigActions } from '../../../models';
 import { Selector } from '../../../common/Selector';
 import { MenuService } from '../../../services/menu.service';
 import { ModalService } from '../../../services/modal.service';
@@ -21,6 +21,7 @@ export class MenuListComponent {
   selector: Selector<Menu>;
   canDelete: boolean = false;
   canModify: boolean = false;
+  moduleActions: MenuConfigActions;
 
   constructor(
       private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class MenuListComponent {
       private alertService: AlertsService,
       private router: Router) {
     this.menus = this.route.snapshot.data['menus'];
+    this.moduleActions = this.route.snapshot.data['config'].actions;
     this.selector = new Selector<Menu>(this.menus);
     this.totalMealsCount = MenuListComponent.calculateTotalMealsCount(this.menus);
   }
