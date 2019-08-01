@@ -13,6 +13,15 @@ export interface MenuActions {
   delete: boolean;
 }
 
+export interface MenuConfig {
+  actions: MenuConfigActions;
+}
+
+export interface MenuConfigActions {
+  viewList: boolean;
+  createMenu: boolean;
+}
+
 export class Food {
   _id: string;
   name: string;

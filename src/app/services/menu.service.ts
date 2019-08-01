@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CreateMenuModel, Menu, MenuChangeNameRequest } from '../models';
+import { CreateMenuModel, Menu, MenuChangeNameRequest, MenuConfig } from '../models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -36,5 +36,9 @@ export class MenuService {
 
   deleteMenu(ids: string[]): Observable<void> {
     return this.http.request<void>('DELETE', `/menu`, { body: { ids } });
+  }
+
+  getConfig(): Observable<MenuConfig> {
+    return this.http.get<MenuConfig>('/menu/config');
   }
 }

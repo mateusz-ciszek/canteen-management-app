@@ -13,6 +13,8 @@ import { CoalescingComponentFactoryResolver } from '../../services/coalescing-co
 import { CreateAdditionComponent } from './food/create/create-addition/create-addition.component';
 import { MenuCreateSummaryComponent } from './create/summary/menu-create-summary.component';
 import { MenuCreateFoodComponent } from './create/food/menu-create-food.component';
+import { MenuConfigResolver } from './menu-config-resolver';
+import { MenuCreateGuard } from './create/menu-create.guard';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,10 @@ import { MenuCreateFoodComponent } from './create/food/menu-create-food.componen
     MenuCreateSummaryComponent,
     MenuCreateFoodComponent,
   ],
+  providers: [
+    MenuConfigResolver,
+    MenuCreateGuard,
+  ]
 })
 export class MenuModule {
   constructor(
