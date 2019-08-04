@@ -53,7 +53,7 @@
       <td class="check-box-col">
         <input type="checkbox" [(ngModel)]="selector.getItem(index).isSelected">
       </td>
-      <td class="index-col">{{ index }}</td>
+      <td class="index-col">{{ index + 1 }}</td>
       <td>{{ addition.name }}</td>
       <td class="price-col"><span class="float-right">{{ addition.price | currency }}</span></td>
     </tr>

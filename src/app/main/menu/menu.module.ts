@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FoodDetailsComponent } from './food/detail/food-details.component';
+import { FoodDetailsComponent } from './food/details/food-details.component';
 import { MenuCreateComponent } from './create/menu-create.component';
 import { MenuDetailsComponent } from './details/menu-details.component';
 import { MenuListComponent } from './list/menu-list.component';
