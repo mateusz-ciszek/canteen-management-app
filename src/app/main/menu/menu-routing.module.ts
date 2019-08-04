@@ -5,8 +5,8 @@ import { MenuListComponent } from './list/menu-list.component';
 import { MenuListResolver } from './list/menu-list-resolver';
 import { MenuDetailsComponent } from './details/menu-details.component';
 import { MenuDetailsResolver } from './details/menu-details-resolver';
-import { FoodDetailsComponent } from './food/detail/food-details.component';
-import { FoodDetailsResolver } from './food/detail/food-details-resolver';
+import { FoodDetailsComponent } from './food/details/food-details.component';
+import { FoodDetailsResolver } from './food/details/food-details-resolver';
 import { CommonModule } from '@angular/common';
 import { FoodCreateComponent } from './food/create/food-create.component';
 
